@@ -7,7 +7,8 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="logo-section">
-          <h1 className="logo-heading">itcs</h1>
+          {/* <h1 className="logo-heading">itcs</h1> */}
+          <a href=""><img src={itcsLogo} alt="ITCS Logo" /></a>
           <p className="intro-para"> 
             ITCS strives to provide its customers with the best possible
             solutions using the latest available technology.
@@ -21,10 +22,10 @@ const Footer = () => {
         </div>
         <div className="info-section">
           <h3>Head Office</h3>
-          <p className="heade-para">6/K Block 2, P.E.C.H.S, Karachi, Pakistan</p>
-          <p className="heade-para">Email: info@itcs.com.pk</p>
-          <p className="heade-para">Phone: 021 111-482-711</p>
-          <p className="heade-para">Fax: 021 4554818</p>
+          <p className="head-para">6/K Block 2, P.E.C.H.S, Karachi, Pakistan</p>
+          <p className="head-para">Email: info@itcs.com.pk</p>
+          <p className="head-para">Phone: 021 111-482-711</p>
+          <p className="head-para">Fax: 021 4554818</p>
         </div>
         <div className="services-section">
           <h3>Services</h3>
