@@ -80,7 +80,7 @@
         }
 
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           bottom: -3px; /* Adjust this for better alignment */
           left: 0;
@@ -109,7 +109,7 @@
           }
 
           &::before {
-            content: "";
+            content: '';
             position: absolute;
             bottom: -3px;
             left: 0;
@@ -124,8 +124,8 @@
           }
         }
 
+        /* Initially, hide the dropdown menu */
         .dropdown-menu {
-          display: none;
           opacity: 0;
           visibility: hidden;
           position: absolute;
@@ -136,17 +136,16 @@
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
           z-index: 1000;
           padding: 10px 0;
-          transition: opacity 0.5s ease, visibility 0.5s ease,
-            transform 0.5s ease;
-          transform: translateY(-10px); /* Start the dropdown above the link */
-          transition-delay: 0.5s; /* Add a delay of 0.5s */
+          transition: opacity 0.5s ease, visibility 0s ease 0.5s, transform 0.5s ease;
+          transform: translateY(-10px); /* Start above */
         }
 
+        /* On hover, show the dropdown menu with smooth transition */
         &:hover .dropdown-menu {
-          display: block;
           opacity: 1;
           visibility: visible;
-          transform: translateY(0); /* Ensure the dropdown slides into view */
+          transform: translateY(0); /* Move into position */
+          transition: opacity 0.5s ease, visibility 0s ease 0s, transform 0.5s ease;
         }
 
         .dropdown-item {

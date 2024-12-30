@@ -9,12 +9,12 @@ function App() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <Routes>
-        <Route path='/' Component={Home}/>
-        
+       
+        <Route path='/' element={<Home />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   )
 }
