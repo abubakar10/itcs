@@ -1,5 +1,5 @@
 import React from "react";
-import "./section2.scss";
+import "./Section2.scss";
 import CloudLogo from "./../../../assets/logos/Cloud.svg"
 import SoftwareLicensing from "./../../../assets/logos/SoftwareLicensing.svg"
 import MordernWorkplace from "./../../../assets/logos/MordernWorkplace.svg"
