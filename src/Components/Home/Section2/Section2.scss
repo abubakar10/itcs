@@ -19,11 +19,16 @@
     justify-content: center;
     column-gap: 70px;
     margin: 50px 0px;
+    
   
     .card {
       width: 23%; /* Increased width for each card */
       transition: transform 0.3s ease-in-out;
       padding-bottom: 50px; /* Optional smooth hover effect */
+      color: white;
+      // background-color: rgb(54, 46, 46);
+      background-image: linear-gradient(to right, #6a00ff, #ffff00, #00ff44);
+
   
       /* Card Image Styling */
       .card-img-top {
@@ -43,18 +48,20 @@
         .card-text {
           font-size: 20px;
           line-height: 40px;
-          color: #555; /* Slightly lighter text color */
+          // color: #555; /* Slightly lighter text color */
           margin-top: 10px;
           height: 100px;
+          color: white;
         }
   
         .card-link {
           font-size: 20px;
           color: black;
           text-decoration: none;
-          border: 1px solid black;
+          border: 1px solid white;
           padding: 10px 20px;
           border-radius: 8px;
+          color: white;
   
           &:hover {
             color: #0056b3; /* Change link color on hover */

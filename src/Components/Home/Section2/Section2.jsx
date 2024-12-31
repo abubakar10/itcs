@@ -1,13 +1,16 @@
 import React from "react";
 import "./section2.scss";
-import CloudLogo from "./../../../assets/logos/Cloud.png"
+import CloudLogo from "./../../../assets/logos/Cloud.svg"
+import SoftwareLicensing from "./../../../assets/logos/SoftwareLicensing.svg"
+import MordernWorkplace from "./../../../assets/logos/MordernWorkplace.svg"
+
 const Section2 = () => {
   return (
     <>
       <div className="section2 ">
         <div className="cards">
           <div className="card" >
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={MordernWorkplace} className="card-img-top" alt="..." />
             <div className="card-body">
               <h5 className="card-title">MODERN WORKPLACE</h5>
               <p className="card-text">
@@ -37,7 +40,7 @@ const Section2 = () => {
             </div>
           </div>
           <div className="card" >
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={SoftwareLicensing} className="card-img-top" alt="..." />
             <div className="card-body">
               <h5 className="card-title">SOFTWARE LICENSING</h5>
               <p className="card-text">
