@@ -1,0 +1,109 @@
+.section1{
+    background-color: aqua;
+    height: 65vh;
+}
+
+
+
+
+.animated-text {
+    color: white; 
+    h1 {
+      position: relative;
+      height: 50px; // Adjust based on text height
+      overflow: hidden;
+      font-size: 50px;
+      margin: 0px;
+    }
+  
+    .text {
+      position: absolute;
+      opacity: 0;
+      transform: translateY(20px);
+      width: 100%; // Ensure text spans the container width
+      text-align: center; // Optional: Align the text
+      animation: textFade 2.5s ease-in-out forwards; // Adjusted for 2.5s duration
+    }
+  
+    // Assign delays to each text element
+    .text:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .text:nth-child(2) {
+      animation-delay: 2.5s;
+    }
+    .text:nth-child(3) {
+      animation-delay: 5s;
+    }
+    .text:nth-child(4) {
+      animation-delay: 7.5s;
+    }
+  
+    @keyframes textFade {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      20% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      80% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+    }
+  
+    // Secondary animation for additional content
+    .additional-content {
+      opacity: 0;
+      transform: translateY(50px); // Start below
+      animation: slideIn 2s ease-in-out forwards; // Slide-in animation
+      animation-delay: 8s; // Adjusted delay to 8 seconds
+      text-align: left; // Align text to the left
+      margin-top: 200px; // Add some spacing
+      padding-left: 20px; // Optional: Add padding for alignment
+  
+      h6 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+  
+      h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+  
+      button {
+        padding: 10px 20px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        border: 1px solid white;
+        border-radius: 10px;
+  
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+  
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+  

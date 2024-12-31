@@ -1,55 +1,117 @@
-// .header{
-//     margin: 30px;
-//     display: flex;
-//     align-items: center;
 
-//     .header-img {
-//         img{
-//             width: 80px;
+// .header {
+//   margin: 30px;
+//   display: flex;
+//   align-items: center;
 
-//         }
+//   .header-img {
+//     img {
+//       width: 80px;
 //     }
-//      .links {
-//       margin: 0px auto;
-//       .navbar-nav {
+//   }
+
+//   .links {
+//     margin: 0px auto;
+
+//     .navbar-nav {
+//       .nav-link {
+//         color: black;
+//         margin: 0 10px;
+//         position: relative;
+//         text-transform: uppercase;
+//         font-size: 16px;
+//         font-weight: 500;
+//         transition: color 0.3s ease;
+
+//         &:hover {
+//           color: #1e1139; 
+//         }
+
+//         &::before {
+//           content: '';
+//           position: absolute;
+//           bottom: -3px; 
+//           left: 0;
+//           width: 0;
+//           height: 2px;
+//           background-color: #1e1139; 
+//           transition: width 0.3s ease;
+//         }
+
+//         &:hover::before {
+//           width: 100%; 
+//         }
+//       }
+
+      
+//       .dropdown {
+//         position: relative;
+
 //         .nav-link {
 //           color: black;
 //           margin: 0 10px;
-//           transition: color 0.3s;
+//           position: relative;
 
 //           &:hover {
-//             color: #ffc371;
+//             color: #1e1139;
 //           }
-//         }
 
-//         /* Automatically open dropdown on hover */
-//         .dropdown:hover .dropdown-menu {
-//           display: block;
-//           opacity: 1;
-//           visibility: visible;
+//           &::before {
+//             content: '';
+//             position: absolute;
+//             bottom: -3px;
+//             left: 0;
+//             width: 0;
+//             height: 2px;
+//             background-color: #1e1139; 
+//             transition: width 0.3s ease;
+//           }
+
+//           &:hover::before {
+//             width: 100%;
+//           }
 //         }
 
 //         .dropdown-menu {
 //           display: none;
 //           opacity: 0;
 //           visibility: hidden;
+//           position: absolute;
+//           top: 100%;
+//           left: 0;
 //           background-color: white;
 //           border: none;
-//           transition: opacity 0.3s, visibility 0.3s;
+//           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+//           z-index: 1000;
+//           padding: 10px 0;
+//           transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+//           transform: translateY(-10px); 
+//           transition-delay: 0.5s; 
+//         }
 
-//           .dropdown-item {
-//             color: black;
-//             padding: 10px;
+//         &:hover .dropdown-menu {
+//           display: block;
+//           opacity: 1;
+//           visibility: visible;
+//           transform: translateY(0); 
+//         }
 
-//             &:hover {
-//               background-color: black;
-//               color: white;
-//             }
+//         .dropdown-item {
+//           color: black;
+//           padding: 10px 20px;
+
+//           &:hover {
+//             background-color: black;
+//             color: white;
+
 //           }
 //         }
 //       }
 //     }
 //   }
+// }
+
+
 
 .header {
   margin: 30px;
@@ -91,13 +153,20 @@
         }
 
         &:hover::before {
-          width: 100%; /* Ensure it spans only the width of the link */
+          width: 100%;
         }
       }
 
       /* Dropdown Menu */
       .dropdown {
         position: relative;
+
+        &:hover .dropdown-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0); /* Move into position */
+          transition: opacity 0.3s ease, visibility 0s ease 0s, transform 0.3s ease;
+        }
 
         .nav-link {
           color: black;
@@ -124,7 +193,7 @@
           }
         }
 
-        /* Initially, hide the dropdown menu */
+        /* Dropdown Menu Styling */
         .dropdown-menu {
           opacity: 0;
           visibility: hidden;
@@ -136,16 +205,8 @@
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
           z-index: 1000;
           padding: 10px 0;
-          transition: opacity 0.5s ease, visibility 0s ease 0.5s, transform 0.5s ease;
+          transition: opacity 0.3s ease, visibility 0s ease 0.3s, transform 0.3s ease;
           transform: translateY(-10px); /* Start above */
-        }
-
-        /* On hover, show the dropdown menu with smooth transition */
-        &:hover .dropdown-menu {
-          opacity: 1;
-          visibility: visible;
-          transform: translateY(0); /* Move into position */
-          transition: opacity 0.5s ease, visibility 0s ease 0s, transform 0.5s ease;
         }
 
         .dropdown-item {
