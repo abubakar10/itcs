@@ -1,0 +1,72 @@
+// .section2 .cards {
+//   display: flex;
+//   justify-content: center;
+//   column-gap: 70px;
+//   margin: 50px 0px;
+
+//   .card {
+//      width: 100%;
+
+//     .card-body .card-title {
+//       font-size: 30px;
+//     }
+//     .card-body .card-text {
+//     }
+//   }
+// }
+.section2 .cards {
+    display: flex;
+    justify-content: center;
+    column-gap: 70px;
+    margin: 50px 0px;
+  
+    .card {
+      width: 23%; /* Increased width for each card */
+      transition: transform 0.3s ease-in-out;
+      padding-bottom: 50px; /* Optional smooth hover effect */
+  
+      /* Card Image Styling */
+      .card-img-top {
+        width: 20%; /* Ensure the image scales to the card's width */
+        height: auto; /* Maintain aspect ratio */
+      }
+  
+      .card-body {
+        padding: 20px; /* Adjust padding as needed */
+  
+        .card-title {
+          font-size: 30px;
+          font-weight: bold;
+          margin-bottom: 30px;
+        }
+  
+        .card-text {
+          font-size: 20px;
+          line-height: 40px;
+          color: #555; /* Slightly lighter text color */
+          margin-top: 10px;
+          height: 100px;
+        }
+  
+        .card-link {
+          font-size: 20px;
+          color: black;
+          text-decoration: none;
+          border: 1px solid black;
+          padding: 10px 20px;
+          border-radius: 8px;
+  
+          &:hover {
+            color: #0056b3; /* Change link color on hover */
+          }
+        }
+      }
+  
+      /* Hover effect for cards (optional) */
+      &:hover {
+        transform: translateY(-5px); /* Lift the card on hover */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+      }
+    }
+  }
+  
