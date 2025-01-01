@@ -1,0 +1,33 @@
+.section5{
+    max-width: 1440px;
+    margin: 50px auto;
+}
+.counter-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(90deg, #3a0ca3, #7209b7);
+    color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+  
+    .counter {
+      text-align: center;
+  
+      .counter-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+  
+        .counter-plus {
+          font-size: 1.5rem;
+          margin-left: 0.2rem;
+          color: #ffd700;
+        }
+      }
+  
+      .counter-label {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+      }
+    }
+  }
