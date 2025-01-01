@@ -42,7 +42,7 @@
 // export default Section3
 import React, { useEffect, useRef, useState } from "react";
 import "./Section3.scss";
-import Section3Img from "./../../../assets/images/section3-image.png";
+import Section3img from "./../../../assets/images/section3.jpg"
 
 const Section3 = () => {
   const sectionRef = useRef(null); // Create a reference for the section
@@ -88,16 +88,21 @@ const Section3 = () => {
       <div className="title">
         <div className="title-inner">
           <div className="cafe">
-            <div className="cafe-inner">Keyframé</div>
-          </div>
-          <div className="mozart">
-            <div className="mozart-inner">Artistes</div>
+            <div className="cafe-inner">
+                <h2>Cybersecurity</h2>
+                <h1>Reimagined, Reinvented, Reinforced.</h1>
+                <p>Safeguarding Your Business’s Legacy and Reputation – Our Comprehensive Cybersecurity Solutions Keep You Protected from the Devastating Impacts of Cyber-Incidents.</p>
+                <h4>Penetration Testing</h4>
+                <p>Ensure Complete Cybersecurity – Let Us Help You Find Issues, Verify Mitigations, and Manage Assessments..</p>
+                <h4>Automated Software</h4>
+                <p>Safeguarding Your Business Operations with Comprehensive Network Security Solutions and Expert Services.</p>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="image">
-        <img src={Section3Img} alt="Beautiful landscape" />
+        <img src={Section3img} alt="Beautiful landscape" />
       </div>
     </div>
   );
