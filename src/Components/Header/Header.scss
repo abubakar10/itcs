@@ -1,122 +1,18 @@
 
-// .header {
-//   margin: 30px;
-//   display: flex;
-//   align-items: center;
-
-//   .header-img {
-//     img {
-//       width: 80px;
-//     }
-//   }
-
-//   .links {
-//     margin: 0px auto;
-
-//     .navbar-nav {
-//       .nav-link {
-//         color: black;
-//         margin: 0 10px;
-//         position: relative;
-//         text-transform: uppercase;
-//         font-size: 16px;
-//         font-weight: 500;
-//         transition: color 0.3s ease;
-
-//         &:hover {
-//           color: #1e1139; 
-//         }
-
-//         &::before {
-//           content: '';
-//           position: absolute;
-//           bottom: -3px; 
-//           left: 0;
-//           width: 0;
-//           height: 2px;
-//           background-color: #1e1139; 
-//           transition: width 0.3s ease;
-//         }
-
-//         &:hover::before {
-//           width: 100%; 
-//         }
-//       }
-
-      
-//       .dropdown {
-//         position: relative;
-
-//         .nav-link {
-//           color: black;
-//           margin: 0 10px;
-//           position: relative;
-
-//           &:hover {
-//             color: #1e1139;
-//           }
-
-//           &::before {
-//             content: '';
-//             position: absolute;
-//             bottom: -3px;
-//             left: 0;
-//             width: 0;
-//             height: 2px;
-//             background-color: #1e1139; 
-//             transition: width 0.3s ease;
-//           }
-
-//           &:hover::before {
-//             width: 100%;
-//           }
-//         }
-
-//         .dropdown-menu {
-//           display: none;
-//           opacity: 0;
-//           visibility: hidden;
-//           position: absolute;
-//           top: 100%;
-//           left: 0;
-//           background-color: white;
-//           border: none;
-//           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-//           z-index: 1000;
-//           padding: 10px 0;
-//           transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
-//           transform: translateY(-10px); 
-//           transition-delay: 0.5s; 
-//         }
-
-//         &:hover .dropdown-menu {
-//           display: block;
-//           opacity: 1;
-//           visibility: visible;
-//           transform: translateY(0); 
-//         }
-
-//         .dropdown-item {
-//           color: black;
-//           padding: 10px 20px;
-
-//           &:hover {
-//             background-color: black;
-//             color: white;
-
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
 
 
 .header {
-  margin: 30px;
+  padding: 30px;
   display: flex;
   align-items: center;
+  position: fixed; /* Fixes the header at the top of the viewport */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+  
+
 
   .header-img {
     img {
@@ -222,3 +118,10 @@
     }
   }
 }
+
+
+
+
+
+
+
