@@ -62,7 +62,7 @@ import CPanel from "./../../../assets/images/CPanel.png";
 import Digicert from "./../../../assets/images/Digicert.png";
 import Dynamics365 from "./../../../assets/images/Dynamics365.png";
 import Fortinet from "./../../../assets/images/Fortinet.png";
-import Kaspersky from "./../../../assets/images/kaspersky.png";
+import Kaspersky from "./../../../assets/images/Kaspersky.png";  //kasper
 import ManageEngine from "./../../../assets/images/ManageEngine.png";
 import Microsoft from "./../../../assets/images/Microsoft.png";
 import Nvidia from "./../../../assets/images/Nvidia.png";
