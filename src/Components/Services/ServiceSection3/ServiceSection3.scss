@@ -1,0 +1,172 @@
+// .ssection3 {
+//     display: flex;
+//     align-items: center;
+//     padding: 2rem;
+//     background-color: #f8f9fa;
+//     margin: 150px;
+  
+//     .content {
+//       flex: 1;
+//       padding-right: 2rem;
+  
+//       .subtitle {
+//         font-size: 0.9rem;
+//         color: #6c63ff;
+//         font-weight: bold;
+//         text-transform: uppercase;
+//         letter-spacing: 1px;
+//         margin-bottom: 0.5rem;
+//       }
+  
+//       .title {
+//         font-size: 2rem;
+//         font-weight: bold;
+//         margin-bottom: 1rem;
+//         color: #343a40;
+//       }
+  
+//       .description {
+//         font-size: 1rem;
+//         color: #6c757d;
+//         margin-bottom: 2rem;
+//       }
+  
+//       .satisfaction-scores {
+//         .satisfaction-item {
+//           display: flex;
+//           align-items: center;
+//           margin-bottom: 1rem;
+  
+//           .satisfaction-title {
+//             flex: 1;
+//             font-size: 1rem;
+//             font-weight: bold;
+//             color: #343a40;
+//           }
+  
+//           .progress-bar {
+//             flex: 2;
+//             height: 8px;
+//             background: #e9ecef;
+//             border-radius: 4px;
+//             margin: 0 1rem;
+//             position: relative;
+//             overflow: hidden;
+  
+//             .progress {
+//               height: 100%;
+//               background-color: #6c63ff;
+//               border-radius: 4px;
+//               transition: width 0.2s ease-in-out; /* Smooth transition of the progress bar width */
+//             }
+//           }
+  
+//           .percentage {
+//             flex: 0.5;
+//             font-size: 0.9rem;
+//             color: #6c757d;
+//           }
+//         }
+//       }
+//     }
+  
+//     .image {
+//       flex: 1;
+//       img {
+//         width: 100%;
+//         border-radius: 8px;
+//         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//       }
+//     }
+//   }
+  
+
+.ssection3 {
+    display: flex;
+    align-items: stretch; /* Make both content and image divs the same height */
+    padding: 2rem;
+    background-color: #ffffff; /* Set the background color to white */
+    margin: 150px;
+  
+    .content {
+      flex: 1;
+      padding-right: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Make sure the content aligns properly within the div */
+  
+      .subtitle {
+        font-size: 0.9rem;
+        color: #6c63ff;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+      }
+  
+      .title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #343a40;
+      }
+  
+      .description {
+        font-size: 1rem;
+        color: #6c757d;
+        margin-bottom: 2rem;
+      }
+  
+      .satisfaction-scores {
+        .satisfaction-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+  
+          .satisfaction-title {
+            flex: 1;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #343a40;
+          }
+  
+          .progress-bar {
+            flex: 2;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 0 1rem;
+            position: relative;
+            overflow: hidden;
+  
+            .progress {
+              height: 100%;
+              background-color: #6c63ff;
+              border-radius: 4px;
+              transition: width 0.2s ease-in-out; /* Smooth transition of the progress bar width */
+            }
+          }
+  
+          .percentage {
+            flex: 0.5;
+            font-size: 0.9rem;
+            color: #6c757d;
+          }
+        }
+      }
+    }
+  
+    .image {
+      flex: 1;
+      overflow: hidden; /* Ensure that the image stays within the bounds of the div */
+      
+      img {
+        width: 100%;
+        height: 100%; /* Ensure the image fills the height of the container */
+        object-fit: cover; /* Ensure the image covers the div and maintains aspect ratio */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+  
