@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Section7.scss";
+import arrowTestimonials from "./../../../assets/images/arrow-testimonials.png"
 
 const Section7 = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -43,8 +44,11 @@ const Section7 = () => {
                       className={`carousel-item ${activeIndex === index ? "active" : ""}`}
                       key={index}
                     >
+                      <div className="image"><img src={arrowTestimonials} alt="" /></div>
                       <div className="card">
+                      
                         <div className="card-body">
+                        
                           <h5 className="card-title fw-bold">{item.title}</h5>
                           <p className="">{item.role}</p>
                           

@@ -101,13 +101,17 @@
 //       }
 //     }
 //   }
-  
-
+  .section7{
+    margin: 100px 0px;
+  }
 .testimonial-slider {
     background-color: #5072a7;
-    background-image: url("./../../../assets/images/testimonials-bg.jpg");
+    background-image: url("./../../../assets/images/testimonials.jpg");
     background-position: center;
-    padding: 3em 2em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    padding: 100px 50px;
   
     .testimonial-title {
       color: #fff;
@@ -116,6 +120,14 @@
         padding-left: 0.2em;
       }
     }
+    .image{
+        position: absolute;
+        top:200;
+        left: 0;
+        width: 100px;
+        height:100px;
+        z-index: 2;
+       }
   
     .card {
       margin: 0.5em;
@@ -124,7 +136,8 @@
       height: 300px;
       text-align: center;
       padding: 0% 15%;
-  
+      position: relative;
+      
       .stars {
         margin: 0.5em 0;
   
@@ -154,7 +167,7 @@
         border: none;
         background: none;
         font-size: 2em;
-        color: black;
+        color: white;
         opacity: 0.5;
         cursor: pointer;
         transition: opacity 0.3s ease;
@@ -173,11 +186,11 @@
       }
     }
   
-    /* For larger screens, show 2 cards per row */
+    
     @media (min-width: 576px) {
       .carousel-item {
         margin-right: 0;
-        flex: 0 0 50%; /* Show 2 cards at a time */
+        flex: 0 0 50%;
         display: block;
       }
   
