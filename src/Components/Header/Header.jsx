@@ -115,13 +115,25 @@
 // };
 
 // export default Header;
+
+
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import itcsLogo from "../../assets/logos/itcsLogo.png";
 import "./Header.scss";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleServiceNavigation = (e) => {
+    if (window.innerWidth > 992) {
+      e.preventDefault(); // Prevent default dropdown toggle behavior
+      navigate("/services"); // Navigate to the Services page
+    }
+  };
+
   return (
-    <div className="header" style={{ backgroundColor: "#fff" }}>
+    <div className="header">
       <div className="header-img">
         <a href="/">
           <img src={itcsLogo} alt="ITCS Logo" />
@@ -156,59 +168,103 @@ const Header = () => {
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
+                    onClick={handleServiceNavigation}
                   >
                     Services
                   </a>
-                  <ul className="dropdown-menu" aria-labelledby="servicesDropdown">
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="servicesDropdown"
+                  >
                     <li>
-                      <a className="dropdown-item" href="/cloud-solutions">
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("/cloud-solutions")}
+                        style={{ cursor: "pointer" }}
+                      >
                         Cloud Solutions
                       </a>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/cybersecurity">
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("/cybersecurity")}
+                        style={{ cursor: "pointer" }}
+                      >
                         Cybersecurity
                       </a>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/it-consulting">
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("/it-consulting")}
+                        style={{ cursor: "pointer" }}
+                      >
                         IT Consulting
                       </a>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/enterprise-solutions">
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("/enterprise-solutions")}
+                        style={{ cursor: "pointer" }}
+                      >
                         Enterprise Solutions
                       </a>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/network-solutions">
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("/network-solutions")}
+                        style={{ cursor: "pointer" }}
+                      >
                         Network Solutions
                       </a>
                     </li>
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vision-mission">
+                  <a
+                    className="nav-link"
+                    onClick={() => navigate("/vision-mission")}
+                    style={{ cursor: "pointer" }}
+                  >
                     Vision & Mission
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/blogs">
+                  <a
+                    className="nav-link"
+                    onClick={() => navigate("/blogs")}
+                    style={{ cursor: "pointer" }}
+                  >
                     Blogs
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/about">
+                  <a
+                    className="nav-link"
+                    onClick={() => navigate("/about")}
+                    style={{ cursor: "pointer" }}
+                  >
                     About Us
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/contact">
+                  <a
+                    className="nav-link"
+                    onClick={() => navigate("/contact")}
+                    style={{ cursor: "pointer" }}
+                  >
                     Contact
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/careers">
+                  <a
+                    className="nav-link"
+                    onClick={() => navigate("/careers")}
+                    style={{ cursor: "pointer" }}
+                  >
                     Careers
                   </a>
                 </li>
@@ -222,4 +278,3 @@ const Header = () => {
 };
 
 export default Header;
-
