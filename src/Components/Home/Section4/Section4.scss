@@ -35,7 +35,7 @@
     max-width: 1440px;
 
     .card {
-      width: 31%;
+      width: 28%;
       height: 300px;
       perspective: 1000px; 
       position: relative;
@@ -86,7 +86,7 @@
 
           .explore-btn {
             background: #ffffff;
-            color: #4caf50;
+            color: #000;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
@@ -95,7 +95,7 @@
             transition: background 0.3s ease, color 0.3s ease;
 
             &:hover {
-              background: #4caf50;
+              background: #332255;
               color: #fff;
             }
           }
