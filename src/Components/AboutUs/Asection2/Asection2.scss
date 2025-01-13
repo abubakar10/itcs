@@ -1,0 +1,30 @@
+.asection2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    margin: 100px auto;
+
+
+    .asection2-img{
+        width: 50%;
+
+        img{
+            width: 60%;
+        }
+    }
+    .asection2-text{
+        width: 50%;
+
+        h6{
+            font-weight: bolder;
+        }
+        h2{
+            font-weight: bolder;
+
+        }
+        p{
+            font-size: 20px;
+        }
+    }
+}

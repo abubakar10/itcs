@@ -244,7 +244,7 @@ const Header = () => {
                 <li className="nav-item">
                   <a
                     className="nav-link"
-                    onClick={() => navigate("/about")}
+                    onClick={() => navigate("about-us")}
                     style={{ cursor: "pointer" }}
                   >
                     About Us
