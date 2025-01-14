@@ -4,14 +4,19 @@ import Section6 from '../Home/Section6/Section6'
 import Section7 from "./../Home/Section7/Section7"
 import Asection2 from './Asection2/Asection2'
 import Asection3 from './Asection3/Asection3'
+import Asection4 from "./Asection4/Asection4"
+import Asection5 from './Asection5/Asection5'
 const AboutUs = () => {
   return (
     <>
     <Asection1/>
     <Asection2/>
     <Asection3/>
+    <Asection4/>
+    <Asection5/>
     <Section6/>
     <Section7/>
+
     </>
 
   )
