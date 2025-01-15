@@ -7,6 +7,7 @@ import Asection3 from './Asection3/Asection3'
 import Asection4 from "./Asection4/Asection4"
 import Asection5 from './Asection5/Asection5'
 import Asection6 from './Asection6/Asection6'
+import Asection7 from './Asection7/Asection7'
 const AboutUs = () => {
   return (
     <>
@@ -16,6 +17,7 @@ const AboutUs = () => {
     <Asection4/>
     <Asection5/>
     <Asection6/>
+    <Asection7/>
     <Section6/>
     <Section7/>
 

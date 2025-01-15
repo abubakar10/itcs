@@ -232,7 +232,7 @@ const Header = () => {
                     Vision & Mission
                   </a>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <a
                     className="nav-link"
                     onClick={() => navigate("/blogs")}
@@ -240,7 +240,7 @@ const Header = () => {
                   >
                     Blogs
                   </a>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <a
                     className="nav-link"
