@@ -1,17 +1,37 @@
-.asection1{
+.asection1 {
     margin: 120px 0px;
     background-image: url("./../../../assets/images/homepage-bg.gif");
-    height: 50vh;
-    box-shadow: inset;
+    height: 45vh;
     background-position: center;
-   
-
-
-    h1{
-       top: 150px;
-        font-size: 50px;
-        font-weight: bolder;
-        text-align: center;
-        color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    h1 {
+      font-size: 50px;
+      font-weight: bolder;
+      color: white;
+      opacity: 0; /* Initially hidden */
+      animation: slideFadePulse 2.5s ease-out forwards;
     }
-}
+  
+    @keyframes slideFadePulse {
+      0% {
+        transform: translateX(-100%); /* Start from outside the left */
+        opacity: 0; /* Completely invisible */
+      }
+      50% {
+        transform: translateX(0); /* Slide into position */
+        opacity: 0.8; /* Almost fully visible */
+      }
+      70% {
+        transform: translateX(0) scale(1.05); /* Slight pulse */
+        opacity: 1; /* Fully visible */
+      }
+      100% {
+        transform: translateX(0) scale(1); /* Back to normal size */
+        opacity: 1; /* Fully visible */
+      }
+    }
+  }
+  
