@@ -1,0 +1,36 @@
+.cloudSection2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 50px;
+    margin: 100px auto;
+    max-width: 1440px;
+
+    .section2-text{
+        width: 50%;
+        h2{
+            font-weight: bolder;
+            font-size: 35px;
+        }
+        p{
+            font-size: 20px;
+            width: 96%;
+        }
+
+    }
+    .section2-img{
+        width: 48%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+
+        img{
+            width: 80%;
+            border-radius: 70px;
+            
+        }
+    }
+
+   
+}

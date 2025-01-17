@@ -1,0 +1,40 @@
+.cloudSection4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px;
+    .CloudSection4Img{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        img{
+            width: 70%;
+        }
+    }
+    .cloudSection4Info{
+        width: 50%;
+
+        .package{
+            display: flex;
+            flex-wrap: wrap;
+            .details{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 0 1 calc(33.33% - 20px); 
+                box-sizing: border-box; 
+                margin-top: 20px;
+                column-gap: 10px;
+                
+                img{
+                    width: 60px;
+                   
+                }
+                p{
+                    font-size: 18px;
+                    margin: 0px;
+                }
+            }
+        }
+    }
+}

@@ -109,20 +109,19 @@ const ServiceSection3 = () => {
 
   // Intersection Observer hook
   const { ref, inView } = useInView({
-    triggerOnce: true, // Trigger only once when the section is in view
-    threshold: 0.5, // At least 50% of the section should be visible
+    triggerOnce: true, 
+    threshold: 0.5, 
   });
 
-  // When the section comes into view, trigger the progress bar animation
   useEffect(() => {
     if (inView) {
       satisfactionData.forEach((item, index) => {
         let currentProgress = 0;
         const targetProgress = item.percentage;
-        const stepDuration = 10; // Duration for each step increment (ms)
-        const maxSteps = targetProgress; // The number of steps it will take to reach the target
+        const stepDuration = 10; 
+        const maxSteps = targetProgress; 
 
-        // Update progress at a consistent rate
+        
         const interval = setInterval(() => {
           if (currentProgress < targetProgress) {
             currentProgress += 1;

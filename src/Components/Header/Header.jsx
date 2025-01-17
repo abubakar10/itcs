@@ -156,7 +156,7 @@ const Header = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">
+                  <a className="nav-link active" aria-current="page"   onClick={() => navigate("/")} style={{cursor:"pointer"}}>
                     Home
                   </a>
                 </li>
@@ -179,7 +179,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/cloud-solutions")}
+                        onClick={() => navigate("/services/cloud")}
                         style={{ cursor: "pointer" }}
                       >
                         Cloud Solutions
@@ -188,7 +188,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/cybersecurity")}
+                        onClick={() => navigate("/services/cyber-security")}
                         style={{ cursor: "pointer" }}
                       >
                         Cybersecurity
@@ -197,16 +197,16 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/it-consulting")}
+                        onClick={() => navigate("/services/consulting")}
                         style={{ cursor: "pointer" }}
                       >
-                        IT Consulting
+                        Consulting
                       </a>
                     </li>
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/enterprise-solutions")}
+                        onClick={() => navigate("/services/enterprise-solutions")}
                         style={{ cursor: "pointer" }}
                       >
                         Enterprise Solutions
@@ -215,7 +215,16 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/network-solutions")}
+                        onClick={() => navigate("/services/it-services")}
+                        style={{ cursor: "pointer" }}
+                      >
+                        IT Services
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("/services/network-solutions")}
                         style={{ cursor: "pointer" }}
                       >
                         Network Solutions
