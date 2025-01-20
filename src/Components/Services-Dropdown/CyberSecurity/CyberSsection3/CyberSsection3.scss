@@ -1,0 +1,36 @@
+.cyberSection3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap:10%;
+  margin: 80px auto;
+  max-width: 1440px;
+
+  .Cyber-section3-text{
+    width: 50%;
+
+    h6{
+        font-weight: bolder;
+        margin-bottom: 0px;
+    }
+    h1{
+        font-weight: bolder;
+    }
+    p{
+        font-size: 19px;
+        width: 94%;
+        margin: 0px;
+    }
+  }
+   .Cyber-section3-img {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      border-radius: 50px;
+    
+    }
+  }
+}
