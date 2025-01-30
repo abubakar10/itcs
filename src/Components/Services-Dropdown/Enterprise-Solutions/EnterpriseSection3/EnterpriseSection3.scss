@@ -1,0 +1,31 @@
+.enterprise-section3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 12%;
+    max-width: 1440px;
+    margin: 50px auto;
+
+    .consultingSection3-text{
+        width: 50%;
+        // padding-left: 50px;
+        h6{
+            font-weight: bolder;
+        }
+        p{
+            width: 80%;
+        }
+    }
+   .consultingSection3-img{
+        display: flex;
+        justify-content: center;
+        width: 35%;
+
+        img{
+            width: 100%;
+            border-radius: 80px;
+            
+        }
+
+    }
+}

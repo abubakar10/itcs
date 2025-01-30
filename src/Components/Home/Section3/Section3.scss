@@ -1,120 +1,3 @@
-// * {
-//   position: relative;
-//   box-sizing: border-box;
-// }
-
-// .iframely-embed {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   z-index: 50;
-//   background: white;
-// }
-
-// #app {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background: white;
-//   color: #3a3535;
-//   max-width: 1440px;
-//   margin: 60px auto;
-//   overflow: hidden;
-//   column-gap: 150px;
-// }
-
-// .title {
-  
-//   font-family: "Prata", serif;
-//   width: 50%;
-//   z-index: 2;
-  
-//   transition: all 0.3s ease-in-out; 
-// }
-
-// .title-inner {
-//   display: inline-block;
-//   animation: inner-left 1s 1s ease both;
-//   transition: all 0.3s ease-in-out;
-// }
-
-// .cafe-inner {
-//   animation: inner-left 1s 1s ease both, text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
-//   transition: all 0.3s ease-in-out;
-// }
-
-// .mozart-inner {
-//   animation: text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
-//   transition: all 0.3s ease-in-out;
-// }
-
-// .cafe,
-// .mozart {
-//   animation: outer-left 1s 1s cubic-bezier(0.5, 0, 0.1, 1) both;
-//   transition: all 0.3s ease-in-out;
-// }
-
-// @keyframes text-clip {
-//   from {
-//     clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-//   }
-//   to {
-//     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-//   }
-// }
-
-// @keyframes outer-left {
-//   from {
-//     transform: translateX(50%);
-//   }
-//   to {
-//     transform: none;
-//   }
-// }
-
-// @keyframes inner-left {
-//   from {
-//     transform: translateX(-50%);
-//   }
-//   to {
-//     transform: none;
-//   }
-// }
-
-// .image {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 40%;
-//   height: 400px;
-//   position: relative;
-//   animation: image-in 1s cubic-bezier(0.5, 0, 0.1, 1) 2s backwards;
-// }
-
-// @keyframes image-in {
-//   from {
-//     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-//   }
-//   to {
-//     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-//   }
-// }
-
-// .image img {
-//   width: 100%;
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   object-fit: cover;
-//   transition: transform 0.3s ease-in-out;
-//   border-radius: 30px;
-// }
-
-// .image:hover img {
-//   transform: translate(-50%, -50%) scale(1.05); 
-// }
 
 
 * {
@@ -143,6 +26,9 @@
   column-gap: 150px;
   opacity: 0; /* Initially hidden */
   transition: opacity 1s ease-in-out; /* Smooth transition when visible */
+  padding: 0px 40px;
+  border-radius: 30px;
+  background-color: white;
 }
 
 #app.in-view {
