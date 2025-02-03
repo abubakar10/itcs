@@ -1,24 +1,29 @@
-import React from 'react'
-import "./EnterpriseSection3.scss"
-import ConsultingSection3Img from "./../../../../assets/images/Consulting-images/section3-img.jpg"
+import React from "react";
+import "./EnterpriseSection3.scss";
+import EnterpriseSection3Img from "./../../../../assets/images/Enterprise-images/enterprise-section3-img.png";
 const EnterpriseSection3 = () => {
   return (
     <>
-    <div className="enterprise-section3">
-            <div className="consultingSection3-text">
-                <h6>WHY TRANSFORMATION ?
-                </h6>
-                <h2>Strategy for Firms
-                </h2>
-                <p>In today’s dynamic business landscape, companies must adapt to stay ahead of the curve by updating their enterprise strategies, incorporating technological advancements, and taking a holistic approach to meeting the shifting demands of both customers and employees. To thrive in this fast-paced environment, it is essential for a business to implement a transformative strategy that prioritizes a defined purpose.</p>
-            
-            </div>
-            <div className="consultingSection3-img">
-                <img src={ConsultingSection3Img} alt="" />
-            </div>
+      <div className="enterprise-section3">
+        <div className="consultingSection3-text">
+          
+          <h2>Enterprise Solutions: A Contemporary Necessity!</h2>
+          <p>
+            In the intricate tapestry of business, enterprise solutions stand as
+            the linchpin of triumph. They orchestrate seamless operations,
+            amplify efficiency, and illuminate sagacious choices through
+            harmonized technologies. With their power to meld processes and
+            data, enterprises ascend, evolve, and pioneer amidst rivalry,
+            fostering enduring expansion and unleashing the pinnacle of returns
+            on investment.
+          </p>
         </div>
+        <div className="consultingSection3-img">
+          <img src={EnterpriseSection3Img} alt="" />
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default EnterpriseSection3
+export default EnterpriseSection3;
