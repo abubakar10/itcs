@@ -15,6 +15,7 @@ import CyberSecurity from './Components/Services-Dropdown/CyberSecurity/CyberSec
 import Enterprise from './Components/Services-Dropdown/Enterprise-Solutions/Enterprise'
 import ITServices from './Components/Services-Dropdown/IT-Services/ITServices'
 import Network from './Components/Services-Dropdown/Network-Solutions/Network'
+import Careers from './Components/Careers/Careers'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
         <Route path='/vision-mission' element={<Vision/>} />
         <Route path='/about-us' element={<AboutUs/>} />
         <Route path='/contact' element={<Contact/>} />
+        <Route path='/careers' element={<Careers/>} />
         
 
 
