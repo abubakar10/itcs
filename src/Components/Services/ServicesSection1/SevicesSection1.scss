@@ -35,4 +35,23 @@
         text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); 
 
       }
+
+      @media (max-width: 600px) {
+        
+        height: 50vh;
+        h1 {
+          font-size: 60px;
+          padding: 0 10px;
+        }
+    
+        h3 {
+          font-size: 20px;
+          letter-spacing: 10px;
+          padding-left: 10px;
+        }
+    
+        .background-video {
+          object-fit: cover;
+        }
+      } 
 }

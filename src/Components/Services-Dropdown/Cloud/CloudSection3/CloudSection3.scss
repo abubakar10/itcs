@@ -1,36 +1,48 @@
-.cloudSection3{
+.cloudSection3 {
     margin-top: 120px;
     background-image: url("./../../../../assets/images/CloudSection3bg.png");
     background-repeat: no-repeat;
     background-size: cover;
-    
-    
     color: white;
-    h3{
-        padding-top: 20px;
-        margin: 0px;
+  
+    h3 {
+      padding-top: 20px;
+      margin: 0px;
+      font-weight: bold;
+      text-align: center;
+    }
+  
+    .partnerships {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 50px;
+      column-gap: 250px;
+  
+      h2 {
         font-weight: bold;
-        text-align: center;
-       
+      }
+  
+      .microsoft {
+        width: 180px;
+        height: 110px;
+        border-radius: 20px;
+      }
     }
-    .partnerships{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 50px;
-        column-gap: 250px;
-        
-        h2{
-            font-weight: bold;
+  
+    @media (max-width: 600px) {
+      margin-top: 60px;
+  
+      .partnerships {
+        flex-direction: column;
+        column-gap: 30px;
+        padding: 20px 15px;
+  
+        .microsoft {
+          width: 120px;
+          height: 80px;
         }
-        .microsoft{
-            width: 180px;
-            height: 110px;
-            border-radius: 20px;
-            
-        }
-        
-
-
+      }
     }
-}
+  }
+  

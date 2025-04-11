@@ -15,7 +15,7 @@ const Cloud = () => {
       <CloudSection1 />
       <CloudSection2 />
       <CloudSection3 />
-      <CloudSection4 />
+      {/* <CloudSection4 /> */}
     </>
   );
 };
