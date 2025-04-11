@@ -1,21 +1,22 @@
+.section2 {
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 70px;
+    row-gap: 30px;
+    max-width: 1440px;
+    margin: 60px auto;
 
-   .section2 .cards {
-      display: flex;
-      justify-content: center; 
-      column-gap: 70px;
-      max-width: 1440px;
-      margin: 60px auto;
-    
-  
     .card {
-      width: 23%; /* Increased width for each card */
+      width: 23%;
       transition: transform 0.3s ease-in-out;
-      padding-bottom: 50px; /* Optional smooth hover effect */
+      padding-bottom: 50px;
       color: white;
       background-color: rgb(54, 46, 46);
       position: relative;
-      overflow: hidden; /* Ensures that the pseudo-element stays within the card */
-    
+      overflow: hidden;
+
       &::before {
         content: '';
         position: absolute;
@@ -26,64 +27,83 @@
         background-image: linear-gradient(to right, #1e1139, #6a0572, #f1e4ff);
         transform: scaleX(0);
         transform-origin: right;
-        transition: transform 0.8s ease-in-out; /* Controls the speed of the background filling */
+        transition: transform 0.8s ease-in-out;
       }
-    
+
       &:hover::before {
         transform: scaleX(1);
-        transform-origin: left; /* Makes the effect fill from left to right */
+        transform-origin: left;
       }
-    
+
       &:hover {
-        background-color: rgb(54, 46, 46); /* Keep the base background color */
+        background-color: rgb(54, 46, 46);
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
-     
-    
-  
-      /* Card Image Styling */
+
       .card-img-top {
-        width: 20%; /* Ensure the image scales to the card's width */
-        height: auto; /* Maintain aspect ratio */
+        width: 20%;
+        height: auto;
       }
-  
+
       .card-body {
-        padding: 20px; /* Adjust padding as needed */
-  
+        padding: 20px;
+
         .card-title {
           font-size: 30px;
           font-weight: bold;
           margin-bottom: 30px;
         }
-  
+
         .card-text {
           font-size: 20px;
           line-height: 40px;
-          // color: #555; /* Slightly lighter text color */
           margin-top: 10px;
           height: 150px;
           color: white;
         }
-  
+
         .card-link {
           font-size: 20px;
-          color: black;
+          color: white;
           text-decoration: none;
           border: 1px solid white;
           padding: 10px 20px;
           border-radius: 8px;
-          color: white;
-  
+
           &:hover {
-            color: #0056b3; /* Change link color on hover */
+            color: #0056b3;
           }
         }
       }
-  
-      /* Hover effect for cards (optional) */
-      &:hover {
-        transform: translateY(-5px); /* Lift the card on hover */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    }
+
+    // Responsive styles for max-width: 600px
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: center;
+      row-gap: 20px;
+
+      .card {
+        width: 90%;
+
+        .card-body {
+          .card-title {
+            font-size: 24px;
+          }
+
+          .card-text {
+            font-size: 16px;
+            line-height: 28px;
+            height: auto;
+          }
+
+          .card-link {
+            font-size: 16px;
+            padding: 8px 16px;
+          }
+        }
       }
     }
   }
-  
+}

@@ -118,6 +118,7 @@
   
       h2 {
         padding-left: 0.2em;
+        
       }
     }
     .image{
@@ -185,7 +186,18 @@
         }
       }
     }
-  
+    @media (max-width: 1200px) {
+      .row{
+        flex-direction: column;
+        align-items: center;
+
+        .card{
+          width: 100%;
+          
+        }
+      }
+
+    }
     
     @media (min-width: 576px) {
       .carousel-item {
