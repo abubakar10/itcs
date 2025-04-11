@@ -4,19 +4,19 @@ const CareerSection2 = () => {
   const steps = [
     {
       title: "Submission",
-      description: "Submit your CV to begin the process.",
+      description: "This is where you, as the candidate, apply for the job by sending your resume or CV..",
     },
     {
       title: "Phone Screening",
-      description: "We’ll schedule a quick call to learn more about you.",
+      description: "This is a preliminary phone call with a recruiter to discuss your interest in the role and quickly assess your fit.",
     },
     {
       title: "Assessment",
-      description: "Complete an assignment to showcase your skills.",
+      description: "This in-depth stage involves questioning tailored to the role. For creative positions, expect portfolio review. Technical skills might be assessed alongside your experience and what is fit for the company.",
     },
     {
       title: "Final Interview",
-      description: "Meet with the team to discuss your role.",
+      description: "This is the most in-depth stage, usually involving a panel of interviewers who ask questions about your experience, skills, and motivations. It's your chance to showcase your personality, enthusiasm, and how you'd contribute to the company.",
     },
   ];
   return (

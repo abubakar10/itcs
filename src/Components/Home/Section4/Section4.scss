@@ -1,3 +1,114 @@
+// .section4 {
+//   background-image: url("./../../../assets/images/bg-section4.png");
+//   color: white;
+//   background-size: cover; 
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   width: 100% !important;
+//   width: 1990px;
+//   padding: 40px;
+
+  
+
+//   .info {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     max-width: 1440px;
+//     margin: 10px auto;
+
+//     .info-title {
+//       width: 40%;
+//     }
+
+//     .info-text {
+//       width: 40%;
+//     }
+//   }
+
+//   .cards {
+//     display: flex;
+//     justify-content: center;
+//     flex-wrap: wrap;
+//     gap: 50px;
+//     margin: 60px auto;
+//     max-width: 1440px;
+
+//     .card {
+//       width: 28%;
+//       height: 300px;
+//       perspective: 1000px; 
+//       position: relative;
+//       background-color: transparent;
+//       border: 1px solid white;
+//       border-radius: 20px;
+
+//       .card-inner {
+//         position: relative;
+//         width: 100%;
+//         height: 100%;
+//         transform-style: preserve-3d;
+//         transition: transform 0.6s ease;
+
+//         &:hover {
+//           transform: rotateY(180deg); 
+//         }
+
+//         .card-front,
+//         .card-back {
+//           position: absolute;
+//           width: 100%;
+//           height: 100%;
+//           backface-visibility: hidden; 
+//           display: flex;
+//           align-items: center;
+//           justify-content: center;
+//           border-radius: 10px;
+//           padding: 20px;
+//           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+//           h5{
+//             font-weight: bolder;
+//             margin-bottom: 10px;
+//         }
+//         }
+
+//         .card-front {
+//           background: transparent;
+//           color: white;
+//           flex-direction: column;
+//           text-align: center;
+//         }
+
+//         .card-back {
+//           background: transparent;
+//           color: #fff;
+//           transform: rotateY(180deg); 
+//           display: flex;
+//           flex-direction: column;
+//           align-items: center;
+//           justify-content: center;
+
+//           .explore-btn {
+//             background: #ffffff;
+//             color: #000;
+//             border: none;
+//             padding: 10px 20px;
+//             border-radius: 5px;
+//             font-size: 16px;
+//             cursor: pointer;
+//             transition: background 0.3s ease, color 0.3s ease;
+
+//             &:hover {
+//               background: #332255;
+//               color: #fff;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 .section4 {
   background-image: url("./../../../assets/images/bg-section4.png");
   color: white;
@@ -7,8 +118,6 @@
   width: 100% !important;
   width: 1990px;
   padding: 40px;
-
-  
 
   .info {
     display: flex;
@@ -37,11 +146,16 @@
     .card {
       width: 28%;
       height: 300px;
-      perspective: 1000px; 
+      perspective: 1000px;
       position: relative;
       background-color: transparent;
       border: 1px solid white;
       border-radius: 20px;
+
+      // ✅ Apply hover to the .card and rotate the inner content
+      &:hover .card-inner {
+        transform: rotateY(180deg);
+      }
 
       .card-inner {
         position: relative;
@@ -50,16 +164,12 @@
         transform-style: preserve-3d;
         transition: transform 0.6s ease;
 
-        &:hover {
-          transform: rotateY(180deg); 
-        }
-
         .card-front,
         .card-back {
           position: absolute;
           width: 100%;
           height: 100%;
-          backface-visibility: hidden; 
+          backface-visibility: hidden;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -67,10 +177,10 @@
           padding: 20px;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-          h5{
+          h5 {
             font-weight: bolder;
             margin-bottom: 10px;
-        }
+          }
         }
 
         .card-front {
@@ -83,7 +193,7 @@
         .card-back {
           background: transparent;
           color: #fff;
-          transform: rotateY(180deg); 
+          transform: rotateY(180deg);
           display: flex;
           flex-direction: column;
           align-items: center;
