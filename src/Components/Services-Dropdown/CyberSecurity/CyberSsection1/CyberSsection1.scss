@@ -8,46 +8,60 @@
     align-items: center;
     flex-direction: column;
     color: white;
-    overflow: hidden; /* Prevents overflow from animations */
-}
-
-.cyberSsection1 h1 {
+    overflow: hidden;
+  }
+  
+  .cyberSsection1 h1 {
     font-weight: bolder;
     font-size: 70px;
     animation: zoomInRotate 1.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.cyberSsection1 p {
+  }
+  
+  .cyberSsection1 p {
     font-size: 22px;
     text-align: center;
     margin-top: 10px;
     animation: fadeInSlide 2s ease-in-out 0.5s forwards;
-}
-
-/* Keyframes for zoom and rotate animation */
-@keyframes zoomInRotate {
+  }
+  
+  @keyframes zoomInRotate {
     0% {
-        opacity: 0;
-        transform: scale(0.5) rotate(-15deg);
+      opacity: 0;
+      transform: scale(0.5) rotate(-15deg);
     }
     50% {
-        opacity: 0.7;
-        transform: scale(1.05) rotate(5deg);
+      opacity: 0.7;
+      transform: scale(1.05) rotate(5deg);
     }
     100% {
-        opacity: 1;
-        transform: scale(1) rotate(0);
+      opacity: 1;
+      transform: scale(1) rotate(0);
     }
-}
-
-/* Keyframes for fade-in with slide-up animation */
-@keyframes fadeInSlide {
+  }
+  
+  @keyframes fadeInSlide {
     0% {
-        opacity: 0;
-        transform: translateY(30px);
+      opacity: 0;
+      transform: translateY(30px);
     }
     100% {
-        opacity: 1;
-        transform: translateY(0);
+      opacity: 1;
+      transform: translateY(0);
     }
-}
+  }
+  
+  @media (max-width: 600px) {
+    .cyberSsection1 {
+      height: 30vh;
+      padding: 0 15px;
+    }
+  
+    .cyberSsection1 h1 {
+      font-size: 40px;
+    }
+  
+    .cyberSsection1 p {
+      font-size: 16px;
+    }
+  }
+  
