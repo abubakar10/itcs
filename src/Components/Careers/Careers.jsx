@@ -5,7 +5,7 @@ import CareerSection2 from './CareerSection2/CareerSection2'
 const Careers = () => {
   return (
     <>
-    <div style={{marginTop:"120px"}}>Careers</div>
+    
     <CareerSection1/>
     <CareerSection2/>
     </>

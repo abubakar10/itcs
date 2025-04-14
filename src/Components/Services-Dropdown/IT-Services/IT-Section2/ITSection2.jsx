@@ -9,7 +9,7 @@ const ITSection2 = () => {
     <>
     <div className='it-section2'>
                 <h6>WHAT WE DO</h6>
-                <h2>We are not just a regular service provider,<br /> rather a reliable strategic partner to your triumph.</h2>
+                <h2>We are not just a regular service provider, rather a reliable strategic partner to your triumph.</h2>
                 <div className='whatWeDo'>
                     <div className="sevices-info">
                       <img src={integratedCybersecurityImg} alt="" />

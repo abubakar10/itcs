@@ -1,78 +1,50 @@
-
-  
-// .slider {
-//     width: 100%;
-//     overflow: hidden;
-//     position: relative;
-//     display: flex;
-//     align-items: center;
-  
-//     .slider-track {
-//       display: flex;
-//       gap: 120px; 
-//       animation: slide 30s linear infinite;
-//       will-change: transform;
-  
-//       img {
-//         max-height: 80px; 
-//         object-fit: contain;
-//         filter: grayscale(100%); 
-//         transition: filter 0.3s ease-in-out;
-  
-//         &:hover {
-//           filter: grayscale(0); 
-//         }
-//       }
-//     }
-//   }
-  
-  
-//   @keyframes slide {
-//     0% {
-//       transform: translateX(0); 
-//     }
-//     100% {
-//       transform: translateX(calc(-50% - 10px)); 
-//     }
-//   }
-  
 .slider {
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
 
-    
-  
-    .slider-track {
-      display: flex;
-      gap: 50px; 
-      animation: slide 30s linear infinite; 
-      animation-play-state: running;
-      
-      img {
-        max-height: 80px;
-        object-fit: contain;
-        filter: grayscale(100%) brightness(70%) opacity(80%); 
-        transition: filter 0.3s ease-in-out;
-        background: none;
+  .slider-track {
+    display: flex;
+    gap: 50px;
+    animation: slide 30s linear infinite;
+    animation-play-state: running;
+
+    img {
+      max-height: 80px;
+      object-fit: contain;
+      filter: grayscale(100%) brightness(70%) opacity(80%);
+      transition: filter 0.3s ease-in-out;
+      background: none;
+      cursor: pointer;
+
+      &:hover {
+        filter: grayscale(0) brightness(100%) opacity(100%);
         cursor: pointer;
-  
-        &:hover {
-          filter: grayscale(0) brightness(100%) opacity(100%);
-          cursor: pointer; 
-        }
       }
     }
   }
-  
-  @keyframes slide {
-    0% {
-      transform: translateX(0);
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 25px)); // Adjust for seamless looping
+  }
+}
+
+@media (max-width: 600px) {
+  .slider {
+    .slider-track {
+      gap: 20px; 
     }
-    100% {
-      transform: translateX(calc(-50% - 25px)); // Adjust for seamless looping
+
+    .slider-track img {
+      max-height: 60px; 
+      filter: grayscale(100%) brightness(70%) opacity(70%); 
     }
   }
-  
+}

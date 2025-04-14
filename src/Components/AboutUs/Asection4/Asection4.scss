@@ -206,6 +206,53 @@
     }
   }
 }
+@media (max-width: 600px) {
+  .asection4 {
+    padding: 20px;
+
+    .info {
+      h6 {
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+
+    .cards {
+      gap: 30px;
+      flex-direction: column;
+      align-items: center;
+
+      .scard {
+        width: 90%;
+        height: 300px;
+
+        .card-inner {
+          height: 300px;
+
+          .card-front,
+          .card-back {
+            flex-direction: column;
+            padding: 15px;
+
+            h5 {
+              font-size: 18px;
+            }
+          }
+
+          .card-back {
+            .back-text {
+              font-size: 15px;
+              padding: 8px 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 
   

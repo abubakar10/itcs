@@ -1,30 +1,66 @@
-.asection2{
+.asection2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1440px;
     margin: 100px auto;
-
-
-    .asection2-img{
-        width: 50%;
-
-        img{
-            width: 60%;
-        }
+  
+    .asection2-img {
+      width: 50%;
+  
+      img {
+        width: 60%;
+      }
     }
-    .asection2-text{
-        width: 50%;
-
-        h6{
-            font-weight: bolder;
-        }
-        h2{
-            font-weight: bolder;
-
-        }
-        p{
-            font-size: 20px;
-        }
+  
+    .asection2-text {
+      width: 50%;
+  
+      h6 {
+        font-weight: bolder;
+      }
+  
+      h2 {
+        font-weight: bolder;
+      }
+  
+      p {
+        font-size: 20px;
+      }
     }
-}
+  }
+  
+  @media (max-width: 600px) {
+    .asection2 {
+      flex-direction: column;
+      text-align: center;
+      padding: 0 20px;
+      margin: 60px auto;
+  
+      .asection2-img,
+      .asection2-text {
+        width: 100%;
+      }
+  
+      .asection2-img {
+        margin-bottom: 30px;
+  
+        img {
+          width: 90%;
+          border-radius: 40px;
+        
+        }
+      }
+  
+      .asection2-text {
+        h2 {
+          font-size: 22px;
+        }
+  
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  
