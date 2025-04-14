@@ -160,18 +160,7 @@
     }
 
     .links {
-      .container-fluid{
-        display: flex;
-        justify-content: center !important;
-        align-items: center !important;
-        margin-bottom: 25px;
-
-        .navbar-toggler{
-          margin-bottom: 15px;
-          position: absolute;
-          top: -6px;
-          left: 190px;
-        }
+     
       .navbar-nav {
         .nav-link {
           font-size: 13px; /* Adjust font size for small screens */
@@ -187,5 +176,5 @@
       }
     }
   }
-  }}
+  }
 
