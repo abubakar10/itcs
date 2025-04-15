@@ -10,9 +10,9 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleServiceNavigation = (e) => {
-    if (window.innerWidth > 992) {
-      e.preventDefault(); // Prevent default dropdown toggle behavior
-      navigate("/services"); // Navigate to the Services page
+    if (window.innerWidth > 200) {
+      e.preventDefault(); 
+      navigate("/services"); 
     }
   };
 
