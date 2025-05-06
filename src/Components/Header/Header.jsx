@@ -3,7 +3,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import itcsLogo from "../../assets/logos/itcsLogo.png";
+import alignitLogo from "../../assets/logos/Align It Services.png";
 import "./Header.scss";
 
 const Header = () => {
@@ -20,7 +20,7 @@ const Header = () => {
     <div className="header">
       <div className="header-img">
         <a href="/">
-          <img src={itcsLogo} alt="ITCS Logo" />
+          <img src={alignitLogo} alt="ITCS Logo" />
         </a>
       </div>
       <div className="links">

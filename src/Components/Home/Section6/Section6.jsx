@@ -24,13 +24,13 @@ import Symantec from "./../../../assets/images/Symantec.png";
 import Veeam from "./../../../assets/images/Veeam.png";
 import Vmware from "./../../../assets/images/Vmware.png";
 import Zoom from "./../../../assets/images/Zoom.png";
-// Add other image imports...
+
 
 const images = [
   Acunetix, Adobe,AutoDesk, Barracuda, CorelDraw, CPanel, Digicert,
     Dynamics365, Fortinet, Kaspersky, ManageEngine, Microsoft, Nvidia,
     Office365, Plesk, PortSwigger, Rapid, Ruigie, SolarWinds, Sophos,
-    Symantec, Veeam, Vmware, Zoom, /* Add other images here */,
+    Symantec, Veeam, Vmware, Zoom, ,
 ];
 
 const Section6 = () => {

@@ -9,7 +9,6 @@ const Section5 = () => {
     { number: 103, label: "Business Partners" },
     { number: 29, label: "Awards Winning" },
   ];
-
   const [startAnimation, setStartAnimation] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
@@ -18,10 +17,8 @@ const Section5 = () => {
       setStartAnimation(true);
     }
   }, [inView]);
-
   const animateNumber = (endValue) => {
     const [value, setValue] = useState(0);
-
     useEffect(() => {
       if (startAnimation) {
         let start = 0;

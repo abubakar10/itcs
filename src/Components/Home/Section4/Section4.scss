@@ -138,6 +138,24 @@
     }
   }
   @media (max-width: 600px) {
+    padding: 15px;
+    .info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1440px;
+      margin: 10px auto;
+  
+      .info-title {
+        width: 90%;
+        font-size: 20px;
+      }
+  
+      .info-text {
+        width: 100%;
+        font-size: 20px;
+      }
+    }
     .cards {
       .card {
         width: 90%;
@@ -145,7 +163,7 @@
         .card-inner {
           .card-front,
           .card-back {
-            padding: 15px;
+            padding: 10px;
   
             h5 {
               font-size: 16px; // smaller heading

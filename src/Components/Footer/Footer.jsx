@@ -1,5 +1,7 @@
 import React from "react";
 import itcsLogo from "../../assets/logos/itcsLogo.png";
+import alignitLogo from "../../assets/logos/Align It Services (white).png";
+
 import Twitter from "./../../assets/logos/Twitter.svg";
 import Facebook from "./../../assets/logos/Facebook.svg";
 import Instagram from "./../../assets/logos/Instagram.svg";
@@ -12,7 +14,7 @@ const Footer = () => {
       <div className="footer-container">
         <div className="logo-section">
           {/* <h1 className="logo-heading">itcs</h1> */}
-          <a href=""><img src={itcsLogo} alt="ITCS Logo" /></a>
+          <a href=""><img src={alignitLogo} alt="ITCS Logo" /></a>
           <p className="intro-para"> 
             ITCS strives to provide its customers with the best possible
             solutions using the latest available technology.

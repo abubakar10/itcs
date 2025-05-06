@@ -45,10 +45,8 @@ const Section7 = () => {
                       key={index}
                     >
                       <div className="image"><img src={arrowTestimonials} alt="" /></div>
-                      <div className="card">
-                      
+                      <div className="card"  >                 
                         <div className="card-body">
-                        
                           <h5 className="card-title fw-bold">{item.title}</h5>
                           <p className="">{item.role}</p>
                           

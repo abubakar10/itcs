@@ -108,9 +108,65 @@
   }
 
   // Responsive for screens 600px or smaller
+ 
+  @media (max-width: 1600px) {
+    height: 50vh;
+    .animated-text {
+      h1 {
+        font-size: 42px;
+      }
+  
+      .text {
+        font-size: 26px;
+      }
+  
+      .additional-content {
+        h2 {
+          font-size: 22px;
+        }
+  
+        h6 {
+          font-size: 16px;
+        }
+  
+        button {
+          font-size: 15px;
+          padding: 9px 18px;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 1400px) {
+    height: 45vh;
+    .animated-text {
+      h1 {
+        font-size: 36px;
+      }
+  
+      .text {
+        font-size: 22px;
+      }
+  
+      .additional-content {
+        h2 {
+          font-size: 20px;
+        }
+  
+        h6 {
+          font-size: 14px;
+        }
+  
+        button {
+          font-size: 14px;
+          padding: 8px 16px;
+        }
+      }
+    }
+  }
   @media (max-width: 600px) {
     height: auto;
-    margin-top: 60px;
+    margin: 20px 0px;
     padding: 20px;
 
     .animated-text {
@@ -150,4 +206,5 @@
       }
     }
   }
+  
 }
