@@ -1,9 +1,7 @@
 
-
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import alignitLogo from "../../assets/logos/Align It Services.png";
+import alignitLogo from "../../assets/logos/itcsLogo.png";
 import "./Header.scss";
 
 const Header = () => {

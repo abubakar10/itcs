@@ -96,7 +96,7 @@
   width: 40%;
   height: 400px;
   position: relative;
-  animation: image-in 1s cubic-bezier(0.5, 0, 0.1, 1) 2s backwards;
+  animation: image-in 1s cubic-bezier(0.5, 0, 0.1, 1) 0.1s backwards;
 
   img {
     width: 100%;

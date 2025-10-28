@@ -27,7 +27,7 @@ const Section3 = () => {
         }
         setInView(entry.isIntersecting); // Set inView to true when section is in view
       },
-      { threshold: 0.5 } // Trigger when 50% of the section is visible
+      { threshold: 0.05 } // Trigger when 5% of the section is visible
     );
 
     // Start observing the section
