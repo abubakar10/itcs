@@ -2,8 +2,18 @@
     background-color: #1d1131;
     color: #fff;
     padding: 20px 0px;
-   
-  
+    
+    a {
+      color: #fff;              
+      text-decoration: none;    
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: #ff5f6d;        
+      }
+    }
+
+
     .footer-container {
       display: flex;
       flex-wrap: wrap;

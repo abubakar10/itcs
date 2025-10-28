@@ -1,10 +1,9 @@
-
-
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import alignitLogo from "../../assets/logos/Align It Services.png";
 import "./Header.scss";
+import { Dropdown } from "bootstrap";
+import { useEffect } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,6 +14,44 @@ const Header = () => {
       navigate("/services"); 
     }
   };
+
+  const handleDropdownItemClick = (path) => {
+  
+  const toggleEl = document.getElementById("servicesDropdown");
+  if (toggleEl) {
+    const dropdownInstance =
+      Dropdown.getInstance(toggleEl) || new Dropdown(toggleEl);
+    dropdownInstance.hide(); 
+  }
+
+  
+  const navbarCollapse = document.getElementById("navbarNav");
+  if (navbarCollapse?.classList.contains("show")) {
+    navbarCollapse.classList.remove("show");
+  }
+
+  navigate(path);
+};
+
+  useEffect(() => {
+    const dropdown = document.querySelector(".dropdown");
+    const dropdownToggle = document.getElementById("servicesDropdown");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+
+      if (!dropdown || !dropdownToggle || !dropdownMenu) return;
+
+
+      dropdown.addEventListener("mouseenter", () => {
+      const instance =
+        Dropdown.getInstance(dropdownToggle) || new Dropdown(dropdownToggle);
+        instance.show();
+      });
+
+      dropdown.addEventListener("mouseleave", () => {
+      const instance = Dropdown.getInstance(dropdownToggle);
+      if (instance) instance.hide();
+    });
+ }, []);
 
   return (
     <div className="header">
@@ -63,7 +100,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/cloud")}
+                        onClick={() => handleDropdownItemClick("/services/cloud")}
                         style={{ cursor: "pointer" }}
                       >
                         Cloud Solutions
@@ -72,7 +109,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/cyber-security")}
+                        onClick={() => handleDropdownItemClick("/services/cyber-security")}
                         style={{ cursor: "pointer" }}
                       >
                         Cybersecurity
@@ -81,7 +118,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/consulting")}
+                        onClick={() => handleDropdownItemClick("/services/consulting")}
                         style={{ cursor: "pointer" }}
                       >
                         Consulting
@@ -90,7 +127,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/enterprise-solutions")}
+                        onClick={() => handleDropdownItemClick("/services/enterprise-solutions")}
                         style={{ cursor: "pointer" }}
                       >
                         Enterprise Solutions
@@ -99,7 +136,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/it-services")}
+                        onClick={() => handleDropdownItemClick("/services/it-services")}
                         style={{ cursor: "pointer" }}
                       >
                         IT Services
@@ -108,7 +145,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/network-solutions")}
+                        onClick={() => handleDropdownItemClick("/services/network-solutions")}
                         style={{ cursor: "pointer" }}
                       >
                         Network Solutions
