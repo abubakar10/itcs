@@ -104,23 +104,29 @@
 .asection4 {
   .info {
     text-align: center;
+    margin-bottom: 40px;
 
     h6 {
-      font-weight: bolder;
+      font-weight: 600;
+      color: var(--accent-blue);
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
     }
 
     h1 {
-      font-weight: bolder;
+      font-weight: 700;
+      font-size: 40px;
+      color: var(--text-primary);
     }
   }
 
-  color: black;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  color: var(--text-primary);
+  background: var(--bg-primary);
   width: 100% !important;
   max-width: 1990px;
-  padding: 40px;
+  padding: 80px 40px;
 
   .cards {
     display: flex;
@@ -132,14 +138,20 @@
 
     .scard {
       width: 28%;
-      height: 250px;
+      min-width: 280px;
+      height: 280px;
       perspective: 1000px;
       position: relative;
-      background-color: transparent;
-      border: 1px solid black;
-      border-radius: 20px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      transition: all var(--transition-normal);
 
-      // ✅ Trigger flip on hover of .scard, not .card-inner
+      &:hover {
+        border-color: var(--accent-blue);
+        box-shadow: var(--shadow-lg);
+      }
+
       &:hover .card-inner {
         transform: rotateY(180deg);
       }
@@ -160,26 +172,27 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 10px;
-          padding: 20px;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          border-radius: 16px;
+          padding: 32px 24px;
 
           h5 {
-            font-weight: bolder;
-            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
           }
         }
 
         .card-front {
-          background: transparent;
-          color: black;
+          background: var(--bg-card);
+          color: var(--text-primary);
           flex-direction: column;
           text-align: center;
         }
 
         .card-back {
-          background: transparent;
-          color: #fff;
+          background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+          color: var(--text-primary);
           transform: rotateY(180deg);
           display: flex;
           flex-direction: column;
@@ -188,17 +201,18 @@
 
           .back-text {
             text-align: center;
-            color: black;
+            color: var(--text-secondary);
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 17px;
-            font-weight: 800;
-            transition: background 0.3s ease, color 0.3s ease;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.6;
+            transition: all var(--transition-normal);
 
             &:hover {
-              transform: scale(1.1);
-              transition: 0.3s ease-in-out;
+              transform: scale(1.05);
+              color: var(--accent-blue);
             }
           }
         }

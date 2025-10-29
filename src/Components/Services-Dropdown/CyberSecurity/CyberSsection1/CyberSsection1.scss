@@ -1,27 +1,47 @@
 .cyberSsection1 {
-    margin-top: 120px;
-    background-image: url("./../../../../assets/images/CyberSecurity-images/cyberSecurity-Section1-bg.png");
+    margin-top: 100px;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(36, 36, 36, 0.9) 100%),
+                url("./../../../../assets/images/CyberSecurity-images/cyberSecurity-Section1-bg.png");
     background-position: center;
-    height: 40vh;
+    background-size: cover;
+    height: 45vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: white;
+    color: var(--text-primary);
     overflow: hidden;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(74, 158, 255, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
   }
   
   .cyberSsection1 h1 {
-    font-weight: bolder;
-    font-size: 70px;
+    font-weight: 700;
+    font-size: 64px;
     animation: zoomInRotate 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+    text-shadow: 0 4px 20px rgba(74, 158, 255, 0.4);
+    position: relative;
+    z-index: 1;
   }
   
   .cyberSsection1 p {
-    font-size: 22px;
+    font-size: 20px;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 16px;
+    color: var(--text-secondary);
     animation: fadeInSlide 2s ease-in-out 0.5s forwards;
+    position: relative;
+    z-index: 1;
   }
   
   @keyframes zoomInRotate {

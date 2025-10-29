@@ -1,0 +1,288 @@
+.services-grid-section {
+  padding: 100px 20px;
+  background: var(--bg-secondary);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+  }
+
+  .services-grid-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .services-grid-header {
+    text-align: center;
+    margin-bottom: 60px;
+
+    .section-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(74, 158, 255, 0.1);
+      border: 1px solid rgba(74, 158, 255, 0.3);
+      border-radius: 50px;
+      color: var(--accent-blue);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .section-description {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  .service-card {
+    perspective: 1000px;
+    height: 400px;
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .card-front {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-normal);
+
+      .card-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 24px;
+        padding: 16px;
+        background: rgba(74, 158, 255, 0.1);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition-normal);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          filter: brightness(0) invert(1);
+        }
+      }
+
+      .card-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+      }
+
+      .card-description {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        flex: 1;
+      }
+
+      .card-hover-indicator {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent-blue);
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 20px;
+        opacity: 0.7;
+
+        svg {
+          transition: transform var(--transition-normal);
+        }
+      }
+    }
+
+    .card-back {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+      border: 1px solid var(--accent-blue);
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 32px rgba(74, 158, 255, 0.3);
+
+      .back-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .features-list {
+        list-style: none;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+
+        li {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          color: var(--text-secondary);
+          font-size: 14px;
+
+          svg {
+            flex-shrink: 0;
+            color: var(--accent-blue);
+          }
+        }
+      }
+
+      .explore-btn {
+        width: 100%;
+        padding: 14px 24px;
+        background: var(--accent-gradient);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all var(--transition-normal);
+        box-shadow: 0 4px 20px rgba(74, 158, 255, 0.4);
+
+        svg {
+          transition: transform var(--transition-normal);
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 30px rgba(74, 158, 255, 0.6);
+
+          svg {
+            transform: translateX(5px);
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .card-front {
+        border-color: var(--accent-blue);
+
+        .card-icon {
+          background: var(--accent-blue);
+          transform: scale(1.1);
+        }
+
+        .card-hover-indicator svg {
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .services-grid-section {
+    padding: 60px 20px;
+
+    .services-grid-header {
+      margin-bottom: 40px;
+
+      .section-description {
+        font-size: 15px;
+      }
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .service-card {
+      height: 380px;
+
+      .card-front,
+      .card-back {
+        padding: 24px;
+      }
+
+      .card-front {
+        .card-icon {
+          width: 70px;
+          height: 70px;
+        }
+
+        .card-title {
+          font-size: 22px;
+        }
+
+        .card-description {
+          font-size: 13px;
+        }
+      }
+
+      .card-back {
+        .back-title {
+          font-size: 18px;
+        }
+
+        .features-list li {
+          font-size: 13px;
+        }
+
+        .explore-btn {
+          font-size: 15px;
+          padding: 12px 20px;
+        }
+      }
+    }
+  }
+}
+

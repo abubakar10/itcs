@@ -4,23 +4,27 @@
   display: flex;
   align-items: center;
   position: relative;
+  background-color: var(--bg-secondary);
+  padding: 60px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 
   .slider-track {
     display: flex;
-    gap: 50px;
+    gap: 80px;
     animation: slide 30s linear infinite;
     animation-play-state: running;
 
     img {
       max-height: 80px;
       object-fit: contain;
-      filter: grayscale(100%) brightness(70%) opacity(80%);
-      transition: filter 0.3s ease-in-out;
+      filter: grayscale(100%) brightness(1.5) opacity(0.6);
+      transition: filter var(--transition-normal);
       background: none;
       cursor: pointer;
 
       &:hover {
-        filter: grayscale(0) brightness(100%) opacity(100%);
+        filter: grayscale(0) brightness(1.2) opacity(1);
         cursor: pointer;
       }
     }

@@ -1,16 +1,17 @@
 import React from 'react'
-import CareerSection1 from './CareerSection1/CareerSection1'
-import CareerSection2 from './CareerSection2/CareerSection2'
+import CareerHero from './CareerHero/CareerHero'
+import CareerBenefits from './CareerBenefits/CareerBenefits'
+import CareerPositions from './CareerPositions/CareerPositions'
+import CareerCulture from './CareerCulture/CareerCulture'
 
 const Careers = () => {
   return (
     <>
-    
-    <CareerSection1/>
-    <CareerSection2/>
+      <CareerHero />
+      <CareerBenefits />
+      <CareerPositions />
+      <CareerCulture />
     </>
-    
-
   )
 }
 

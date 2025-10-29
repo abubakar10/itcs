@@ -3,25 +3,43 @@
     align-items: center;
     width: 100%;
     margin-bottom: 100px;
-    background-color: #1f1f1f;
+    background-color: var(--bg-secondary);
     height: 55vh;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
   
     .customerSuccess-text {
-      background-color: #1f1f1f;
-      color: white;
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
       width: 50%;
+      padding: 40px;
   
       h5,
       h1,
       p {
-        width: 45%;
+        width: 80%;
         margin: 0px auto;
-        padding-bottom: 11px;
+        padding-bottom: 16px;
       }
   
-      h5,
+      h5 {
+        font-weight: 600;
+        color: var(--accent-blue);
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
       h1 {
-        font-weight: bolder;
+        font-weight: 700;
+        font-size: 36px;
+        color: var(--text-primary);
+      }
+      
+      p {
+        color: var(--text-secondary);
+        font-size: 16px;
+        line-height: 1.8;
       }
     }
   

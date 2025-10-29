@@ -1,25 +1,28 @@
 .ssection4 {
-  color: black;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  color: var(--text-primary);
+  background: var(--bg-primary);
   width: 100% !important;
-  width: 1990px;
-  padding: 40px;
+  padding: 80px 40px;
 
   .info {
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: 1440px;
-    margin: 10px auto;
+    margin: 0 auto 60px;
 
     .info-title {
-      width: 40%;
+      width: 45%;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
     }
 
     .info-text {
-      width: 40%;
+      width: 45%;
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-secondary);
     }
   }
 
@@ -33,12 +36,19 @@
 
     .scard {
       width: 31%;
-      height: 300px;
+      min-width: 280px;
+      height: 320px;
       perspective: 1000px;
       position: relative;
-      background-color: transparent;
-      border: 1px solid black;
-      border-radius: 20px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      transition: all var(--transition-normal);
+
+      &:hover {
+        border-color: var(--accent-blue);
+        box-shadow: var(--shadow-lg);
+      }
 
       &:hover .card-inner {
         transform: rotateY(180deg);
@@ -60,26 +70,33 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 10px;
-          padding: 20px;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          border-radius: 16px;
+          padding: 32px 24px;
 
           h5 {
-            font-weight: bolder;
-            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+          }
+          
+          p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
           }
         }
 
         .card-front {
-          background: transparent;
-          color: black;
+          background: var(--bg-card);
+          color: var(--text-primary);
           flex-direction: column;
           text-align: center;
         }
 
         .card-back {
-          background: transparent;
-          color: #fff;
+          background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+          color: var(--text-primary);
           transform: rotateY(180deg);
           display: flex;
           flex-direction: column;
@@ -87,18 +104,21 @@
           justify-content: center;
 
           .explore-btn {
-            background: black;
-            color: #fff;
+            background: var(--accent-gradient);
+            color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 32px;
+            border-radius: 8px;
             font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease, color 0.3s ease;
+            transition: all var(--transition-normal);
+            box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+            margin-top: 20px;
 
             &:hover {
-              background: #332255;
-              color: #fff;
+              transform: translateY(-2px);
+              box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
             }
           }
         }

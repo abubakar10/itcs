@@ -1,22 +1,39 @@
 .cloudSection1 {
     width: 100%;
-    background-image: url("./../../../../assets/images/Cloud-ServicesB.png");
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(36, 36, 36, 0.9) 100%),
+                url("./../../../../assets/images/Cloud-ServicesB.png");
     background-size: cover;
     background-repeat: no-repeat;
-    height: 38vh;
+    height: 45vh;
     background-position: center;
     margin-top: 100px;
+    position: relative;
   
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding-left: 100px;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(74, 158, 255, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
   
     .text {
+      position: relative;
+      z-index: 1;
+      
       h1 {
-        color: white;
-        font-weight: bolder;
-        font-size: 50px;
+        color: var(--text-primary);
+        font-weight: 700;
+        font-size: 56px;
+        text-shadow: 0 2px 10px rgba(74, 158, 255, 0.3);
       }
     }
   

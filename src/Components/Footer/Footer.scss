@@ -1,35 +1,49 @@
 .footer {
-    background-color: #1d1131;
-    color: #fff;
-    padding: 20px 0px;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 60px 0px 30px;
+    border-top: 1px solid var(--border-color);
    
-  
+    a {
+      color: var(--text-secondary);              
+      text-decoration: none;    
+      transition: color var(--transition-normal);
+
+      &:hover {
+        color: var(--accent-blue);        
+      }
+    }
     .footer-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      align-items: center;
-      width: 60%;
+      align-items: flex-start;
+      width: 80%;
+      max-width: 1400px;
       margin: 0px auto;
+      gap: 40px;
   
       .logo-section,
       .info-section,
       .services-section {
         flex: 1;
-        // margin: 20px;
+        min-width: 250px;
   
         h3 {
-          font-size: 25px;
-          margin-bottom: 30px;
+          font-size: 20px;
+          margin-bottom: 24px;
           text-align: center;
-
+          color: var(--text-primary);
+          font-weight: 600;
         }
   
         .intro-para{
-            text-align: center;
+          text-align: center;
           margin: 5px 0;
-          line-height: 1.6;
-          width: 80%;
+          line-height: 1.8;
+          width: 100%;
+          color: var(--text-secondary);
+          font-size: 15px;
         }
   
         ul {
@@ -38,99 +52,120 @@
           display: flex;
           flex-direction: column;
           text-align: center;
+          gap: 8px;
   
           li {
-            margin: 5px 0;
+            margin: 0;
+            
+            a {
+              display: inline-block;
+              padding: 6px 0;
+              font-size: 15px;
+            }
           }
         }
       }
   
       .logo-section 
       {
-
           display: flex;
           justify-content: center;
           flex-direction: column;
           align-items: center;
+          
           a{
             img{
-                width: 150px;
+                width: 160px;
                 margin-bottom: 20px;
+                filter: brightness(1.1);
             }
           }
+          
           .intro-para{
             text-align: center;
-            line-height:30px ;
-            font-size: 18px;
+            line-height: 1.8;
+            font-size: 15px;
+            color: var(--text-secondary);
           }
+        
         .logo {
           font-size: 36px;
           font-weight: bold;
-          color: #fff;
+          color: var(--text-primary);
           margin-bottom: 10px;
-          background: linear-gradient(45deg, #ff5f6d, #ffc371);
+          background: var(--accent-gradient);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          
         }
-      
   
         .social-icons {
-          margin-top: 10px;
+          margin-top: 20px;
           display: flex;
-          column-gap: 10px;
-  
+          gap: 12px;
+          justify-content: center;
           
+          .icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-tertiary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-normal);
+            
+            &:hover {
+              background-color: var(--accent-blue);
+              border-color: var(--accent-blue);
+              transform: translateY(-3px);
+              box-shadow: 0 4px 12px rgba(74, 158, 255, 0.4);
+            }
+            
+            img {
+              width: 22px;
+              height: 22px;
+              border-radius: 0;
+            }
           }
-  
-          .twitter img{
-            width: 40px;
-            border-radius: 15px; 
-          }
-          .facebook img{
-            width: 40px;
-            border-radius: 15px; 
-
-           }
-          .youtube img{
-            width: 40px; 
-            border-radius: 15px; 
-
-          }
-          .linkedin img{
-            width: 40px;
-            border-radius: 15px; 
-
-           }
         }
       }
       .info-section{
         .head-para{
-            line-height: 25px;
+            line-height: 1.8;
             text-align: center;
-            font-size: 17px;
-
-
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
         }
       }
+      
       .services-section{
         h3{
-            margin: 10px;
+            margin-bottom: 24px;
         }
       }
     }
   
     @media (max-width: 768px) {
+      padding: 40px 20px 20px;
+      
       .footer-container {
         flex-direction: column;
+        width: 90%;
+        gap: 30px;
   
         .logo-section,
         .info-section,
         .services-section {
-          margin: 10px 0;
+          margin: 0;
+          min-width: 100%;
+          
+          h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+          }
         }
       }
     }
-  
-
-  
+  }

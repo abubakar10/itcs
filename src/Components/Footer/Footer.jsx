@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 import itcsLogo from "../../assets/logos/itcsLogo.png";
-import alignitLogo from "../../assets/logos/Align It Services (white).png";
+
 
 import Twitter from "./../../assets/logos/Twitter.svg";
 import Facebook from "./../../assets/logos/Facebook.svg";
@@ -36,12 +36,12 @@ const Footer = () => {
         <div className="services-section">
           <h3>Services</h3>
           <ul>
-            <li>Cloud Solutions</li>
-            <li>IT Consulting</li>
-            <li>Enterprise Solutions</li>
-            <li>IT Services</li>
-            <li>Network Solutions</li>
-            <li>Cybersecurity</li>
+          <li><a href="/services/cloud">Cloud Solutions</a></li>
+            <li><a href="/services/consulting">IT Consulting</a></li>
+            <li><a href="/services/enterprise-solutions">Enterprise Solutions</a></li>
+            <li><a href="/services/it-services">IT Services</a></li>
+            <li><a href="/services/network-solutions">Network Solutions</a></li>
+            <li><a href="/services/cyber-security">Cybersecurity</a></li>
           </ul>
         </div>
       </div>

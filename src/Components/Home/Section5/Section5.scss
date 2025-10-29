@@ -1,34 +1,41 @@
 .section5 {
   max-width: 1440px;
-  margin: 50px auto;
+  margin: 80px auto;
+  padding: 0 20px;
 }
 
 .counter-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: linear-gradient(90deg, #3a0ca3, #7209b7);
-  color: #fff;
-  padding: 2rem;
-  border-radius: 8px;
+  background: var(--accent-gradient);
+  color: var(--text-primary);
+  padding: 60px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(74, 158, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   .counter {
     text-align: center;
+    padding: 20px;
 
     .counter-number {
-      font-size: 2.5rem;
-      font-weight: bold;
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
 
       .counter-plus {
-        font-size: 1.5rem;
-        margin-left: 0.2rem;
-        color: #ffd700;
+        font-size: 2rem;
+        margin-left: 0.3rem;
+        color: rgba(255, 255, 255, 0.9);
       }
     }
 
     .counter-label {
-      font-size: 1rem;
-      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      margin-top: 0.8rem;
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 500;
     }
   }
 }

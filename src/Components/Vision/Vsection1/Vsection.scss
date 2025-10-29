@@ -1,11 +1,11 @@
 .vsection1 {
-  margin: 110px 0px;
+  margin: 100px 0px;
   position: relative;
-  height: 400px;
+  height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #1d1131;
+  background: var(--bg-primary);
   overflow: hidden;
   animation: background-pulse 6s infinite;
 
@@ -13,12 +13,12 @@
     position: relative;
     z-index: 2;
     h1 {
-      font-size: 4rem;
-      font-weight: bold;
-      color: white;
+      font-size: 64px;
+      font-weight: 700;
+      color: var(--text-primary);
       text-transform: uppercase;
       letter-spacing: 5px;
-      text-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 4px 20px rgba(74, 158, 255, 0.4);
       animation: morph-text 4s ease-in-out infinite;
     }
   }
@@ -34,9 +34,9 @@
     .orb {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+      background: radial-gradient(circle, rgba(74, 158, 255, 0.4), rgba(74, 158, 255, 0));
       animation: float 10s infinite;
-      mix-blend-mode: overlay;
+      mix-blend-mode: screen;
 
       &.orb1 {
         width: 150px;
@@ -66,10 +66,10 @@
 
   @keyframes background-pulse {
     0%, 100% {
-      background: #1d1131;
+      background: var(--bg-primary);
     }
     50% {
-      background: #412967;
+      background: var(--bg-secondary);
     }
   }
 

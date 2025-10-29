@@ -1,10 +1,22 @@
 .section1 {
-  background-image: url("./../../../assets/images/homepage-bg.webp");
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(36, 36, 36, 0.9) 100%), 
+              url("./../../../assets/images/homepage-bg.webp");
   height: 65vh;
   margin-top: 80px;
-  box-shadow: inset;
   background-position: center;
   background-size: cover;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
 
   .animated-text {
     padding-top: 80px;
@@ -79,18 +91,20 @@
       }
 
       button {
-        padding: 10px 20px;
-        background-color: transparent;
+        padding: 12px 32px;
+        background: var(--accent-gradient);
         color: white;
         border: none;
         cursor: pointer;
         font-size: 16px;
-        transition: background-color 0.3s ease;
-        border: 1px solid white;
-        border-radius: 10px;
+        font-weight: 600;
+        transition: all var(--transition-normal);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
 
         &:hover {
-          background-color: transparent;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
         }
       }
     }
