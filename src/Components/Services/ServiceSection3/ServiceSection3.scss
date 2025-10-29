@@ -1,0 +1,134 @@
+.ssection3 {
+  display: flex;
+  align-items: stretch;
+  padding: 2rem;
+  background-color: #ffffff;
+  margin: 150px;
+
+  .content {
+    flex: 1;
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: #6c63ff;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #343a40;
+    }
+
+    .description {
+      font-size: 1rem;
+      color: #6c757d;
+      margin-bottom: 2rem;
+    }
+
+    .satisfaction-scores {
+      .satisfaction-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        .satisfaction-title {
+          flex: 1;
+          font-size: 1rem;
+          font-weight: bold;
+          color: #343a40;
+        }
+
+        .progress-bar {
+          flex: 2;
+          height: 8px;
+          background: #e9ecef;
+          border-radius: 4px;
+          margin: 0 1rem;
+          position: relative;
+          overflow: hidden;
+
+          .progress {
+            height: 100%;
+            background-color: #6c63ff;
+            border-radius: 4px;
+            transition: width 0.2s ease-in-out;
+          }
+        }
+
+        .percentage {
+          flex: 0.5;
+          font-size: 0.9rem;
+          color: #6c757d;
+        }
+      }
+    }
+  }
+
+  .image {
+    flex: 1;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // ✅ Mobile responsiveness
+  @media (max-width: 600px) {
+    flex-direction: column;
+    margin: 40px 20px;
+    padding: 1rem;
+
+    .content {
+      padding-right: 0;
+
+      .title {
+        font-size: 1.5rem;
+      }
+
+      .description {
+        font-size: 0.9rem;
+      }
+
+      .satisfaction-scores {
+        .satisfaction-item {
+          flex-direction: column;
+          align-items: flex-start;
+
+          .satisfaction-title,
+          .percentage {
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+          }
+
+          .progress-bar {
+            width: 100%;
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .image {
+      margin-top: 20px;
+
+      img {
+        height: auto;
+        max-height: 300px;
+      }
+    }
+  }
+}

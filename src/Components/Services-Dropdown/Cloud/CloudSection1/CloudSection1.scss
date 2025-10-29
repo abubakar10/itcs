@@ -1,0 +1,37 @@
+.cloudSection1 {
+    width: 100%;
+    background-image: url("./../../../../assets/images/Cloud-ServicesB.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 38vh;
+    background-position: center;
+    margin-top: 100px;
+  
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 100px;
+  
+    .text {
+      h1 {
+        color: white;
+        font-weight: bolder;
+        font-size: 50px;
+      }
+    }
+  
+    @media (max-width: 600px) {
+      height: 22vh;
+      justify-content: center;
+      padding-left: 0;
+  
+      .text {
+        text-align: center;
+  
+        h1 {
+          font-size: 35px;
+        }
+      }
+    }
+  }
+  

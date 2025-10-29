@@ -1,0 +1,136 @@
+.footer {
+    background-color: #1d1131;
+    color: #fff;
+    padding: 20px 0px;
+   
+  
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      width: 60%;
+      margin: 0px auto;
+  
+      .logo-section,
+      .info-section,
+      .services-section {
+        flex: 1;
+        // margin: 20px;
+  
+        h3 {
+          font-size: 25px;
+          margin-bottom: 30px;
+          text-align: center;
+
+        }
+  
+        .intro-para{
+            text-align: center;
+          margin: 5px 0;
+          line-height: 1.6;
+          width: 80%;
+        }
+  
+        ul {
+          list-style: none;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+  
+          li {
+            margin: 5px 0;
+          }
+        }
+      }
+  
+      .logo-section 
+      {
+
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          a{
+            img{
+                width: 150px;
+                margin-bottom: 20px;
+            }
+          }
+          .intro-para{
+            text-align: center;
+            line-height:30px ;
+            font-size: 18px;
+          }
+        .logo {
+          font-size: 36px;
+          font-weight: bold;
+          color: #fff;
+          margin-bottom: 10px;
+          background: linear-gradient(45deg, #ff5f6d, #ffc371);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          
+        }
+      
+  
+        .social-icons {
+          margin-top: 10px;
+          display: flex;
+          column-gap: 10px;
+  
+          
+          }
+  
+          .twitter img{
+            width: 40px;
+            border-radius: 15px; 
+          }
+          .facebook img{
+            width: 40px;
+            border-radius: 15px; 
+
+           }
+          .youtube img{
+            width: 40px; 
+            border-radius: 15px; 
+
+          }
+          .linkedin img{
+            width: 40px;
+            border-radius: 15px; 
+
+           }
+        }
+      }
+      .info-section{
+        .head-para{
+            line-height: 25px;
+            text-align: center;
+            font-size: 17px;
+
+
+        }
+      }
+      .services-section{
+        h3{
+            margin: 10px;
+        }
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+  
+        .logo-section,
+        .info-section,
+        .services-section {
+          margin: 10px 0;
+        }
+      }
+    }
+  
+
+  

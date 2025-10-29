@@ -1,0 +1,48 @@
+.asection1 {
+  margin: 120px 0px;
+  background-image: url("./../../../assets/images/homepage-bg.gif");
+  height: 45vh;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 50px;
+    font-weight: bolder;
+    color: white;
+    opacity: 0;
+    animation: slideFadePulse 2.5s ease-out forwards;
+  }
+
+  @keyframes slideFadePulse {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50% {
+      transform: translateX(0);
+      opacity: 0.8;
+    }
+    70% {
+      transform: translateX(0) scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .asection1 {
+    height: 20vh;
+    margin: 60px 0;
+
+    h1 {
+      font-size: 28px;
+      text-align: center;
+    }
+  }
+}
