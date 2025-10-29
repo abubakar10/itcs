@@ -1,0 +1,42 @@
+.enterprise-hero {
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+
+    .enterprise-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(45deg, rgba(74, 158, 255, 0.03) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(74, 158, 255, 0.03) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(74, 158, 255, 0.03) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(74, 158, 255, 0.03) 75%);
+      background-size: 40px 40px;
+      animation: patternShift 30s linear infinite;
+    }
+  }
+}
+
+@keyframes patternShift {
+  0% {
+    background-position: 0 0, 0 0, 20px 20px, 20px 20px;
+  }
+  100% {
+    background-position: 40px 40px, 0 40px, 60px 20px, 20px 60px;
+  }
+}
+
+.gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+

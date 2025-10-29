@@ -1,0 +1,40 @@
+.network-hero {
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+
+    .network-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        repeating-radial-gradient(circle at 50% 50%, rgba(74, 158, 255, 0.03), rgba(74, 158, 255, 0.03) 1px, transparent 2px, transparent 20px);
+      animation: networkPulse 10s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes networkPulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
