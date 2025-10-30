@@ -7,6 +7,7 @@ import Facebook from "./../../assets/logos/Facebook.svg";
 import Instagram from "./../../assets/logos/Instagram.svg";
 import LinkedIn from "./../../assets/logos/LinkedIn.svg";
 import "./Footer.scss";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -36,12 +37,12 @@ const Footer = () => {
         <div className="services-section">
           <h3>Services</h3>
           <ul>
-          <li><a href="/services/cloud">Cloud Solutions</a></li>
-            <li><a href="/services/consulting">IT Consulting</a></li>
-            <li><a href="/services/enterprise-solutions">Enterprise Solutions</a></li>
-            <li><a href="/services/it-services">IT Services</a></li>
-            <li><a href="/services/network-solutions">Network Solutions</a></li>
-            <li><a href="/services/cyber-security">Cybersecurity</a></li>
+          <li><Link to="/services/cloud">Cloud Solutions</Link></li>
+            <li><Link to="/services/consulting">IT Consulting</Link></li>
+            <li><Link to="/services/enterprise-solutions">Enterprise Solutions</Link></li>
+            <li><Link to="/services/it-services">IT Services</Link></li>
+            <li><Link to="/services/network-solutions">Network Solutions</Link></li>
+            <li><Link to="/services/cyber-security">Cybersecurity</Link></li>
           </ul>
         </div>
       </div>
