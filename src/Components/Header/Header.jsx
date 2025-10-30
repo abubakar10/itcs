@@ -1,11 +1,15 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import alignitLogo from "../../assets/logos/itcsLogo.png";
 import "./Header.scss";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen((prev) => !prev);
+  const closeMenu = () => setIsOpen(false);
 
   const handleServiceNavigation = (e) => {
     if (window.innerWidth > 200) {
@@ -25,20 +29,23 @@ const Header = () => {
         <nav className="navbar navbar-expand-lg">
           <div className="container-fluid">
             <button
-              className="navbar-toggler"
+              className="custom-toggler"
               type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
               aria-controls="navbarNav"
-              aria-expanded="false"
+              aria-expanded={isOpen ? "true" : "false"}
               aria-label="Toggle navigation"
+              onClick={toggleMenu}
             >
-              <span className="navbar-toggler-icon"></span>
+              <span className="custom-toggler-icon" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
+            <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page"   onClick={() => navigate("/")} style={{cursor:"pointer"}}>
+                  <a className="nav-link active" aria-current="page" onClick={() => { navigate("/"); closeMenu(); }} style={{cursor:"pointer"}}>
                     Home
                   </a>
                 </li>
@@ -50,7 +57,7 @@ const Header = () => {
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
-                    onClick={handleServiceNavigation}
+                    onClick={(e) => { handleServiceNavigation(e); closeMenu(); }}
                   >
                     Services
                   </a>
@@ -61,7 +68,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/cloud")}
+                        onClick={() => { navigate("/services/cloud"); closeMenu(); }}
                         style={{ cursor: "pointer" }}
                       >
                         Cloud Solutions
@@ -70,7 +77,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/cyber-security")}
+                        onClick={() => { navigate("/services/cyber-security"); closeMenu(); }}
                         style={{ cursor: "pointer" }}
                       >
                         Cybersecurity
@@ -79,7 +86,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/consulting")}
+                        onClick={() => { navigate("/services/consulting"); closeMenu(); }}
                         style={{ cursor: "pointer" }}
                       >
                         Consulting
@@ -88,7 +95,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/enterprise-solutions")}
+                        onClick={() => { navigate("/services/enterprise-solutions"); closeMenu(); }}
                         style={{ cursor: "pointer" }}
                       >
                         Enterprise Solutions
@@ -97,7 +104,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/it-services")}
+                        onClick={() => { navigate("/services/it-services"); closeMenu(); }}
                         style={{ cursor: "pointer" }}
                       >
                         IT Services
@@ -106,7 +113,7 @@ const Header = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        onClick={() => navigate("/services/network-solutions")}
+                        onClick={() => { navigate("/services/network-solutions"); closeMenu(); }}
                         style={{ cursor: "pointer" }}
                       >
                         Network Solutions
@@ -117,7 +124,7 @@ const Header = () => {
                 <li className="nav-item">
                   <a
                     className="nav-link"
-                    onClick={() => navigate("/vision-mission")}
+                    onClick={() => { navigate("/vision-mission"); closeMenu(); }}
                     style={{ cursor: "pointer" }}
                   >
                     Vision & Mission
@@ -135,7 +142,7 @@ const Header = () => {
                 <li className="nav-item">
                   <a
                     className="nav-link"
-                    onClick={() => navigate("about-us")}
+                    onClick={() => { navigate("about-us"); closeMenu(); }}
                     style={{ cursor: "pointer" }}
                   >
                     About Us
@@ -144,7 +151,7 @@ const Header = () => {
                 <li className="nav-item">
                   <a
                     className="nav-link"
-                    onClick={() => navigate("/contact")}
+                    onClick={() => { navigate("/contact"); closeMenu(); }}
                     style={{ cursor: "pointer" }}
                   >
                     Contact
@@ -153,7 +160,7 @@ const Header = () => {
                 <li className="nav-item">
                   <a
                     className="nav-link"
-                    onClick={() => navigate("/careers")}
+                    onClick={() => { navigate("/careers"); closeMenu(); }}
                     style={{ cursor: "pointer" }}
                   >
                     Careers

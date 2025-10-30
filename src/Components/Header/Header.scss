@@ -357,11 +357,12 @@
   }
 
   @media (max-width: 480px) {
-    padding: 10px 15px;
+    padding: 0px 15px;
+    padding-top: 10px;
 
     .header-img {
       img {
-        width: 85px;
+        width: 65px;
       }
     }
 
