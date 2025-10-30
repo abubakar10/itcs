@@ -160,12 +160,56 @@
   }
 }
 
+// Tablet landscape
+@media (max-width: 1024px) {
+  .home-services {
+    padding: 80px 20px;
+
+    .services-header {
+      margin-bottom: 50px;
+
+      .section-badge {
+        font-size: 12px;
+        padding: 7px 15px;
+      }
+
+      .section-description {
+        font-size: 17px;
+      }
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .service-card {
+      padding: 35px 28px;
+
+      .card-icon {
+        width: 70px;
+        height: 70px;
+      }
+
+      .card-title {
+        font-size: 19px;
+      }
+    }
+  }
+}
+
+// Tablet portrait
 @media (max-width: 768px) {
   .home-services {
     padding: 60px 20px;
 
     .services-header {
       margin-bottom: 40px;
+
+      .section-badge {
+        font-size: 11px;
+        padding: 6px 14px;
+      }
 
       .section-description {
         font-size: 16px;
@@ -179,6 +223,162 @@
 
     .service-card {
       padding: 30px 24px;
+
+      .card-icon {
+        width: 65px;
+        height: 65px;
+      }
+    }
+  }
+}
+
+// Mobile landscape & large phones
+@media (max-width: 600px) {
+  .home-services {
+    padding: 50px 18px;
+
+    .services-header {
+      margin-bottom: 35px;
+
+      .section-badge {
+        font-size: 10px;
+        padding: 6px 13px;
+        margin-bottom: 18px;
+      }
+
+      .section-description {
+        font-size: 15px;
+      }
+    }
+
+    .services-grid {
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 28px 22px;
+
+      .card-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+      }
+
+      .card-title {
+        font-size: 18px;
+        margin-bottom: 14px;
+      }
+
+      .card-description {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      .card-link {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+// Small mobile phones
+@media (max-width: 480px) {
+  .home-services {
+    padding: 45px 15px;
+
+    .services-header {
+      margin-bottom: 30px;
+
+      .section-badge {
+        font-size: 9px;
+        padding: 5px 12px;
+        margin-bottom: 16px;
+      }
+
+      .section-description {
+        font-size: 14px;
+      }
+    }
+
+    .services-grid {
+      gap: 16px;
+    }
+
+    .service-card {
+      padding: 25px 20px;
+
+      .card-icon {
+        width: 55px;
+        height: 55px;
+        margin-bottom: 18px;
+      }
+
+      .card-title {
+        font-size: 17px;
+        margin-bottom: 12px;
+      }
+
+      .card-description {
+        font-size: 13px;
+        margin-bottom: 18px;
+      }
+
+      .card-link {
+        font-size: 12px;
+      }
+
+      &:hover {
+        transform: translateY(-4px);
+      }
+    }
+  }
+}
+
+// Extra small mobile phones
+@media (max-width: 360px) {
+  .home-services {
+    padding: 40px 12px;
+
+    .services-header {
+      margin-bottom: 25px;
+
+      .section-badge {
+        font-size: 9px;
+        padding: 5px 11px;
+      }
+
+      .section-description {
+        font-size: 13px;
+      }
+    }
+
+    .services-grid {
+      gap: 14px;
+    }
+
+    .service-card {
+      padding: 22px 18px;
+
+      .card-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 16px;
+        padding: 12px;
+      }
+
+      .card-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .card-description {
+        font-size: 12px;
+        margin-bottom: 16px;
+      }
+
+      .card-link {
+        font-size: 11px;
+      }
     }
   }
 }

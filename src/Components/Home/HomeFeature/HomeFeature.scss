@@ -200,7 +200,48 @@
   }
 }
 
-@media (max-width: 968px) {
+// Tablet landscape
+@media (max-width: 1024px) {
+  .home-feature {
+    padding: 80px 20px;
+
+    .feature-container {
+      gap: 50px;
+    }
+
+    .feature-content {
+      .feature-title {
+        font-size: clamp(26px, 4vw, 38px);
+      }
+
+      .feature-description {
+        font-size: 15px;
+      }
+
+      .feature-list {
+        gap: 20px;
+      }
+
+      .feature-item {
+        padding: 18px;
+
+        .item-icon {
+          width: 44px;
+          height: 44px;
+        }
+
+        .item-content {
+          .item-title {
+            font-size: 17px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Tablet portrait
+@media (max-width: 768px) {
   .home-feature {
     padding: 60px 20px;
 
@@ -210,8 +251,24 @@
     }
 
     .feature-content {
+      .feature-badge {
+        font-size: 11px;
+        padding: 5px 12px;
+        margin-bottom: 14px;
+      }
+
+      .feature-subtitle {
+        font-size: 16px;
+      }
+
       .feature-description {
         font-size: 15px;
+        margin-bottom: 28px;
+      }
+
+      .feature-list {
+        gap: 18px;
+        margin-bottom: 28px;
       }
 
       .feature-item {
@@ -222,13 +279,223 @@
           height: 40px;
         }
 
-        .item-title {
-          font-size: 16px;
+        .item-content {
+          .item-title {
+            font-size: 16px;
+          }
+
+          .item-description {
+            font-size: 13px;
+          }
+        }
+      }
+
+      .feature-btn {
+        padding: 12px 24px;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+// Mobile landscape & large phones
+@media (max-width: 600px) {
+  .home-feature {
+    padding: 50px 18px;
+
+    .feature-container {
+      gap: 35px;
+    }
+
+    .feature-content {
+      .feature-badge {
+        font-size: 10px;
+        padding: 5px 11px;
+        margin-bottom: 12px;
+      }
+
+      .feature-subtitle {
+        font-size: 15px;
+      }
+
+      .feature-description {
+        font-size: 14px;
+        margin-bottom: 25px;
+      }
+
+      .feature-list {
+        gap: 16px;
+        margin-bottom: 25px;
+      }
+
+      .feature-item {
+        padding: 15px;
+
+        .item-icon {
+          width: 38px;
+          height: 38px;
         }
 
-        .item-description {
-          font-size: 13px;
+        .item-content {
+          .item-title {
+            font-size: 15px;
+            margin-bottom: 6px;
+          }
+
+          .item-description {
+            font-size: 12px;
+          }
         }
+
+        &:hover {
+          transform: translateX(4px);
+        }
+      }
+
+      .feature-btn {
+        padding: 11px 22px;
+        font-size: 14px;
+        gap: 8px;
+      }
+    }
+
+    .feature-image {
+      border-radius: 16px;
+
+      img {
+        border-radius: 16px;
+      }
+    }
+  }
+}
+
+// Small mobile phones
+@media (max-width: 480px) {
+  .home-feature {
+    padding: 45px 15px;
+
+    .feature-container {
+      gap: 30px;
+    }
+
+    .feature-content {
+      .feature-badge {
+        font-size: 9px;
+        padding: 4px 10px;
+      }
+
+      .feature-subtitle {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .feature-description {
+        font-size: 13px;
+        margin-bottom: 22px;
+      }
+
+      .feature-list {
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+
+      .feature-item {
+        padding: 14px;
+        gap: 12px;
+
+        .item-icon {
+          width: 36px;
+          height: 36px;
+        }
+
+        .item-content {
+          .item-title {
+            font-size: 14px;
+          }
+
+          .item-description {
+            font-size: 11px;
+          }
+        }
+      }
+
+      .feature-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+        gap: 6px;
+      }
+    }
+
+    .feature-image {
+      border-radius: 14px;
+
+      img {
+        border-radius: 14px;
+      }
+    }
+  }
+}
+
+// Extra small mobile phones
+@media (max-width: 360px) {
+  .home-feature {
+    padding: 40px 12px;
+
+    .feature-container {
+      gap: 25px;
+    }
+
+    .feature-content {
+      .feature-badge {
+        font-size: 8px;
+        padding: 4px 9px;
+      }
+
+      .feature-subtitle {
+        font-size: 13px;
+      }
+
+      .feature-description {
+        font-size: 12px;
+        margin-bottom: 20px;
+      }
+
+      .feature-list {
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .feature-item {
+        padding: 12px;
+        gap: 10px;
+
+        .item-icon {
+          width: 34px;
+          height: 34px;
+        }
+
+        .item-content {
+          .item-title {
+            font-size: 13px;
+          }
+
+          .item-description {
+            font-size: 10px;
+          }
+        }
+      }
+
+      .feature-btn {
+        padding: 9px 18px;
+        font-size: 12px;
+      }
+    }
+
+    .feature-image {
+      border-radius: 12px;
+
+      img {
+        border-radius: 12px;
       }
     }
   }
