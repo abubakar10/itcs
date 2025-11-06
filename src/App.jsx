@@ -24,12 +24,14 @@ import Careers from './Components/Careers/Careers'
 function App() {
   const location = useLocation()
   const hideLayoutRoutes = ['/signup','/login']
+
   return (
     <>
       {!hideLayoutRoutes.includes(location.pathname) && <Header />}
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/cloud" element={<Cloud />} />
         <Route path="/services/cyber-security" element={<CyberSecurity />} />
@@ -45,6 +47,9 @@ function App() {
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+=======
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
       {!hideLayoutRoutes.includes(location.pathname) && <Footer />}
     </>
