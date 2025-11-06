@@ -23,7 +23,8 @@ import Careers from './Components/Careers/Careers'
 
 function App() {
   const location = useLocation()
-  const hideLayoutRoutes = ['/login', '/signup']
+
+  const hideLayoutRoutes = ['/signup', '/login']
   return (
     <>
       {!hideLayoutRoutes.includes(location.pathname) && <Header />}
@@ -38,14 +39,12 @@ function App() {
         <Route path="/services/enterprise-solutions" element={<Enterprise />} />
         <Route path="/services/it-services" element={<ITServices />} />
         <Route path="/services/network-solutions" element={<Network />} />
-
         <Route path="/vision-mission" element={<Vision />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/careers" element={<Careers />} />
-
-        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />a
       </Routes>
       {!hideLayoutRoutes.includes(location.pathname) && <Footer />}
     </>
