@@ -215,16 +215,10 @@ const Header = () => {
         </nav>
       </div>
       <div className="auth-buttons">
-        <button
-          className="btn btn-login"
-          onClick={() => navigate('/login')} // Redirect to login page
-        >
+        <button className="btn btn-login" onClick={() => navigate('/login')}>
           Login
         </button>
-        <button
-          className="btn btn-signup"
-          onClick={() => navigate('/signup')} // Redirect to signup page
-        >
+        <button className="btn btn-signup" onClick={() => navigate('/signup')}>
           Sign Up
         </button>
       </div>
