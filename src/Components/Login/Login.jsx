@@ -40,8 +40,13 @@ const Login = () => {
         if (!response.ok) throw new Error(data.message || 'Login failed.')
 
         localStorage.setItem('token', data.token)
+<<<<<<< Updated upstream
         //alert(' ' + data.message)
         navigate('/home')
+=======
+        //alert('✅ ' + data.message)
+        navigate('/dashboard')
+>>>>>>> Stashed changes
       } catch (err) {
         setError(err.message)
       } finally {
@@ -119,4 +124,8 @@ const Login = () => {
   )
 }
 
+<<<<<<< Updated upstream
 export default Login
+=======
+export default Login
+>>>>>>> Stashed changes
