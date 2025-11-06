@@ -9,8 +9,8 @@ import Services from './Components/Services/Services'
 import Vision from './Components/Vision/Vision'
 import AboutUs from './Components/AboutUs/AboutUs'
 import Contact from './Components/Contact/Contact'
-import Login from './Components/Login/Login'
 import Signup from './Components/Signup/Signup'
+import Login from './Components/Login/Login'
 
 //Dropdowns
 import Cloud from './Components/Services-Dropdown/Cloud/Cloud'
@@ -25,6 +25,7 @@ function App() {
   const location = useLocation()
 
   const hideLayoutRoutes = ['/signup', '/login']
+
   return (
     <>
       {!hideLayoutRoutes.includes(location.pathname) && <Header />}
@@ -43,8 +44,9 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/careers" element={<Careers />} />
+
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />a
       </Routes>
       {!hideLayoutRoutes.includes(location.pathname) && <Footer />}
     </>
