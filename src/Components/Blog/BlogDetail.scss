@@ -1,0 +1,148 @@
+.blog-detail {
+  min-height: 100vh;
+  padding: 160px 40px 80px; // top padding to clear header, bottom for spacing
+  margin-top: 0;
+  background: linear-gradient(
+      135deg,
+      rgba(26, 26, 26, 0.95) 0%,
+      rgba(36, 36, 36, 0.9) 100%
+    ),
+    url("./../../../assets/images/homepage-bg.webp");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    background: linear-gradient(90deg, #4a9eff, #7bc9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+  }
+
+  .blog-body {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #e0e0e0;
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+
+    p {
+      margin-bottom: 20px;
+      font-size: 15px;
+      color: #ccc;
+    }
+
+    h2,
+    h3,
+    h4 {
+      margin-top: 30px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    a {
+      color: #4a9eff;
+      text-decoration: underline;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: #7bc9ff;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+
+    blockquote {
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 4px solid #4a9eff;
+      background-color: rgba(74, 158, 255, 0.05);
+      font-style: italic;
+    }
+
+    code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 16px;
+    }
+
+    pre {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+  }
+
+  // Responsive styles
+  @media (max-width: 768px) {
+    padding: 120px 20px 60px;
+
+    h1 {
+      font-size: 32px;
+    }
+
+    .blog-body {
+      padding: 24px;
+      font-size: 14px;
+
+      h2,
+      h3,
+      h4 {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 100px 15px 50px;
+
+    h1 {
+      font-size: 28px;
+    }
+
+    .blog-body {
+      padding: 20px;
+      font-size: 14px;
+    }
+  }
+}
