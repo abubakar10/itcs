@@ -11,6 +11,8 @@ import AboutUs from './Components/AboutUs/AboutUs'
 import Contact from './Components/Contact/Contact'
 import Signup from './Components/Signup/Signup'
 import Login from './Components/Login/Login'
+import Blog from './Components/Blog/Blog'
+import BlogDetail from './Components/Blog/BlogDetail'
 
 //Dropdowns
 import Cloud from './Components/Services-Dropdown/Cloud/Cloud'
@@ -47,6 +49,8 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
       </Routes>
       {!hideLayoutRoutes.includes(location.pathname) && <Footer />}
     </>
