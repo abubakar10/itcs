@@ -1,14 +1,16 @@
 import './App.css'
-import ScrollToTop from "./Components/ScrollToTop";
+import ScrollToTop from './Components/ScrollToTop'
 
-import Header from "./Components/Header/Header"
+import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
-import { Route,Routes } from 'react-router-dom' 
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './Components/Home/Home'
-import Services from "./Components/Services/Services"
+import Services from './Components/Services/Services'
 import Vision from './Components/Vision/Vision'
 import AboutUs from './Components/AboutUs/AboutUs'
 import Contact from './Components/Contact/Contact'
+import Signup from './Components/Signup/Signup'
+import Login from './Components/Login/Login'
 
 //Dropdowns
 import Cloud from './Components/Services-Dropdown/Cloud/Cloud'
@@ -20,32 +22,33 @@ import Network from './Components/Services-Dropdown/Network-Solutions/Network'
 import Careers from './Components/Careers/Careers'
 
 function App() {
+  const location = useLocation()
+
+  const hideLayoutRoutes = ['/signup', '/login']
 
   return (
     <>
-      <Header />
+      {!hideLayoutRoutes.includes(location.pathname) && <Header />}
       <ScrollToTop />
       <Routes>
-       
-        <Route path='/' element={<Home />} />
-        <Route path='/services' element={<Services/>} />
-         <Route path="/services/cloud" element={<Cloud />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/services/cloud" element={<Cloud />} />
         <Route path="/services/cyber-security" element={<CyberSecurity />} />
         <Route path="/services/consulting" element={<Consulting />} />
         <Route path="/services/enterprise-solutions" element={<Enterprise />} />
         <Route path="/services/it-services" element={<ITServices />} />
         <Route path="/services/network-solutions" element={<Network />} />
+        <Route path="/vision-mission" element={<Vision />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/careers" element={<Careers />} />
 
-        <Route path='/vision-mission' element={<Vision/>} />
-        <Route path='/about-us' element={<AboutUs/>} />
-        <Route path='/contact' element={<Contact/>} />
-        <Route path='/careers' element={<Careers/>} />
-        
-
-
-
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
-      <Footer />
+      {!hideLayoutRoutes.includes(location.pathname) && <Footer />}
     </>
   )
 }

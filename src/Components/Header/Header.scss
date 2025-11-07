@@ -71,8 +71,9 @@
           display: block !important;
           opacity: 1;
           visibility: visible;
-          transform: translateY(0); 
-          transition: opacity var(--transition-normal), transform var(--transition-normal);
+          transform: translateY(0);
+          transition: opacity var(--transition-normal),
+            transform var(--transition-normal);
         }
 
         .dropdown-menu {
@@ -90,7 +91,8 @@
           padding: 8px 0;
           transform: translateY(-10px);
           min-width: 220px;
-          transition: opacity var(--transition-normal), transform var(--transition-normal);
+          transition: opacity var(--transition-normal),
+            transform var(--transition-normal);
         }
 
         .dropdown-item {
@@ -108,13 +110,70 @@
     }
   }
 
+  .auth-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  .auth-buttons .btn {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    position: relative;
+    transition: color var(--transition-normal),
+      background-color var(--transition-normal);
+
+    &:hover {
+      color: var(--accent-blue);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-gradient);
+      transition: width var(--transition-normal);
+    }
+
+    &:hover::before {
+      width: 100%;
+    }
+  }
+
+  .auth-buttons .btn-login,
+  .auth-buttons .btn-signup {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--text-primary);
+
+    &:hover {
+      background-color: var(--accent-blue);
+      color: white;
+    }
+  }
+
   @media (max-width: 992px) {
     justify-content: space-between;
     padding: 15px 20px;
 
     .header-img {
       img {
-        width: 120px; 
+        width: 120px;
       }
     }
 
@@ -131,7 +190,6 @@
         position: relative;
       }
 
-      // Show custom hamburger icon
       .custom-toggler {
         display: block;
         border: none;
@@ -140,7 +198,7 @@
         cursor: pointer;
         position: relative;
         z-index: 1001;
-        
+
         &:focus {
           box-shadow: none;
           outline: none;
@@ -164,7 +222,7 @@
           }
         }
 
-        &[aria-expanded="true"] {
+        &[aria-expanded='true'] {
           .custom-toggler-icon {
             span:nth-child(1) {
               transform: translateY(9.5px) rotate(45deg);
@@ -195,8 +253,8 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
-                    box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 999;
 
         &.show {
@@ -245,7 +303,7 @@
           margin: 0;
           text-align: left;
           width: 100%;
-          
+
           &::before {
             display: none;
           }
@@ -260,10 +318,10 @@
 
           .dropdown-toggle {
             width: 100%;
-        }
+          }
 
-        .dropdown-menu {
-          width: 100%; 
+          .dropdown-menu {
+            width: 100%;
             position: static !important;
             opacity: 1 !important;
             visibility: visible !important;
@@ -317,7 +375,7 @@
           }
         }
 
-        &[aria-expanded="true"] {
+        &[aria-expanded='true'] {
           .custom-toggler-icon {
             span:nth-child(1) {
               transform: translateY(9px) rotate(45deg);
@@ -347,7 +405,7 @@
         }
 
         .dropdown {
-        .dropdown-item {
+          .dropdown-item {
             padding: 10px 25px 10px 45px;
             font-size: 13px;
           }
@@ -379,7 +437,7 @@
           }
         }
 
-        &[aria-expanded="true"] {
+        &[aria-expanded='true'] {
           .custom-toggler-icon {
             span:nth-child(1) {
               transform: translateY(8px) rotate(45deg);
@@ -435,10 +493,10 @@
 
           span {
             height: 2px;
-        }
+          }
         }
 
-        &[aria-expanded="true"] {
+        &[aria-expanded='true'] {
           .custom-toggler-icon {
             span:nth-child(1) {
               transform: translateY(7.5px) rotate(45deg);
@@ -476,4 +534,4 @@
       }
     }
   }
-  }
+}
