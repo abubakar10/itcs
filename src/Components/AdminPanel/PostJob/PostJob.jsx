@@ -1,0 +1,188 @@
+import React, { useState } from 'react'
+import './PostJob.scss'
+
+const PostJob = () => {
+  const [formData, setFormData] = useState({
+    title: '',
+    department: '',
+    location: '',
+    type: 'Full-time',
+    experience: '',
+    description: ''
+  })
+  const [success, setSuccess] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const departments = ['Engineering', 'Design', 'Security', 'Product', 'Sales', 'Marketing', 'HR']
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+    if (error) setError('')
+    if (success) setSuccess('')
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError('')
+    setSuccess('')
+
+    // Validation
+    if (!formData.title || !formData.department || !formData.location || !formData.experience || !formData.description) {
+      setError('Please fill in all fields.')
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      // Get existing jobs from localStorage
+      const existingJobs = JSON.parse(localStorage.getItem('jobs') || '[]')
+      
+      // Create new job object
+      const newJob = {
+        id: Date.now().toString(),
+        ...formData,
+        createdAt: new Date().toISOString()
+      }
+
+      // Add new job to the list
+      const updatedJobs = [...existingJobs, newJob]
+      localStorage.setItem('jobs', JSON.stringify(updatedJobs))
+
+      setSuccess('Job posted successfully!')
+      
+      // Reset form
+      setFormData({
+        title: '',
+        department: '',
+        location: '',
+        type: 'Full-time',
+        experience: '',
+        description: ''
+      })
+
+      // Clear success message after 3 seconds
+      setTimeout(() => setSuccess(''), 3000)
+    } catch (err) {
+      setError('Failed to post job. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className="post-job">
+      <div className="post-job-header">
+        <h1>Post a New Job</h1>
+        <p>Fill in the details below to create a new job posting</p>
+      </div>
+
+      <div className="post-job-card">
+        {error && <div className="alert alert-error">{error}</div>}
+        {success && <div className="alert alert-success">{success}</div>}
+
+        <form onSubmit={handleSubmit} className="job-form">
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="title">Job Title *</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="e.g., Senior Full Stack Developer"
+                value={formData.title}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="department">Department *</label>
+              <select
+                id="department"
+                name="department"
+                value={formData.department}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Department</option>
+                {departments.map((dept) => (
+                  <option key={dept} value={dept}>
+                    {dept}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="location">Location *</label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="e.g., Karachi / Remote"
+                value={formData.location}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="type">Job Type *</label>
+              <select
+                id="type"
+                name="type"
+                value={formData.type}
+                onChange={handleChange}
+                required
+              >
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Contract">Contract</option>
+                <option value="Internship">Internship</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="experience">Experience Required *</label>
+            <input
+              type="text"
+              id="experience"
+              name="experience"
+              placeholder="e.g., 5+ years"
+              value={formData.experience}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="description">Job Description *</label>
+            <textarea
+              id="description"
+              name="description"
+              placeholder="Describe the role, responsibilities, and requirements..."
+              value={formData.description}
+              onChange={handleChange}
+              rows="6"
+              required
+            />
+          </div>
+
+          <div className="form-actions">
+            <button type="submit" className="submit-btn" disabled={loading}>
+              {loading ? 'Posting...' : 'Post Job'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default PostJob
+

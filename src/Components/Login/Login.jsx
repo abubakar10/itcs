@@ -29,31 +29,20 @@ const Login = () => {
     }
     setLoading(true)
     try {
-      try {
-        const response = await fetch('http://localhost:5000/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(form),
-        })
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
 
-        const data = await response.json()
-        if (!response.ok) throw new Error(data.message || 'Login failed.')
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.message || 'Login failed.')
 
-        localStorage.setItem('token', data.token)
-<<<<<<< Updated upstream
-        //alert(' ' + data.message)
-        navigate('/home')
-=======
-        //alert('✅ ' + data.message)
-        navigate('/dashboard')
->>>>>>> Stashed changes
-      } catch (err) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
+      localStorage.setItem('token', data.token)
+      //alert('✅ ' + data.message)
+      navigate('/admin')
     } catch (err) {
-      setError('Login failed. Please try again.')
+      setError(err.message)
     } finally {
       setLoading(false)
     }
@@ -124,8 +113,4 @@ const Login = () => {
   )
 }
 
-<<<<<<< Updated upstream
 export default Login
-=======
-export default Login
->>>>>>> Stashed changes

@@ -37,6 +37,11 @@ const BlogDetail = () => {
         dangerouslySetInnerHTML={{
           __html: DOMPurify.sanitize(article.body_html),
         }}
+      <h1>{article.title}</h1>
+      {article.cover_image && <img src={article.cover_image} alt={article.title} />}
+      <div
+        className="blog-body"
+        dangerouslySetInnerHTML={{ __html: article.body_html }}
       />
     </div>
   );

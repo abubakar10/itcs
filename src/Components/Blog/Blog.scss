@@ -1,3 +1,4 @@
+
 .container.blog-container {
   min-height: 100vh;
   padding: 160px 40px 80px;
@@ -141,5 +142,30 @@
   }
   .card {
     padding: 16px;
+/* basic layout */
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
+.card { padding:16px; border-radius:8px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+
+/* tag-based themes applied to the article list or detail page */
+.theme-ai { --accent: #0b74ff; background: linear-gradient(90deg,#f0f6ff,white); }
+.theme-design { --accent: #ff5aa5; background: linear-gradient(90deg,#fff0f6,white); }
+.theme-default { --accent: #6b7280; background: white; }
+
+.post h1 { color: var(--accent); }
+.card.ai { border-left: 4px solid #0b74ff; }
+.card.design { border-left: 4px solid #ff5aa5; }
+.blog-body {
+  p {
+    line-height: 1.8;
+    color: #333;
+  }
+  h2 {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  img {
+    width: 100%;
+    border-radius: 10px;
+
   }
 }

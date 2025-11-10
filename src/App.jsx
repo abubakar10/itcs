@@ -11,6 +11,10 @@ import AboutUs from './Components/AboutUs/AboutUs'
 import Contact from './Components/Contact/Contact'
 import Signup from './Components/Signup/Signup'
 import Login from './Components/Login/Login'
+
+import Blog from './Components/Blog/Blog'
+import BlogDetail from './Components/Blog/BlogDetail'
+import AdminPanel from './Components/AdminPanel/AdminPanel'
 import Blog from './Components/Blog/Blog'
 import BlogDetail from './Components/Blog/BlogDetail'
 
@@ -22,11 +26,12 @@ import Enterprise from './Components/Services-Dropdown/Enterprise-Solutions/Ente
 import ITServices from './Components/Services-Dropdown/IT-Services/ITServices'
 import Network from './Components/Services-Dropdown/Network-Solutions/Network'
 import Careers from './Components/Careers/Careers'
+import ApplyJob from './Components/Careers/ApplyJob/ApplyJob'
 
 function App() {
   const location = useLocation()
 
-  const hideLayoutRoutes = ['/signup', '/login']
+  const hideLayoutRoutes = ['/signup', '/login', '/admin']
 
   return (
     <>
@@ -46,9 +51,13 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/careers" element={<Careers />} />
+        <Route path="/apply" element={<ApplyJob />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
       </Routes>
