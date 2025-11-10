@@ -15,8 +15,7 @@ import Login from './Components/Login/Login'
 import Blog from './Components/Blog/Blog'
 import BlogDetail from './Components/Blog/BlogDetail'
 import AdminPanel from './Components/AdminPanel/AdminPanel'
-import Blog from './Components/Blog/Blog'
-import BlogDetail from './Components/Blog/BlogDetail'
+
 
 //Dropdowns
 import Cloud from './Components/Services-Dropdown/Cloud/Cloud'
@@ -58,8 +57,7 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/admin" element={<AdminPanel />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:id" element={<BlogDetail />} />
+        
       </Routes>
       {!hideLayoutRoutes.includes(location.pathname) && <Footer />}
     </>

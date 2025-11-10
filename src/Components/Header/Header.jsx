@@ -164,15 +164,15 @@ const Header = () => {
                     Vision & Mission
                   </a>
                 </li>
-                {/* <li className="nav-item">
+                <li className="nav-item">
                   <a
                     className="nav-link"
-                    onClick={() => navigate("/blogs")}
+                    onClick={() => navigate("/blog")}
                     style={{ cursor: "pointer" }}
                   >
                     Blogs
                   </a>
-                </li> */}
+                </li>
                 <li className="nav-item">
                   <a
                     className="nav-link"
