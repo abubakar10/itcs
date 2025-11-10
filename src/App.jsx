@@ -11,7 +11,12 @@ import AboutUs from './Components/AboutUs/AboutUs'
 import Contact from './Components/Contact/Contact'
 import Signup from './Components/Signup/Signup'
 import Login from './Components/Login/Login'
+<<<<<<< HEAD
 import AdminPanel from './Components/AdminPanel/AdminPanel'
+=======
+import Blog from './Components/Blog/Blog'
+import BlogDetail from './Components/Blog/BlogDetail'
+>>>>>>> eaf5c376493caf20c2c3c69200c71db6ac4b1440
 
 //Dropdowns
 import Cloud from './Components/Services-Dropdown/Cloud/Cloud'
@@ -50,7 +55,12 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+<<<<<<< HEAD
         <Route path="/admin" element={<AdminPanel />} />
+=======
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
+>>>>>>> eaf5c376493caf20c2c3c69200c71db6ac4b1440
       </Routes>
       {!hideLayoutRoutes.includes(location.pathname) && <Footer />}
     </>
