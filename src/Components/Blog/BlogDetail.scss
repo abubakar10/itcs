@@ -1,36 +1,39 @@
 .blog-detail {
   min-height: 100vh;
-  padding: 160px 40px 80px; // top padding to clear header, bottom for spacing
+  padding: 160px 40px 80px;
   margin-top: 0;
   background: linear-gradient(
       135deg,
       rgba(26, 26, 26, 0.95) 0%,
-      rgba(36, 36, 36, 0.9) 100%
+      rgba(36, 36, 36, 0.92) 100%
     ),
     url("./../../../assets/images/homepage-bg.webp");
   background-size: cover;
   background-position: center;
-  color: #fff;
+  color: #e6e9ef;
   text-align: center;
   border-radius: 12px;
   position: relative;
+  overflow: hidden;
 
+ 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(74, 158, 255, 0.1) 0%, transparent 70%);
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba(74, 158, 255, 0.12) 0%,
+      transparent 70%
+    );
     pointer-events: none;
-    border-radius: 12px;
   }
 
+  
   h1 {
-    font-size: 40px;
+    font-size: 42px;
     font-weight: 700;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     background: linear-gradient(90deg, #4a9eff, #7bc9ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -40,42 +43,61 @@
     position: relative;
   }
 
+  
+  .detail-cover {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 45px rgba(74, 158, 255, 0.25);
+    }
+  }
+
+  
   .blog-body {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     text-align: left;
     font-size: 18px;
-    line-height: 1.8;
-    color: #e0e0e0;
+    line-height: 1.9;
+    color: #d5d8e1;
     position: relative;
-    z-index: 1;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px 50px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 
     p {
-      margin-bottom: 20px;
-      font-size: 15px;
+      margin-bottom: 24px;
+      font-size: 16px;
       color: #ccc;
     }
 
     h2,
     h3,
     h4 {
-      margin-top: 30px;
+      margin-top: 35px;
       margin-bottom: 20px;
       font-weight: 700;
-      color: #fff;
+      color: #ffffff;
+      border-left: 4px solid #4a9eff;
+      padding-left: 12px;
     }
 
     a {
       color: #4a9eff;
       text-decoration: underline;
-      transition: all 0.3s ease;
+      font-weight: 500;
+      transition: color 0.3s ease;
 
       &:hover {
         color: #7bc9ff;
@@ -84,36 +106,40 @@
 
     img {
       max-width: 100%;
-      margin: 20px 0;
-      border-radius: 8px;
+      margin: 25px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
 
     blockquote {
-      padding: 20px;
-      margin: 20px 0;
+      padding: 20px 25px;
+      margin: 30px 0;
       border-left: 4px solid #4a9eff;
-      background-color: rgba(74, 158, 255, 0.05);
+      background-color: rgba(74, 158, 255, 0.08);
       font-style: italic;
+      color: #bcdcff;
+      border-radius: 8px;
     }
 
     code {
       background: rgba(255, 255, 255, 0.1);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-family: monospace;
-      font-size: 16px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-family: "Fira Code", monospace;
+      font-size: 15px;
+      color: #7bc9ff;
     }
 
     pre {
       background: rgba(0, 0, 0, 0.4);
-      padding: 16px;
-      border-radius: 8px;
+      padding: 18px;
+      border-radius: 10px;
       overflow-x: auto;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
   }
 
-  // Responsive styles
+  // Responsive
   @media (max-width: 768px) {
     padding: 120px 20px 60px;
 
@@ -122,14 +148,8 @@
     }
 
     .blog-body {
-      padding: 24px;
-      font-size: 14px;
-
-      h2,
-      h3,
-      h4 {
-        font-size: 18px;
-      }
+      padding: 28px;
+      font-size: 15px;
     }
   }
 
@@ -137,11 +157,11 @@
     padding: 100px 15px 50px;
 
     h1 {
-      font-size: 28px;
+      font-size: 26px;
     }
 
     .blog-body {
-      padding: 20px;
+      padding: 22px;
       font-size: 14px;
     }
   }
