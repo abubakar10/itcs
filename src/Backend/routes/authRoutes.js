@@ -7,11 +7,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 const router = express.Router()
 
-<<<<<<< Updated upstream
-// Register route
-=======
 // ✅ Register route
->>>>>>> Stashed changes
 router.post('/signup', async (req, res) => {
   try {
     const { fullName, username, email, password, role } = req.body
@@ -42,11 +38,7 @@ router.post('/signup', async (req, res) => {
   }
 })
 
-<<<<<<< Updated upstream
-// Login route
-=======
 // ✅ Login route
->>>>>>> Stashed changes
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body
@@ -73,8 +65,4 @@ router.post('/login', async (req, res) => {
   }
 })
 
-<<<<<<< Updated upstream
 export default router
-=======
-export default router
->>>>>>> Stashed changes

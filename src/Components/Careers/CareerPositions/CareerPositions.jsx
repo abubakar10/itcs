@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./CareerPositions.scss";
 
 const CareerPositions = () => {
+  const navigate = useNavigate();
   const [selectedDepartment, setSelectedDepartment] = useState("All");
+  const [positions, setPositions] = useState([]);
 
-  const positions = [
+  // Default positions (fallback)
+  const defaultPositions = [
     {
       title: "Senior Full Stack Developer",
       department: "Engineering",
@@ -55,7 +59,39 @@ const CareerPositions = () => {
     }
   ];
 
-  const departments = ["All", "Engineering", "Design", "Security", "Product"];
+  useEffect(() => {
+    // Load jobs from localStorage (posted by admin)
+    const loadJobs = () => {
+      try {
+        const storedJobs = JSON.parse(localStorage.getItem('jobs') || '[]');
+        // Combine default positions with posted jobs
+        // Posted jobs take priority (appear first)
+        setPositions([...storedJobs, ...defaultPositions]);
+      } catch (err) {
+        console.error('Error loading jobs:', err);
+        setPositions(defaultPositions);
+      }
+    };
+
+    loadJobs();
+
+    // Listen for storage changes to update jobs in real-time
+    const handleStorageChange = () => {
+      loadJobs();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Also check for changes periodically (for same-tab updates)
+    const interval = setInterval(loadJobs, 1000);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(interval);
+    };
+  }, []);
+
+  const departments = ["All", "Engineering", "Design", "Security", "Product", "Sales", "Marketing", "HR"];
 
   const filteredPositions = selectedDepartment === "All" 
     ? positions 
@@ -103,7 +139,12 @@ const CareerPositions = () => {
                 </div>
               </div>
               <p className="position-description">{position.description}</p>
-              <button className="apply-btn">Apply Now →</button>
+              <button 
+                className="apply-btn"
+                onClick={() => navigate('/apply', { state: { job: position } })}
+              >
+                Apply Now →
+              </button>
             </div>
           ))}
         </div>
