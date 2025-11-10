@@ -19,7 +19,7 @@ const BlogDetail = () => {
 
   return (
     <div className="blog-detail">
-      <h1>{article.title}</h1>
+      
 
       {/* Dynamic cover image */}
       {article.cover_image && (
@@ -29,7 +29,9 @@ const BlogDetail = () => {
           className="detail-cover"
         />
       )}
-
+      
+      <h1>{article.title}</h1>
+      
       <div
         className="blog-body"
         dangerouslySetInnerHTML={{
