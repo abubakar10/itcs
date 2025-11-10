@@ -1,0 +1,169 @@
+.blog-detail {
+  min-height: 100vh;
+  padding: 160px 40px 80px;
+  margin-top: 0;
+  background: linear-gradient(
+      135deg,
+      rgba(26, 26, 26, 0.95) 0%,
+      rgba(36, 36, 36, 0.92) 100%
+    ),
+    url("./../../../assets/images/homepage-bg.webp");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba(74, 158, 255, 0.12) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  h1 {
+    font-size: 48px; 
+    font-weight: 700;
+    margin: 30px 0 40px;
+    background: linear-gradient(90deg, #4a9eff, #7bc9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+  }
+
+  .detail-cover {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 45px rgba(74, 158, 255, 0.25);
+    }
+  }
+
+  .blog-body {
+    max-width: 1440px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 22px; 
+    line-height: 2;   
+    color: #fff; 
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 50px 60px; 
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+
+    p {
+      margin-bottom: 28px;
+      font-size: 22px; 
+      color: #fff;
+    }
+
+    h2,
+    h3,
+    h4 {
+      margin-top: 40px;
+      margin-bottom: 25px;
+      font-weight: 700;
+      color: #ffffff;
+      border-left: 4px solid #4a9eff;
+      padding-left: 12px;
+      font-size: 28px; 
+    }
+
+    a {
+      color: #4a9eff;
+      text-decoration: underline;
+      font-weight: 500;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #7bc9ff;
+      }
+    }
+
+    img {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      margin: 25px auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    blockquote {
+      padding: 25px 30px;
+      margin: 35px 0;
+      border-left: 4px solid #4a9eff;
+      background-color: rgba(74, 158, 255, 0.08);
+      font-style: italic;
+      color: #bcdcff;
+      border-radius: 8px;
+      font-size: 18px; 
+    }
+
+    code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-family: "Fira Code", monospace;
+      font-size: 16px; 
+      color: #7bc9ff;
+    }
+
+    pre {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 140px 20px 60px;
+
+    h1 {
+      font-size: 38px;
+    }
+
+    .blog-body {
+      padding: 30px;
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 120px 15px 50px;
+
+    h1 {
+      font-size: 30px;
+    }
+
+    .blog-body {
+      padding: 25px;
+      font-size: 16px;
+    }
+  }
+}

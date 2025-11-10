@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import "./Blog.scss";
-
-
+import "./BlogDetail.scss";
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -20,6 +19,24 @@ const BlogDetail = () => {
 
   return (
     <div className="blog-detail">
+      
+
+      {/* Dynamic cover image */}
+      {article.cover_image && (
+        <img
+          src={article.cover_image}
+          alt={article.title}
+          className="detail-cover"
+        />
+      )}
+      
+      <h1>{article.title}</h1>
+      
+      <div
+        className="blog-body"
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(article.body_html),
+        }}
       <h1>{article.title}</h1>
       {article.cover_image && <img src={article.cover_image} alt={article.title} />}
       <div
