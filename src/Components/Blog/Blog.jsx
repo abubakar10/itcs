@@ -8,34 +8,24 @@ export default function Blog() {
   const [activeTag, setActiveTag] = useState("all");
   const [loading, setLoading] = useState(true);
 
-  const usernames = ["itcs", "wajeeha_zeeshan_fd0909b20"];
+  const organization = "itcs11";
 
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const requests = usernames.map(username =>
-        fetch(
-          `https://dev.to/api/articles?username=${username}&per_page=50&_=${new Date().getTime()}`
+      const response = await fetch(
+        `https://dev.to/api/organizations/${organization}/articles?per_page=50&_=${new Date().getTime()}`
+      );
+      const data = await response.json();
+
+      setPosts(
+        data.sort(
+          (a, b) => new Date(b.published_at) - new Date(a.published_at)
         )
       );
 
-      const responses = await Promise.all(requests);
-      const dataArrays = await Promise.all(responses.map(res => res.json()));
-      const combinedPosts = dataArrays.flat();
-
-      
-      setPosts(prevPosts => {
-        const allPosts = [...prevPosts, ...combinedPosts];
-        const uniquePostsMap = new Map();
-        allPosts.forEach(post => uniquePostsMap.set(post.id, post));
-        return Array.from(uniquePostsMap.values()).sort(
-          (a, b) => new Date(b.published_at) - new Date(a.published_at)
-        );
-      });
-
-      
-      const allTags = combinedPosts.flatMap(post => post.tag_list || []);
-      setTags(prevTags => Array.from(new Set([...prevTags, ...allTags])).sort());
+      const allTags = data.flatMap(post => post.tag_list || []);
+      setTags(Array.from(new Set(allTags)).sort());
     } catch (error) {
       console.error("Error fetching blogs:", error);
     } finally {
@@ -91,6 +81,7 @@ export default function Blog() {
               )}
               <h3>{post.title}</h3>
               <p className="meta">
+                👤 {post.user?.username || "Unknown"} •{" "}
                 {post.readable_publish_date} • {post.reading_time_minutes} min read
               </p>
               <p className="description">{post.description}</p>

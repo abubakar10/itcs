@@ -9,7 +9,7 @@ const BlogDetail = () => {
   const [article, setArticle] = useState(null);
 
   useEffect(() => {
-    fetch(`https://dev.to/api/articles/${id}`)
+    fetch(`https://dev.to/api/articles/${id}`) 
       .then((res) => res.json())
       .then((data) => setArticle(data))
       .catch((err) => console.error("Error fetching article:", err));
@@ -19,9 +19,6 @@ const BlogDetail = () => {
 
   return (
     <div className="blog-detail">
-      
-
-      {/* Dynamic cover image */}
       {article.cover_image && (
         <img
           src={article.cover_image}
@@ -29,9 +26,13 @@ const BlogDetail = () => {
           className="detail-cover"
         />
       )}
-      
+
       <h1>{article.title}</h1>
-      
+
+      <p className="author-name">
+        Author - {article.user?.name || article.user?.username || "Unknown Author"}
+      </p>
+
       <div
         className="blog-body"
         dangerouslySetInnerHTML={{
