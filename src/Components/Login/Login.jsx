@@ -23,10 +23,12 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     if (!form.email || !form.password) {
       setError('Please fill in all fields.')
       return
     }
+
     setLoading(true)
     try {
       const response = await fetch('http://localhost:5000/api/auth/login', {
@@ -38,9 +40,17 @@ const Login = () => {
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Login failed.')
 
+      // Save token, email, and role
       localStorage.setItem('token', data.token)
-      //alert('✅ ' + data.message)
-      navigate('/admin')
+      localStorage.setItem('email', data.user.email)
+      localStorage.setItem('role', data.user.role) // 'Admin' or 'User'
+
+      // Redirect based on role
+      if (data.user.role === 'Admin') {
+        navigate('/admin')
+      } else {
+        navigate('/home')
+      }
     } catch (err) {
       setError(err.message)
     } finally {
@@ -106,9 +116,9 @@ const Login = () => {
                 </button>
               </p>
               <button
-                 type="button"
-                 className="back-home-btn"
-                 onClick={()=>navigate('/')}
+                type="button"
+                className="back-home-btn"
+                onClick={() => navigate('/')}
               >
                 Back to Home
               </button>

@@ -6,14 +6,16 @@ import './Signup.scss'
 
 const Signup = () => {
   const navigate = useNavigate()
+  
   const [formData, setFormData] = useState({
-    fullName: '',
-    username: '',
-    email: '',
-    password: '',
-    confirmpassword: '',
-    role: '',
-  })
+  fullName: '',
+  username: '',
+  email: '',
+  password: '',
+  confirmpassword: ''
+})
+
+
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -43,7 +45,7 @@ const Signup = () => {
     if (formData.confirmpassword !== formData.password) {
       newErrors.confirmpassword = 'Passwords do not match'
     }
-    if (!formData.role) newErrors.role = 'Please select a role'
+    
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -56,31 +58,32 @@ const Signup = () => {
     }
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (!validateForm()) return
+const handleSubmit = async (e) => {
+  e.preventDefault()
+  if (!validateForm()) return
 
-    console.log('Submitting formData:', formData) // 🔍 Debug log
+  
+  const { fullName, username, email, password, confirmpassword } = formData
 
-    setIsSubmitting(true)
-    try {
-      const response = await fetch('http://localhost:5000/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+  setIsSubmitting(true)
+  try {
+    const response = await fetch('http://localhost:5000/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fullName, username, email, password }), 
+    })
 
-      const data = await response.json()
-      if (!response.ok) throw new Error(data.message || 'Signup failed.')
+    const data = await response.json()
+    if (!response.ok) throw new Error(data.message || 'Signup failed.')
 
-      //alert('✅ ' + data.message)
-      navigate('/login')
-    } catch (err) {
-      setErrors({ submit: err.message })
-    } finally {
-      setIsSubmitting(false)
-    }
+    navigate('/login')
+  } catch (err) {
+    setErrors({ submit: err.message })
+  } finally {
+    setIsSubmitting(false)
   }
+}
+
 
   return (
     <div className="signup-page">
@@ -171,23 +174,7 @@ const Signup = () => {
               )}
             </div>
 
-            {/* Role Selection */}
-            <div className="form-group">
-              <select
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                className={errors.role ? 'input-error' : ''}
-              >
-                <option value="">Select Role</option>
-                <option value="user">User</option>
-                <option value="employee">Employee</option>
-                <option value="admin">Admin</option>
-              </select>
-              {errors.role && (
-                <span className="error-text">{errors.role}</span>
-              )}
-            </div>
+          
 
             {/* Submit Button */}
             <button

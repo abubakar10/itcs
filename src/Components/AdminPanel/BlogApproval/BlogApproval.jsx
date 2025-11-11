@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // import Link
+import { Link } from "react-router-dom"; 
 import axios from "axios";
 import "./BlogApproval.scss";
 
@@ -62,7 +62,7 @@ export default function BlogApproval() {
 
   return (
     <div className="container blog-container">
-      <h1 className="blog-title">Admin Panel - Blogs</h1>
+      <h1 className="blog-title">Blogs for Approval</h1>
       {loading && <p className="loading-text">Loading blogs...</p>}
 
       <div className="grid">
