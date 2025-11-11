@@ -1,0 +1,151 @@
+.blog-approval-container {
+  min-height: 100vh;
+  padding: 160px 40px 80px;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 26, 26, 0.95) 0%,
+    rgba(36, 36, 36, 0.9) 100%
+  );
+  color: #fff;
+  text-align: center;
+}
+
+.blog-approval-container h2 {
+  font-size: 44px;
+  font-weight: 800;
+  margin-bottom: 60px;
+  background: linear-gradient(90deg, #4a9eff, #7bc9ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blog-card {
+  background: linear-gradient(
+    145deg,
+    rgba(26, 26, 36, 0.85),
+    rgba(36, 36, 46, 0.85)
+  );
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 24px;
+  margin: 10px auto;
+  max-width: 600px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(74, 158, 255, 0.5);
+}
+
+.blog-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.blog-card p {
+  font-size: 15px;
+  color: #ccc;
+  line-height: 1.5;
+}
+.tags-small {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;          
+  justify-content: flex-start; 
+  margin: 8px 0;      
+  min-height: auto;   
+  color: #ffffff;
+  align-items: center; 
+}
+
+.read-more {
+  display: inline-block;
+  margin: 16px 0;
+  color: #4a9eff;
+  font: 400;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.read-more:hover {
+  color: #7bc9ff;
+  text-decoration: underline;
+}
+
+.approval-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.approve-btn,
+.reject-btn {
+  flex: 1;
+  max-width: 180px;
+  padding: 12px 0;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.approve-btn {
+  background-color: #4a9eff;
+  color: #fff;
+}
+
+.approve-btn:hover:not(:disabled) {
+  background-color: #7bc9ff;
+}
+
+.reject-btn {
+  background-color: #ff4a5a;
+  color: #fff;
+}
+
+.reject-btn:hover:not(:disabled) {
+  background-color: #ff7b85;
+}
+
+.approve-btn:disabled,
+.reject-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .blog-approval-container {
+    padding: 120px 20px 60px;
+  }
+  .blog-approval-container h2 {
+    font-size: 36px;
+  }
+  .blog-card {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-approval-container {
+    padding: 100px 15px 50px;
+  }
+  .blog-approval-container h2 {
+    font-size: 28px;
+  }
+  .blog-card {
+    padding: 16px;
+  }
+}
