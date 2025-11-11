@@ -7,27 +7,33 @@ import dotenv from 'dotenv'
 dotenv.config()
 const router = express.Router()
 
-// ✅ Register route
+// Register route
 router.post('/signup', async (req, res) => {
   try {
-    const { fullName, username, email, password, role } = req.body
+    const { fullName, username, email, password } = req.body // remove role from destructuring
 
-    // Check if email already exists
+    
     const existingUser = await User.findOne({ email })
     if (existingUser) {
       return res.status(400).json({ message: 'Email already registered' })
     }
 
-    // Hash password
+    
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    // Create new user
+    
+    const ADMIN_EMAILS = ['wajeeha.zeeshan@itcs.com.pk', 'wajeeha-zeeshan@outlook.com'] 
+
+    
+    const role = ADMIN_EMAILS.includes(email) ? 'Admin' : 'User'
+
+    
     const newUser = new User({
       fullName,
       username,
       email,
       password: hashedPassword,
-      role,
+      role, 
     })
 
     await newUser.save()
@@ -38,7 +44,8 @@ router.post('/signup', async (req, res) => {
   }
 })
 
-// ✅ Login route
+
+// Login route
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body
