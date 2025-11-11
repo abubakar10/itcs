@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./Blog.scss";
 
 export default function Blog() {
@@ -10,33 +11,38 @@ export default function Blog() {
 
   const organization = "itcs11";
 
-  const fetchBlogs = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `https://dev.to/api/organizations/${organization}/articles?per_page=50&_=${new Date().getTime()}`
-      );
-      const data = await response.json();
-
-      setPosts(
-        data.sort(
-          (a, b) => new Date(b.published_at) - new Date(a.published_at)
-        )
-      );
-
-      const allTags = data.flatMap(post => post.tag_list || []);
-      setTags(Array.from(new Set(allTags)).sort());
-    } catch (error) {
-      console.error("Error fetching blogs:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchBlogs = async () => {
+      setLoading(true);
+      try {
+      
+        const [devRes, approvedRes] = await Promise.all([
+          fetch(`https://dev.to/api/organizations/${organization}/articles?per_page=50&_=${new Date().getTime()}`),
+          axios.get("http://localhost:5000/api/blogs/approved-ids") 
+        ]);
+
+        const blogs = await devRes.json();
+        const approvedIds = approvedRes.data; 
+
+        
+        const approvedBlogs = blogs.filter(blog => approvedIds.includes(blog.id));
+
+        
+        approvedBlogs.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+
+        setPosts(approvedBlogs);
+
+       
+        const allTags = approvedBlogs.flatMap(blog => blog.tag_list || []);
+        setTags(Array.from(new Set(allTags)).sort());
+      } catch (err) {
+        console.error("Error fetching blogs or approved IDs:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchBlogs();
-    const interval = setInterval(fetchBlogs, 30000); 
-    return () => clearInterval(interval);
   }, []);
 
   const filteredPosts =
@@ -97,7 +103,7 @@ export default function Blog() {
           ))
         ) : (
           <p className="no-posts">
-            {loading ? "Loading blogs..." : "No blogs found for this tag."}
+            {loading ? "Loading blogs..." : "No approved blogs found."}
           </p>
         )}
       </div>
