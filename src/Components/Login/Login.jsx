@@ -105,6 +105,13 @@ const Login = () => {
                   Sign Up
                 </button>
               </p>
+              <button
+                 type="button"
+                 className="back-home-btn"
+                 onClick={()=>navigate('/')}
+              >
+                Back to Home
+              </button>
             </div>
           </form>
         </div>
