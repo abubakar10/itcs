@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import authRoutes from './routes/authRoutes.js'
 import jobRoutes from './routes/jobRoutes.js'
 import blogRoutes from './routes/blogRoutes.js'
+import adminRoutes from './routes/adminRoutes.js'
 
 dotenv.config()
 const app = express()
@@ -18,6 +19,7 @@ app.use(express.json())
 app.use('/api/auth', authRoutes)
 app.use('/api/jobs', jobRoutes)
 app.use('/api/blogs', blogRoutes)
+app.use('/api/admin', adminRoutes)
 
 // MongoDB connection
 mongoose

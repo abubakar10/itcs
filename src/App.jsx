@@ -9,7 +9,7 @@ import Services from './Components/Services/Services'
 import Vision from './Components/Vision/Vision'
 import AboutUs from './Components/AboutUs/AboutUs'
 import Contact from './Components/Contact/Contact'
-import Signup from './Components/Signup/Signup'
+//import Signup from './Components/Signup/Signup'
 import Login from './Components/Login/Login'
 
 import Blog from './Components/Blog/Blog'
@@ -55,7 +55,7 @@ function App() {
         <Route path="/apply" element={<ApplyJob />} />
 
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        {/*<Route path="/signup" element={<Signup />} />*/}
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route
