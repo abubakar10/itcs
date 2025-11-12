@@ -6,25 +6,57 @@ import './AdminBlogDetail.scss'
 const AdminBlogDetail = ({ setActiveTab }) => {
   const { id } = useParams()
   const [article, setArticle] = useState(null)
+  const [customAuthor, setCustomAuthor] = useState(null)
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
+  
   useEffect(() => {
-    fetch(`https://dev.to/api/articles/${id}`)
-      .then(res => res.json())
-      .then(data => setArticle(data))
-      .catch(err => console.error('Error fetching article:', err))
-      .finally(() => setLoading(false))
+    const fetchArticle = async () => {
+      try {
+        const res = await fetch(`https://dev.to/api/articles/${id}`)
+        const data = await res.json()
+        setArticle(data)
+      } catch (err) {
+        console.error('Error fetching article:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchArticle()
+  }, [id])
+
+ 
+  useEffect(() => {
+    const fetchCustomAuthor = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/api/blogs/approved-ids`)
+        const data = await res.json()
+
+        const match = data.find((blog) => blog.devId === Number(id))
+        if (match && match.customAuthor) {
+          setCustomAuthor(match.customAuthor)
+        }
+      } catch (err) {
+        console.error('Error fetching custom author:', err)
+      }
+    }
+
+    fetchCustomAuthor()
   }, [id])
 
   const handleReturn = () => {
-   
     if (setActiveTab) setActiveTab('blog-approval')
-    navigate('/admin/blogs') 
+    navigate('/admin/blogs')
   }
 
   if (loading) return <p>Loading...</p>
   if (!article) return <p>Article not found.</p>
+
+  
+  const displayAuthor =
+    customAuthor || article.user?.name || article.user?.username || 'Unknown'
 
   return (
     <div className="blog-detail">
@@ -34,13 +66,13 @@ const AdminBlogDetail = ({ setActiveTab }) => {
 
       <h1>{article.title}</h1>
 
-      <p className="author-name">
-        Author: {article.user?.name || article.user?.username || 'Unknown'}
-      </p>
+      <p className="author-name">Author: {displayAuthor}</p>
 
       <div
         className="blog-body"
-        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.body_html) }}
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(article.body_html),
+        }}
       />
 
       <div className="return-button-wrapper">
@@ -53,4 +85,3 @@ const AdminBlogDetail = ({ setActiveTab }) => {
 }
 
 export default AdminBlogDetail
-

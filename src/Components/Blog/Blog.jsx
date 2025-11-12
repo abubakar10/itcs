@@ -10,33 +10,44 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
 
   const organization = "itcs11";
+  const backendUrl = "http://localhost:5000";
 
   useEffect(() => {
     const fetchBlogs = async () => {
       setLoading(true);
       try {
-      
         const [devRes, approvedRes] = await Promise.all([
-          fetch(`https://dev.to/api/organizations/${organization}/articles?per_page=50&_=${new Date().getTime()}`),
-          axios.get("http://localhost:5000/api/blogs/approved-ids") 
+          fetch(`https://dev.to/api/organizations/${organization}/articles?per_page=50&_=${Date.now()}`),
+          axios.get(`${backendUrl}/api/blogs/approved-ids`)
         ]);
 
-        const blogs = await devRes.json();
-        const approvedIds = approvedRes.data; 
+        const devBlogs = await devRes.json();
+        const approvedData = approvedRes.data;
 
-        
-        const approvedBlogs = blogs.filter(blog => approvedIds.includes(blog.id));
+        const approvedIds = approvedData.map(item => item.devId);
+        const authorMap = {};
+        approvedData.forEach(item => {
+          if (item.customAuthor) {
+            authorMap[item.devId] = item.customAuthor;
+          }
+        });
 
-        
+        const approvedBlogs = devBlogs
+          .filter(blog => approvedIds.includes(blog.id))
+          .map(blog => ({
+            ...blog,
+            displayAuthor: authorMap[blog.id] || blog.user?.username || "Unknown"
+          }));
+
         approvedBlogs.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
-
         setPosts(approvedBlogs);
 
-       
         const allTags = approvedBlogs.flatMap(blog => blog.tag_list || []);
-        setTags(Array.from(new Set(allTags)).sort());
+        const uniqueTags = Array.from(new Set(allTags)).sort();
+        setTags(["all", ...uniqueTags]);
+
       } catch (err) {
-        console.error("Error fetching blogs or approved IDs:", err);
+        console.error("Failed to load blogs:", err);
       } finally {
         setLoading(false);
       }
@@ -45,23 +56,17 @@ export default function Blog() {
     fetchBlogs();
   }, []);
 
-  const filteredPosts =
-    activeTag === "all"
-      ? posts
-      : posts.filter(post => post.tag_list?.includes(activeTag));
+  const filteredPosts = activeTag === "all"
+    ? posts
+    : posts.filter(post => post.tag_list?.includes(activeTag));
 
   return (
-    <div className="container blog-container">
-      <h1 className="blog-title">Our Blogs</h1>
-      {loading && <p className="loading-text">Checking for new posts...</p>}
+    <div className="blog-public-container">
+      <h2 className="blog-public-title">Our Blogs</h2>
+
+      {loading && <p className="loading-text">Loading approved blogs...</p>}
 
       <div className="tag-pills">
-        <button
-          className={`tag-pill ${activeTag === "all" ? "active" : ""}`}
-          onClick={() => setActiveTag("all")}
-        >
-          All
-        </button>
         {tags.map(tag => (
           <button
             key={tag}
@@ -73,37 +78,43 @@ export default function Blog() {
         ))}
       </div>
 
-      <div className={`grid ${activeTag !== "all" ? "filtered" : ""}`}>
+      <div className="blog-grid">
         {filteredPosts.length > 0 ? (
           filteredPosts.map(post => (
-            <article key={post.id} className="card">
-              {(post.cover_image || post.social_image) && (
-                <img
-                  src={post.cover_image || post.social_image}
-                  alt={post.title}
-                  className="blog-cover"
-                  loading="lazy"
-                />
-              )}
-              <h3>{post.title}</h3>
-              <p className="meta">
-                👤 {post.user?.username || "Unknown"} •{" "}
-                {post.readable_publish_date} • {post.reading_time_minutes} min read
-              </p>
-              <p className="description">{post.description}</p>
-              <div className="tags-small">
-                {post.tag_list?.slice(0, 3).map(tag => (
-                  <span key={tag}>#{tag}</span>
-                ))}
+            <article key={post.id} className="blog-card">
+              <div className="blog-card__content">
+                {(post.cover_image || post.social_image) && (
+                  <img
+                    src={post.cover_image || post.social_image}
+                    alt={post.title}
+                    className="blog-cover"
+                    loading="lazy"
+                  />
+                )}
+
+                <h3>{post.title}</h3>
+
+                <p className="meta">
+                  {post.displayAuthor} • {post.readable_publish_date} • {post.reading_time_minutes} min read
+                </p>
+
+                <p className="description">{post.description}</p>
+
+                <div className="tags-small">
+                  {post.tag_list?.slice(0, 3).map(tag => (
+                    <span key={tag}>#{tag}</span>
+                  ))}
+                </div>
+
+                <Link to={`/blog/${post.id}`} className="read-more">
+                  Read more
+                </Link>
               </div>
-              <Link to={`/blog/${post.id}`} className="read-more">
-                Read more →
-              </Link>
             </article>
           ))
         ) : (
           <p className="no-posts">
-            {loading ? "Loading blogs..." : "No approved blogs found."}
+            {loading ? "Loading..." : "No blogs found for this tag."}
           </p>
         )}
       </div>
