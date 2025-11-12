@@ -9,13 +9,15 @@ import Services from './Components/Services/Services'
 import Vision from './Components/Vision/Vision'
 import AboutUs from './Components/AboutUs/AboutUs'
 import Contact from './Components/Contact/Contact'
-import Signup from './Components/Signup/Signup'
+//import Signup from './Components/Signup/Signup'
 import Login from './Components/Login/Login'
 
 import Blog from './Components/Blog/Blog'
 import BlogDetail from './Components/Blog/BlogDetail'
 import AdminPanel from './Components/AdminPanel/AdminPanel'
-
+import BlogApproval from "./Components/AdminPanel/BlogApproval/BlogApproval";
+import AdminBlogDetail from "./Components/AdminPanel/BlogApproval/AdminBlogDetail";
+import AdminRoute from './Components/AdminPanel/AdminRoute'
 
 //Dropdowns
 import Cloud from './Components/Services-Dropdown/Cloud/Cloud'
@@ -53,11 +55,35 @@ function App() {
         <Route path="/apply" element={<ApplyJob />} />
 
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        {/*<Route path="/signup" element={<Signup />} />*/}
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
-        <Route path="/admin" element={<AdminPanel />} />
-        
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminPanel />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/blogs"
+          element={
+            <AdminRoute>
+              <BlogApproval />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/blog/:id"
+          element={
+            <AdminRoute>
+              <AdminBlogDetail />
+            </AdminRoute>
+          }
+        />
+
+
       </Routes>
       {!hideLayoutRoutes.includes(location.pathname) && <Footer />}
     </>

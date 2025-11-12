@@ -23,10 +23,12 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     if (!form.email || !form.password) {
       setError('Please fill in all fields.')
       return
     }
+
     setLoading(true)
     try {
       const response = await fetch('http://localhost:5000/api/auth/login', {
@@ -38,9 +40,14 @@ const Login = () => {
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Login failed.')
 
+     
       localStorage.setItem('token', data.token)
-      //alert('✅ ' + data.message)
-      navigate('/admin')
+      localStorage.setItem('user', JSON.stringify(data.user))
+      localStorage.setItem('email', data.user.email)
+      
+
+      
+        navigate('/admin')
     } catch (err) {
       setError(err.message)
     } finally {
@@ -95,16 +102,14 @@ const Login = () => {
             </button>
 
             <div className="form-footer">
-              <p>
-                Don’t have an account?{' '}
-                <button
-                  type="button"
-                  className="link-btn"
-                  onClick={() => navigate('/signup')}
-                >
-                  Sign Up
-                </button>
-              </p>
+             
+              <button
+                type="button"
+                className="back-home-btn"
+                onClick={() => navigate('/')}
+              >
+                Back to Home
+              </button>
             </div>
           </form>
         </div>

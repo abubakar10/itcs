@@ -218,9 +218,6 @@ const Header = () => {
         <button className="btn btn-login" onClick={() => navigate('/login')}>
           Login
         </button>
-        <button className="btn btn-signup" onClick={() => navigate('/signup')}>
-          Sign Up
-        </button>
       </div>
     </div>
   )
