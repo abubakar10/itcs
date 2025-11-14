@@ -7,44 +7,58 @@ const router = express.Router();
 router.get("/statuses", async (req, res) => {
   try {
     const statuses = await BlogStatus.find({});
-    res.json(statuses); 
+    res.json(statuses);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to fetch statuses" });
   }
 });
 
+
 router.patch("/:devId/status", async (req, res) => {
   try {
-    const devIdNum = Number(req.params.devId); 
-    const { status } = req.body;
+    console.log("PATCH request received:", req.params.devId, req.body);
 
-    if (!["approved", "rejected"].includes(status)) {
-      return res.status(400).json({ error: "Invalid status" });
+    const devIdNum = Number(req.params.devId);
+    const { status, customAuthor } = req.body;
+
+    
+    const updateFields = {};
+    if (status) {
+      if (!["approved", "rejected"].includes(status)) {
+        return res.status(400).json({ error: "Invalid status" });
+      }
+      updateFields.status = status;
+    }
+    if (customAuthor) {
+      updateFields.customAuthor = customAuthor;
+    }
+
+    if (Object.keys(updateFields).length === 0) {
+      return res.status(400).json({ error: "No valid fields to update" });
     }
 
     const updated = await BlogStatus.findOneAndUpdate(
       { devId: devIdNum },
-      { status },
+      { $set: updateFields },
       { upsert: true, new: true }
     );
 
     res.json(updated);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to update status" });
+    console.error("Update error:", err);
+    res.status(500).json({ error: "Failed to update record" });
   }
 });
 
-
-router.get("/statuses", async (req, res) => {
+router.get("/approved-ids", async (req, res) => {
   try {
-    const statuses = await BlogStatus.find({});
-    res.json(statuses); 
+    const approvedBlogs = await BlogStatus.find({ status: "approved" }).select("devId customAuthor");
+    res.json(approvedBlogs);
   } catch (err) {
-    res.status(500).json({ error: "Failed to fetch statuses" });
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch approved IDs" });
   }
 });
-
 
 export default router;

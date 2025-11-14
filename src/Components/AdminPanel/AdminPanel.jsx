@@ -25,26 +25,34 @@ const AdminPanel = () => {
     localStorage.removeItem('email')
     navigate('/')
   }
+const handleAddAdmin = async (e) => {
+  e.preventDefault()
+  const token = localStorage.getItem('token')
 
-  const handleAddAdmin = async (e) => {
-    e.preventDefault()
-    const token = localStorage.getItem('token')
+  try {
+    const res = await axios.post(
+      'http://localhost:5000/api/admin/add-user',
+      {
+        fullName,
+        username,
+        email,
+        password,
+        role: 'admin', 
+        isAdmin: true, 
+      },
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
 
-    try {
-      const res = await axios.post(
-        'http://localhost:5000/api/admin/add-user',
-        { fullName, username, email, password },
-        { headers: { Authorization: `Bearer ${token}` } }
-      )
-      setMessage(res.data.message)
-      setFullName('')
-      setUsername('')
-      setEmail('')
-      setPassword('')
-    } catch (err) {
-      setMessage(err.response?.data?.message || 'Error adding admin')
-    }
+    setMessage(res.data.message)
+    setFullName('')
+    setUsername('')
+    setEmail('')
+    setPassword('')
+  } catch (err) {
+    setMessage(err.response?.data?.message || 'Error adding admin')
   }
+}
+
 
   return (
     <div className="admin-panel">
