@@ -98,7 +98,8 @@
     .testimonials-slider {
       flex: 1;
       position: relative;
-      height: 400px;
+      height: auto;
+      min-height: 380px;
       overflow: hidden;
     }
 
