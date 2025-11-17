@@ -1,20 +1,22 @@
 import React from "react";
 import "./VisionContent.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBullseye, faRocket, faLightbulb } from "@fortawesome/free-solid-svg-icons";
 
 const VisionContent = () => {
   const visionPoints = [
     {
-      icon: "🎯",
+      icon: faBullseye,
       title: "Our Vision",
       description: "To be the leading technology partner in the region, driving digital transformation and innovation across industries. We envision a future where technology seamlessly integrates with business to create unprecedented value and opportunities."
     },
     {
-      icon: "🚀",
+      icon: faRocket,
       title: "Our Mission",
       description: "To deliver cutting-edge IT solutions that empower businesses to achieve their full potential. We are committed to excellence, innovation, and building lasting partnerships with our clients through reliable service and expert guidance."
     },
     {
-      icon: "💡",
+      icon: faLightbulb,
       title: "Our Purpose",
       description: "We exist to simplify complex technology challenges and make innovation accessible to businesses of all sizes. By combining technical expertise with business understanding, we help organizations navigate the digital landscape confidently."
     }
@@ -59,7 +61,9 @@ const VisionContent = () => {
         <div className="content-container">
           {visionPoints.map((point, index) => (
             <div key={index} className="vision-card">
-              <div className="card-icon">{point.icon}</div>
+              <div className="card-icon">
+                <FontAwesomeIcon icon={point.icon} />
+              </div>
               <h2>{point.title}</h2>
               <p>{point.description}</p>
               <div className="card-glow"></div>
