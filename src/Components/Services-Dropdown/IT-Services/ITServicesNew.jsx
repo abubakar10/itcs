@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import '../_shared/service-common.scss';
 import './ITServicesNew.scss';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog, faClock, faWrench, faCheck, faDesktop, faBroadcastTower, faSync, faSave, faEye, faPhone} from '@fortawesome/free-solid-svg-icons';
 const ITHero = () => (
   <section className="service-hero it-hero">
     <div className="hero-background">
@@ -9,7 +10,7 @@ const ITHero = () => (
     </div>
     <div className="hero-container">
       <div className="hero-badge">
-        <span>⚙️</span>
+        <FontAwesomeIcon icon={faCog} />
         <span>MANAGED IT SERVICES</span>
       </div>
       <h1 className="hero-title">
@@ -31,15 +32,15 @@ const ITHero = () => (
       </div>
       <div className="hero-badges-row">
         <div className="badge-item">
-          <span>⏰</span>
+          <FontAwesomeIcon icon={faClock} />
           <span>24/7 Support</span>
         </div>
         <div className="badge-item">
-          <span>🔧</span>
+          <FontAwesomeIcon icon={faWrench} />
           <span>Proactive Monitoring</span>
         </div>
         <div className="badge-item">
-          <span>✅</span>
+          <FontAwesomeIcon icon={faCheck} />
           <span>99.9% Uptime</span>
         </div>
       </div>
@@ -49,12 +50,12 @@ const ITHero = () => (
 
 const ITFeatures = () => {
   const features = [
-    { icon: '🖥️', title: 'Help Desk Support', description: '24/7 technical support for all your IT needs with fast response times.' },
-    { icon: '📡', title: 'Infrastructure Management', description: 'Complete management of your IT infrastructure for optimal performance.' },
-    { icon: '🔄', title: 'System Maintenance', description: 'Regular updates, patches, and maintenance to keep systems running smoothly.' },
-    { icon: '💾', title: 'Backup & Recovery', description: 'Automated backup solutions with rapid disaster recovery capabilities.' },
-    { icon: '👁️', title: 'Network Monitoring', description: 'Proactive monitoring to identify and resolve issues before they impact your business.' },
-    { icon: '📞', title: 'Remote Support', description: 'Quick resolution of IT issues with secure remote assistance.' }
+    { icon: faDesktop, title: 'Help Desk Support', description: '24/7 technical support for all your IT needs with fast response times.' },
+    { icon: faBroadcastTower, title: 'Infrastructure Management', description: 'Complete management of your IT infrastructure for optimal performance.' },
+    { icon: faSync, title: 'System Maintenance', description: 'Regular updates, patches, and maintenance to keep systems running smoothly.' },
+    { icon: faSave, title: 'Backup & Recovery', description: 'Automated backup solutions with rapid disaster recovery capabilities.' },
+    { icon: faEye, title: 'Network Monitoring', description: 'Proactive monitoring to identify and resolve issues before they impact your business.' },
+    { icon: faPhone, title: 'Remote Support', description: 'Quick resolution of IT issues with secure remote assistance.' }
   ];
 
   return (
@@ -70,7 +71,9 @@ const ITFeatures = () => {
         <div className="features-grid">
           {features.map((feature, idx) => (
             <div className="feature-card" key={idx}>
-              <div style={{fontSize: '48px', marginBottom: '20px'}}>{feature.icon}</div>
+              <div className="feature-icon">
+                <FontAwesomeIcon icon={feature.icon} size="2x" />
+              </div>
               <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px'}}>{feature.title}</h3>
               <p style={{fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6}}>{feature.description}</p>
             </div>
