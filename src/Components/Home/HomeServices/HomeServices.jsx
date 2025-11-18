@@ -1,5 +1,6 @@
 import React from "react";
 import "./HomeServices.scss";
+import { Link } from "react-router-dom";
 import CloudLogo from "./../../../assets/logos/Cloud.svg";
 import SoftwareLicensing from "./../../../assets/logos/SoftwareLicensing.svg";
 import MordernWorkplace from "./../../../assets/logos/MordernWorkplace.svg";
@@ -10,19 +11,22 @@ const HomeServices = () => {
       icon: MordernWorkplace,
       title: "MODERN WORKPLACE",
       description: "Unleash the potential of modern work with an array of transformative solutions.",
-      color: "#667eea"
+      color: "#667eea",
+      link: "/services/it-services",
     },
     {
       icon: CloudLogo,
       title: "CLOUD COMPUTING",
       description: "We are equipped to guide you through the transformative potential of Azure.",
-      color: "#4a9eff"
+      color: "#4a9eff",
+      link: "/services/cloud",
     },
     {
       icon: SoftwareLicensing,
       title: "SOFTWARE LICENSING",
       description: "Choose the licensing option that aligns seamlessly with your business rhythm.",
-      color: "#3d8eef"
+      color: "#3d8eef",
+      link: "/services/enterprise-solutions",
     }
   ];
 
@@ -50,10 +54,9 @@ const HomeServices = () => {
               </div>
               <h3 className="card-title">{service.title}</h3>
               <p className="card-description">{service.description}</p>
-              <button className="card-link">
-                Learn More
-                <span className="link-arrow">→</span>
-              </button>
+             <Link to={service.link} className="card-link">
+                Learn More <span className="link-arrow">→</span>
+              </Link>
             </div>
           ))}
         </div>
