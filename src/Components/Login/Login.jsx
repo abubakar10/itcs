@@ -40,13 +40,12 @@ const Login = () => {
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Login failed.')
 
-
+      // Store auth info
       localStorage.setItem('token', data.token)
       localStorage.setItem('user', JSON.stringify(data.user))
       localStorage.setItem('email', data.user.email)
 
-
-
+      // Navigate to private route
       navigate('/admin')
     } catch (err) {
       setError(err.message)
@@ -65,7 +64,7 @@ const Login = () => {
             <p className="card-subtitle">Log in to access your dashboard</p>
           </div>
 
-          
+
 
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -76,10 +75,13 @@ const Login = () => {
                 value={form.email}
                 onChange={handleChange}
                 required
+                className={error && error.toLowerCase().includes('email') ? 'input-error' : ''}
               />
-              {error && error.includes('Email') && (
+              {error && error.toLowerCase().includes('email') && (
                 <span className="input-error-text">{error}</span>
               )}
+
+
             </div>
 
             <div className="form-group">
@@ -90,8 +92,9 @@ const Login = () => {
                 value={form.password}
                 onChange={handleChange}
                 required
+                className={error && error.toLowerCase().includes('password') ? 'input-error' : ''}
               />
-              {error && error.includes('password') && (
+              {error && error.toLowerCase().includes('password') && (
                 <span className="input-error-text">{error}</span>
               )}
               <div className="forgot-password">
@@ -100,7 +103,11 @@ const Login = () => {
             </div>
 
             <button type="submit" className="submit-btn" disabled={loading}>
-              {loading ? <span className="loading-spinner">Logging in...</span> : 'Login'}
+              {loading ? (
+                <span className="loading-spinner">Logging in...</span>
+              ) : (
+                'Login'
+              )}
             </button>
 
             <div className="form-footer">
@@ -113,7 +120,6 @@ const Login = () => {
               </button>
             </div>
           </form>
-
         </div>
       </div>
     </div>
