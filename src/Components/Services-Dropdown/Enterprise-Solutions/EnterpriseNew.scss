@@ -24,6 +24,13 @@
   }
 }
 
+.feature-icon {
+  color: #fff;
+  margin-bottom: 20px;
+  display: inline-block;
+  transition: transform var(--transition-normal);
+}
+
 @keyframes patternShift {
   0% {
     background-position: 0 0, 0 0, 20px 20px, 20px 20px;

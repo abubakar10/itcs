@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./ContactForm.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapMarkerAlt, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +24,24 @@ const ContactForm = () => {
     console.log("Form submitted:", formData);
     // Add your form submission logic here
   };
+
+  const contactInfo = [
+    {
+      icon: faMapMarkerAlt,
+      title: "Visit Us",
+      description: "6/K Block 2, P.E.C.H.S, Karachi, Pakistan"
+    },
+    {
+      icon: faEnvelope,
+      title: "Email Us",
+      description: "info@itcs.com.pk\nsupport@itcs.com.pk"
+    },
+    {
+      icon: faPhone,
+      title: "Call Us",
+      description: "021 111-482-711\nMon-Fri: 9AM - 6PM"
+    }
+  ];
 
   return (
     <section className="contact-form-section">
@@ -106,26 +126,20 @@ const ContactForm = () => {
         </div>
 
         <div className="contact-info">
-          <div className="info-card">
-            <div className="info-icon">📍</div>
-            <h3>Visit Us</h3>
-            <p>6/K Block 2, P.E.C.H.S,<br />Karachi, Pakistan</p>
-          </div>
-          <div className="info-card">
-            <div className="info-icon">📧</div>
-            <h3>Email Us</h3>
-            <p>info@itcs.com.pk<br />support@itcs.com.pk</p>
-          </div>
-          <div className="info-card">
-            <div className="info-icon">📞</div>
-            <h3>Call Us</h3>
-            <p>021 111-482-711<br />Mon-Fri: 9AM - 6PM</p>
-          </div>
+          {contactInfo.map((info, index) => (
+            <div key={index} className="info-card">
+              <div className="info-icon">
+                <FontAwesomeIcon icon={info.icon} />
+              </div>
+              <h3>{info.title}</h3>
+              <p>{info.description.split("\n").map((line, idx) => <span key={idx}>{line}<br /></span>)}</p>
+            </div>
+          ))}
         </div>
+
       </div>
     </section>
   );
 };
 
 export default ContactForm;
-

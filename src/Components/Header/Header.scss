@@ -12,25 +12,64 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-md);
+  
+    @media (max-width: 992px) {
+    .auth-buttons {
+    gap: 14px;           
+    align-items: center;
+    display: flex;
+    }
 
-  .header-img {
-    img {
-      width: 150px;
-      filter: brightness(1.1);
+  
+  .custom-toggler {
+    display: flex !important;
+    background: none;
+    border: none;
+    padding: 8px;
+  }
+
+  .custom-toggler-icon {
+    width: 30px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .custom-toggler-icon span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+
+    @media (max-width: 480px) {
+    .auth-buttons {
+    gap: 10px;
     }
   }
+    .header-img {
+      img {
+        width: 150px;
+        filter: brightness(1.1);
+       }
+      }
 
   .links {
     margin: 0 auto;
 
-    // Hide default Bootstrap toggler icon
+    
     .navbar-toggler-icon {
       display: none;
     }
 
-    // Custom toggler - only show on screens 992px and below
+   
     .custom-toggler {
-      display: none; // Hidden by default on large screens
+      display: none; 
     }
 
     .navbar-nav {
@@ -240,10 +279,10 @@
         }
       }
 
-      // Mobile menu styling
+    
       .navbar-collapse {
         position: fixed;
-        top: 65px; // Adjust based on header height
+        top: 65px; 
         left: 0;
         right: 0;
         width: 100vw;
@@ -262,7 +301,7 @@
           overflow-y: auto;
           -webkit-overflow-scrolling: touch;
 
-          // Custom scrollbar styling
+         
           &::-webkit-scrollbar {
             width: 6px;
           }
@@ -533,5 +572,17 @@
         }
       }
     }
+  }
+}
+
+@media (min-width: 993px) {
+  .header .auth-buttons .custom-toggler {
+    display: none !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .header .auth-buttons {
+    order: 3;
   }
 }

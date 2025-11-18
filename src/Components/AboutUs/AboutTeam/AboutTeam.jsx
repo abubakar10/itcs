@@ -1,5 +1,8 @@
 import React from "react";
 import "./AboutTeam.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLaptopCode, faPalette, faLock, faChartBar } from "@fortawesome/free-solid-svg-icons";
+
 
 const AboutTeam = () => {
   const teamStats = [
@@ -22,30 +25,31 @@ const AboutTeam = () => {
 
   const departments = [
     {
-      icon: "💻",
+      icon: faLaptopCode,
       title: "Development Team",
       count: "20+ Engineers",
       skills: ["Full Stack", "Mobile", "Cloud", "DevOps"]
     },
     {
-      icon: "🎨",
+      icon: faPalette,
       title: "Design Team",
       count: "8+ Designers",
       skills: ["UI/UX", "Graphics", "Branding", "Motion"]
     },
     {
-      icon: "🔒",
+      icon: faLock,
       title: "Security Team",
       count: "6+ Specialists",
       skills: ["Pentesting", "Compliance", "Audit", "SOC"]
     },
     {
-      icon: "📊",
+      icon: faChartBar,
       title: "Consulting Team",
       count: "10+ Consultants",
       skills: ["Strategy", "Digital Transform", "PM", "BA"]
     }
   ];
+
 
   return (
     <section className="about-team">
@@ -69,7 +73,9 @@ const AboutTeam = () => {
         <div className="departments-grid">
           {departments.map((dept, index) => (
             <div key={index} className="dept-card">
-              <div className="dept-icon">{dept.icon}</div>
+              <div className="dept-icon">
+                <FontAwesomeIcon icon={dept.icon} />
+              </div>
               <h3>{dept.title}</h3>
               <p className="dept-count">{dept.count}</p>
               <div className="skills-list">

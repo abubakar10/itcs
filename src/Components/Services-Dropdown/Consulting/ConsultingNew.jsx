@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import '../_shared/service-common.scss';
 import './ConsultingNew.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBriefcase, faChartBar, faBullseye, faLightbulb, faSearch, faTools, faUsers } from '@fortawesome/free-solid-svg-icons';
+
 
 const ConsultingHero = () => (
   <section className="service-hero consulting-hero">
@@ -9,7 +12,7 @@ const ConsultingHero = () => (
     </div>
     <div className="hero-container">
       <div className="hero-badge">
-        <span>💼</span>
+        <FontAwesomeIcon icon={faBriefcase} />
         <span>STRATEGIC IT CONSULTING</span>
       </div>
       <h1 className="hero-title">
@@ -17,7 +20,7 @@ const ConsultingHero = () => (
         <span className="gradient-text"> Expert IT Consulting</span>
       </h1>
       <p className="hero-description">
-        Navigate digital transformation with confidence. Our expert consultants help you align 
+        Navigate digital transformation with confidence. Our expert consultants help you align
         technology with business goals for sustainable growth and competitive advantage.
       </p>
       <div className="hero-actions">
@@ -31,15 +34,15 @@ const ConsultingHero = () => (
       </div>
       <div className="hero-badges-row">
         <div className="badge-item">
-          <span>📊</span>
+          <FontAwesomeIcon icon={faChartBar} />
           <span>Strategic Planning</span>
         </div>
         <div className="badge-item">
-          <span>🎯</span>
+          <FontAwesomeIcon icon={faBullseye} />
           <span>Goal Alignment</span>
         </div>
         <div className="badge-item">
-          <span>📈</span>
+          <FontAwesomeIcon icon={faChartBar} />
           <span>Growth Focused</span>
         </div>
       </div>
@@ -49,12 +52,12 @@ const ConsultingHero = () => (
 
 const ConsultingFeatures = () => {
   const features = [
-    { icon: '🎯', title: 'IT Strategy & Planning', description: 'Develop comprehensive IT strategies aligned with your business objectives.' },
-    { icon: '💡', title: 'Digital Transformation', description: 'Guide your organization through successful digital transformation initiatives.' },
-    { icon: '🔍', title: 'Technology Assessment', description: 'Evaluate your current technology landscape and identify improvement opportunities.' },
-    { icon: '🛠️', title: 'Solution Architecture', description: 'Design scalable and efficient technology solutions for your business needs.' },
-    { icon: '📊', title: 'Process Optimization', description: 'Streamline business processes through technology integration and automation.' },
-    { icon: '👥', title: 'Change Management', description: 'Ensure smooth technology adoption with comprehensive change management support.' }
+    { icon: faBullseye, title: 'IT Strategy & Planning', description: 'Develop comprehensive IT strategies aligned with your business objectives.' },
+    { icon: faLightbulb, title: 'Digital Transformation', description: 'Guide your organization through successful digital transformation initiatives.' },
+    { icon: faSearch, title: 'Technology Assessment', description: 'Evaluate your current technology landscape and identify improvement opportunities.' },
+    { icon: faTools, title: 'Solution Architecture', description: 'Design scalable and efficient technology solutions for your business needs.' },
+    { icon: faChartBar, title: 'Process Optimization', description: 'Streamline business processes through technology integration and automation.' },
+    { icon: faUsers, title: 'Change Management', description: 'Ensure smooth technology adoption with comprehensive change management support.' }
   ];
 
   return (
@@ -70,10 +73,13 @@ const ConsultingFeatures = () => {
         <div className="features-grid">
           {features.map((feature, idx) => (
             <div className="feature-card" key={idx}>
-              <div style={{fontSize: '48px', marginBottom: '20px'}}>{feature.icon}</div>
-              <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px'}}>{feature.title}</h3>
-              <p style={{fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6}}>{feature.description}</p>
+              <div className="feature-icon">
+                <FontAwesomeIcon icon={feature.icon} size="2x" />
+              </div>
+              <h3 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px' }}>{feature.title}</h3>
+              <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>{feature.description}</p>
             </div>
+
           ))}
         </div>
       </div>
@@ -84,17 +90,17 @@ const ConsultingFeatures = () => {
 const ConsultingCTA = () => (
   <section className="service-cta">
     <div className="cta-container">
-      <h2 style={{fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '20px'}}>
+      <h2 style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '20px' }}>
         Ready to <span className="gradient-text">Transform</span> Your IT Strategy?
       </h2>
-      <p style={{fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 40px'}}>
+      <p style={{ fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 40px' }}>
         Let our experienced consultants help you navigate your digital transformation journey.
       </p>
-      <div style={{display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '50px'}}>
-        <button className="btn-primary" style={{padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: 'none', cursor: 'pointer', background: 'var(--accent-gradient)', color: 'white'}}>
+      <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '50px' }}>
+        <button className="btn-primary" style={{ padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: 'none', cursor: 'pointer', background: 'var(--accent-gradient)', color: 'white' }}>
           Schedule Consultation
         </button>
-        <button className="btn-secondary" style={{padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: '1px solid var(--border-color)', cursor: 'pointer', background: 'var(--bg-card)', color: 'var(--text-primary)'}}>
+        <button className="btn-secondary" style={{ padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: '1px solid var(--border-color)', cursor: 'pointer', background: 'var(--bg-card)', color: 'var(--text-primary)' }}>
           Contact Us
         </button>
       </div>
