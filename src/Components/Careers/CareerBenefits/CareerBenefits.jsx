@@ -1,45 +1,48 @@
 import React from "react";
 import "./CareerBenefits.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoneyBillWave, faHospital, faUmbrellaBeach, faRocket, faLaptopCode, faGraduationCap, faUsers, faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
+
 
 const CareerBenefits = () => {
   const benefits = [
     {
-      icon: "💰",
+      icon: faMoneyBillWave,
       title: "Competitive Salary",
       description: "Industry-leading compensation packages with performance bonuses and annual reviews."
     },
     {
-      icon: "🏥",
+      icon: faHospital,
       title: "Health & Wellness",
       description: "Comprehensive health insurance, mental health support, and fitness programs."
     },
     {
-      icon: "🌴",
+      icon: faUmbrellaBeach,
       title: "Flexible Time Off",
       description: "Generous vacation policy, sick leave, and paid holidays for work-life balance."
     },
     {
-      icon: "🚀",
+      icon: faRocket,
       title: "Career Growth",
       description: "Professional development opportunities, training programs, and clear career paths."
     },
     {
-      icon: "💻",
+      icon: faLaptopCode,
       title: "Remote Work",
       description: "Hybrid work model with modern equipment and home office setup allowance."
     },
     {
-      icon: "🎓",
+      icon: faGraduationCap,
       title: "Learning Budget",
       description: "Annual budget for courses, conferences, certifications, and skill development."
     },
     {
-      icon: "👥",
+      icon: faUsers,
       title: "Team Events",
       description: "Regular team building activities, company retreats, and social gatherings."
     },
     {
-      icon: "🍕",
+      icon: faPizzaSlice,
       title: "Perks & More",
       description: "Free meals, snacks, game rooms, and a vibrant office environment."
     }
@@ -56,7 +59,9 @@ const CareerBenefits = () => {
         <div className="benefits-grid">
           {benefits.map((benefit, index) => (
             <div key={index} className="benefit-card" data-index={index}>
-              <div className="benefit-icon">{benefit.icon}</div>
+              <div className="benefit-icon">
+                <FontAwesomeIcon icon={benefit.icon} />
+              </div>
               <h3>{benefit.title}</h3>
               <p>{benefit.description}</p>
             </div>

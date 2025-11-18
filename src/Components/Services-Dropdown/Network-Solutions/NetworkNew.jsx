@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import '../_shared/service-common.scss';
 import './NetworkNew.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobe, faLock, faBolt, faChartLine, faSearch, faTools, faProjectDiagram, faShieldAlt, faWifi } from '@fortawesome/free-solid-svg-icons';
 
 const NetworkHero = () => (
   <section className="service-hero network-hero">
@@ -9,7 +11,7 @@ const NetworkHero = () => (
     </div>
     <div className="hero-container">
       <div className="hero-badge">
-        <span>🌐</span>
+        <FontAwesomeIcon icon={faGlobe} />
         <span>NETWORK SOLUTIONS</span>
       </div>
       <h1 className="hero-title">
@@ -31,15 +33,15 @@ const NetworkHero = () => (
       </div>
       <div className="hero-badges-row">
         <div className="badge-item">
-          <span>🔒</span>
+          <FontAwesomeIcon icon={faLock} />
           <span>Secure Networks</span>
         </div>
         <div className="badge-item">
-          <span>⚡</span>
+          <FontAwesomeIcon icon={faBolt} />
           <span>High Performance</span>
         </div>
         <div className="badge-item">
-          <span>📊</span>
+          <FontAwesomeIcon icon={faChartLine} />
           <span>Real-time Monitoring</span>
         </div>
       </div>
@@ -49,12 +51,12 @@ const NetworkHero = () => (
 
 const NetworkFeatures = () => {
   const features = [
-    { icon: '🏗️', title: 'Network Design', description: 'Custom network architecture tailored to your business requirements.' },
-    { icon: '🔐', title: 'Security Implementation', description: 'Advanced firewalls, VPNs, and security protocols to protect your network.' },
-    { icon: '📡', title: 'Wireless Solutions', description: 'Enterprise-grade WiFi solutions for seamless connectivity.' },
-    { icon: '📈', title: 'Performance Optimization', description: 'Network optimization for maximum speed and reliability.' },
-    { icon: '🔍', title: 'Network Monitoring', description: 'Proactive monitoring and management for peak performance.' },
-    { icon: '🛠️', title: 'Maintenance & Support', description: '24/7 network support and maintenance services.' }
+    { icon: faProjectDiagram, title: 'Network Design', description: 'Custom network architecture tailored to your business requirements.' },
+    { icon: faShieldAlt, title: 'Security Implementation', description: 'Advanced firewalls, VPNs, and security protocols to protect your network.' },
+    { icon: faWifi, title: 'Wireless Solutions', description: 'Enterprise-grade WiFi solutions for seamless connectivity.' },
+    { icon: faChartLine, title: 'Performance Optimization', description: 'Network optimization for maximum speed and reliability.' },
+    { icon: faSearch, title: 'Network Monitoring', description: 'Proactive monitoring and management for peak performance.' },
+    { icon: faTools, title: 'Maintenance & Support', description: '24/7 network support and maintenance services.' }
   ];
 
   return (
@@ -70,7 +72,9 @@ const NetworkFeatures = () => {
         <div className="features-grid">
           {features.map((feature, idx) => (
             <div className="feature-card" key={idx}>
-              <div style={{fontSize: '48px', marginBottom: '20px'}}>{feature.icon}</div>
+               <div className="feature-icon">
+                <FontAwesomeIcon icon={feature.icon} size="2x" />
+              </div>
               <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px'}}>{feature.title}</h3>
               <p style={{fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6}}>{feature.description}</p>
             </div>

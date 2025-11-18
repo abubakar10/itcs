@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import '../_shared/service-common.scss';
 import './EnterpriseNew.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBuilding, faChartBar, faSync, faMobileAlt, faLink, faUsers} from '@fortawesome/free-solid-svg-icons';
 
 const EnterpriseHero = () => (
   <section className="service-hero enterprise-hero">
@@ -9,7 +11,7 @@ const EnterpriseHero = () => (
     </div>
     <div className="hero-container">
       <div className="hero-badge">
-        <span>🏢</span>
+        <FontAwesomeIcon icon={faBuilding} />
         <span>ENTERPRISE SOLUTIONS</span>
       </div>
       <h1 className="hero-title">
@@ -31,15 +33,15 @@ const EnterpriseHero = () => (
       </div>
       <div className="hero-badges-row">
         <div className="badge-item">
-          <span>📊</span>
+          <FontAwesomeIcon icon={faChartBar} />
           <span>Integrated Systems</span>
         </div>
         <div className="badge-item">
-          <span>🔄</span>
+          <FontAwesomeIcon icon={faSync} />
           <span>Process Automation</span>
         </div>
         <div className="badge-item">
-          <span>📈</span>
+          <FontAwesomeIcon icon={faChartBar} />
           <span>Business Intelligence</span>
         </div>
       </div>
@@ -49,12 +51,12 @@ const EnterpriseHero = () => (
 
 const EnterpriseFeatures = () => {
   const features = [
-    { icon: '🏗️', title: 'ERP Systems', description: 'Comprehensive enterprise resource planning solutions for streamlined operations.' },
-    { icon: '👥', title: 'CRM Solutions', description: 'Customer relationship management platforms to enhance customer engagement.' },
-    { icon: '📊', title: 'Business Intelligence', description: 'Data analytics and reporting tools for informed decision-making.' },
-    { icon: '🔄', title: 'Workflow Automation', description: 'Automate business processes for increased efficiency and reduced errors.' },
-    { icon: '📱', title: 'Mobile Solutions', description: 'Enterprise mobile applications for on-the-go business management.' },
-    { icon: '🔗', title: 'System Integration', description: 'Seamlessly integrate existing systems for unified business operations.' }
+    { icon: faBuilding, title: 'ERP Systems', description: 'Comprehensive enterprise resource planning solutions for streamlined operations.' },
+    { icon: faUsers, title: 'CRM Solutions', description: 'Customer relationship management platforms to enhance customer engagement.' },
+    { icon: faChartBar, title: 'Business Intelligence', description: 'Data analytics and reporting tools for informed decision-making.' },
+    { icon: faSync, title: 'Workflow Automation', description: 'Automate business processes for increased efficiency and reduced errors.' },
+    { icon: faMobileAlt, title: 'Mobile Solutions', description: 'Enterprise mobile applications for on-the-go business management.' },
+    { icon: faLink, title: 'System Integration', description: 'Seamlessly integrate existing systems for unified business operations.' }
   ];
 
   return (
@@ -70,7 +72,9 @@ const EnterpriseFeatures = () => {
         <div className="features-grid">
           {features.map((feature, idx) => (
             <div className="feature-card" key={idx}>
-              <div style={{fontSize: '48px', marginBottom: '20px'}}>{feature.icon}</div>
+              <div className="feature-icon">
+                <FontAwesomeIcon icon={feature.icon} size="2x" />
+              </div>
               <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px'}}>{feature.title}</h3>
               <p style={{fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6}}>{feature.description}</p>
             </div>

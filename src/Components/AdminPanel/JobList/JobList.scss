@@ -35,7 +35,9 @@
     gap: 12px;
     flex-wrap: wrap;
     margin-bottom: 32px;
-
+    
+    justify-content: center;
+    
     .filter-btn {
       padding: 10px 24px;
       background: var(--bg-card, #1a1f3a);

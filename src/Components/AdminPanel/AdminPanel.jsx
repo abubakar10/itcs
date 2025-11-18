@@ -8,6 +8,9 @@ import Blog from '../Blog/Blog';
 import { Routes, Route } from 'react-router-dom'
 import AdminBlogDetail from './BlogApproval/AdminBlogDetail'
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBriefcase, faChartBar, faBullseye, faLightbulb, faUsers } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const AdminPanel = () => {
@@ -61,41 +64,45 @@ const handleAddAdmin = async (e) => {
           <h2>Admin Panel</h2>
         </div>
         <nav className="sidebar-nav">
-          <button
-            className={`nav-item ${activeTab === 'post-job' ? 'active' : ''}`}
-            onClick={() => setActiveTab('post-job')}
-          >
-            <span className="nav-icon"></span>
-            <span>Post a Job</span>
-          </button>
-          <button
-            className={`nav-item ${activeTab === 'job-list' ? 'active' : ''}`}
-            onClick={() => setActiveTab('job-list')}
-          >
-            <span className="nav-icon"></span>
-            <span>Job List</span>
-          </button>
-          <button
-            className={`nav-item ${activeTab === 'blog-approval' ? 'active' : ''}`}
-            onClick={() => setActiveTab('blog-approval')}
-          >
-            <span className="nav-icon"></span>
-            <span>Blog Approval</span>
-          </button>
-          <button
-            className={`nav-item ${activeTab === 'add-admin' ? 'active' : ''}`}
-            onClick={() => setActiveTab('add-admin')}
-          >
-            <span className="nav-icon"></span>
-            <span>Add Admin</span>
-          </button>
-        </nav>
-        <div className="sidebar-footer">
-          <button className="logout-btn" onClick={handleLogout}>
-            <span className="nav-icon"></span>
-            <span>Logout</span>
-          </button>
-        </div>
+          
+<button
+  className={`nav-item ${activeTab === 'post-job' ? 'active' : ''}`}
+  onClick={() => setActiveTab('post-job')}
+>
+  <span className="nav-icon"><FontAwesomeIcon icon={faBriefcase} /></span>
+  <span className="nav-text">Post a Job</span>
+</button>
+
+<button
+  className={`nav-item ${activeTab === 'job-list' ? 'active' : ''}`}
+  onClick={() => setActiveTab('job-list')}
+>
+  <span className="nav-icon"><FontAwesomeIcon icon={faChartBar} /></span>
+  <span className="nav-text">Job List</span>
+</button>
+
+<button
+  className={`nav-item ${activeTab === 'blog-approval' ? 'active' : ''}`}
+  onClick={() => setActiveTab('blog-approval')}
+>
+  <span className="nav-icon"><FontAwesomeIcon icon={faBullseye} /></span>
+  <span className="nav-text">Blog Approval</span>
+</button>
+
+<button
+  className={`nav-item ${activeTab === 'add-admin' ? 'active' : ''}`}
+  onClick={() => setActiveTab('add-admin')}
+>
+  <span className="nav-icon"><FontAwesomeIcon icon={faUsers} /></span>
+  <span className="nav-text">Add Admin</span>
+</button>
+</nav>
+<div className="sidebar-footer">
+  <button className="logout-btn" onClick={handleLogout}>
+    <span className="nav-icon"><FontAwesomeIcon icon={faLightbulb} /></span>
+    <span className="nav-text">Logout</span>
+  </button>
+</div>
       </div>
 
       <div className="admin-content">
