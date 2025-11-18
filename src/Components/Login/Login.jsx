@@ -40,14 +40,13 @@ const Login = () => {
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Login failed.')
 
-     
+      // Store auth info
       localStorage.setItem('token', data.token)
       localStorage.setItem('user', JSON.stringify(data.user))
       localStorage.setItem('email', data.user.email)
-      
 
-      
-        navigate('/admin')
+      // Navigate to private route
+      navigate('/admin')
     } catch (err) {
       setError(err.message)
     } finally {
@@ -65,7 +64,7 @@ const Login = () => {
             <p className="card-subtitle">Log in to access your dashboard</p>
           </div>
 
-          {error && <div className="error-message">{error}</div>}
+
 
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -76,7 +75,13 @@ const Login = () => {
                 value={form.email}
                 onChange={handleChange}
                 required
+                className={error && error.toLowerCase().includes('email') ? 'input-error' : ''}
               />
+              {error && error.toLowerCase().includes('email') && (
+                <span className="input-error-text">{error}</span>
+              )}
+
+
             </div>
 
             <div className="form-group">
@@ -87,7 +92,11 @@ const Login = () => {
                 value={form.password}
                 onChange={handleChange}
                 required
+                className={error && error.toLowerCase().includes('password') ? 'input-error' : ''}
               />
+              {error && error.toLowerCase().includes('password') && (
+                <span className="input-error-text">{error}</span>
+              )}
               <div className="forgot-password">
                 <a href="/forgot-password">Forgot password?</a>
               </div>
@@ -102,7 +111,6 @@ const Login = () => {
             </button>
 
             <div className="form-footer">
-             
               <button
                 type="button"
                 className="back-home-btn"
