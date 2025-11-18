@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
 
-  scroll-margin-top: 120px;
+  scroll-margin-top: 120px;
 
   .apply-job-bg-overlay {
     position: fixed;
@@ -179,6 +179,64 @@
           resize: vertical;
           min-height: 100px;
         }
+
+        // PDF File Upload Styling
+        .file-upload-wrapper {
+          position: relative;
+          display: block;
+
+          input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 2;
+          }
+
+          .file-upload-area {
+            border: 2px dashed var(--border-color, rgba(255, 255, 255, 0.2));
+            border-radius: 12px;
+            padding: 32px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.3s ease;
+            pointer-events: none;
+
+            &:hover {
+              border-color: var(--accent-blue, #4a9eff);
+              background: rgba(74, 158, 255, 0.05);
+            }
+
+            .upload-text {
+              margin: 0 0 8px 0;
+              font-size: 15px;
+              color: var(--text-primary, #ffffff);
+              font-weight: 500;
+
+              strong {
+                color: var(--accent-blue, #4a9eff);
+              }
+            }
+
+            .upload-hint {
+              margin: 0;
+              font-size: 13px;
+              color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+            }
+          }
+
+          // Visual feedback when dragging
+          &.drag-over {
+            .file-upload-area {
+              border-color: var(--accent-blue, #4a9eff);
+              background: rgba(74, 158, 255, 0.1);
+              transform: scale(1.02);
+            }
+          }
+        }
       }
 
       .form-actions {
@@ -247,7 +305,10 @@
           }
         }
       }
+
+      .file-upload-area {
+        padding: 24px 16px;
+      }
     }
   }
 }
-
