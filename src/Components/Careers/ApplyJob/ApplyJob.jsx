@@ -9,8 +9,9 @@ const ApplyJob = () => {
     fullName: '',
     email: '',
     phone: '',
-    preferredLocation: '',   // ← NEW FIELD
-    resume: '',
+    preferredLocation: '',
+    resume: null,           // Now stores File object
+    resumeFileName: '',     // For display
     coverLetter: '',
     experience: '',
     linkedin: ''
@@ -30,9 +31,33 @@ const ApplyJob = () => {
   }, [location, navigate])
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
     if (error) setError('')
     if (success) setSuccess('')
+  }
+
+  const handleResumeChange = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      if (file.type !== 'application/pdf') {
+        setError('Please upload a PDF file only.')
+        e.target.value = null
+        setFormData({ ...formData, resume: null, resumeFileName: '' })
+        return
+      }
+      if (file.size > 10 * 1024 * 1024) { // 10MB limit
+        setError('File size must be under 10MB.')
+        e.target.value = null
+        return
+      }
+      setFormData({ 
+        ...formData, 
+        resume: file, 
+        resumeFileName: file.name 
+      })
+      setError('')
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -41,7 +66,7 @@ const ApplyJob = () => {
     setSuccess('')
 
     if (!formData.fullName || !formData.email || !formData.phone || !formData.resume) {
-      setError('Please fill in all required fields.')
+      setError('Please fill in all required fields and upload your resume (PDF only).')
       return
     }
 
@@ -53,18 +78,23 @@ const ApplyJob = () => {
 
     setLoading(true)
 
+    const submitData = new FormData()
+    submitData.append('fullName', formData.fullName)
+    submitData.append('email', formData.email)
+    submitData.append('phone', formData.phone)
+    submitData.append('preferredLocation', formData.preferredLocation)
+    submitData.append('resume', formData.resume)
+    submitData.append('coverLetter', formData.coverLetter)
+    submitData.append('experience', formData.experience)
+    submitData.append('linkedin', formData.linkedin)
+    submitData.append('jobTitle', jobDetails?.title || 'Unknown Position')
+    submitData.append('jobDepartment', jobDetails?.department || '')
+    submitData.append('jobLocation', jobDetails?.location || '')
+
     try {
       const response = await fetch('http://localhost:5000/api/jobs/apply', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          jobTitle: jobDetails?.title || 'Unknown Position',
-          jobDepartment: jobDetails?.department || '',
-          jobLocation: jobDetails?.location || '',
-        }),
+        body: submitData, // FormData automatically sets correct headers
       })
 
       const data = await response.json()
@@ -79,12 +109,15 @@ const ApplyJob = () => {
         fullName: '',
         email: '',
         phone: '',
-        preferredLocation: '',   // ← Reset new field
-        resume: '',
+        preferredLocation: '',
+        resume: null,
+        resumeFileName: '',
         coverLetter: '',
         experience: '',
         linkedin: ''
       })
+      // Reset file input
+      document.getElementById('resume').value = ''
 
       setTimeout(() => {
         navigate('/careers')
@@ -113,7 +146,7 @@ const ApplyJob = () => {
         <div className="apply-job-card">
           <div className="card-header">
             <button className="back-btn" onClick={() => navigate('/careers')}>
-              ← Back to Careers
+              Back to Careers
             </button>
             <h1>Apply for Position</h1>
             <div className="job-info-card">
@@ -216,17 +249,28 @@ const ApplyJob = () => {
               </div>
             </div>
 
+            {/* RESUME UPLOAD - PDF ONLY */}
             <div className="form-group">
-              <label htmlFor="resume">Resume/CV (Paste link or describe) *</label>
-              <textarea
-                id="resume"
-                name="resume"
-                placeholder="Paste your resume link (Google Drive, Dropbox, etc.) or provide a brief summary..."
-                value={formData.resume}
-                onChange={handleChange}
-                rows="4"
-                required
-              />
+              <label htmlFor="resume">Resume/CV (PDF Only) *</label>
+              <div className="file-upload-wrapper">
+                <input
+                  type="file"
+                  id="resume"
+                  accept=".pdf"
+                  onChange={handleResumeChange}
+                  required
+                />
+                <div className="file-upload-area">
+                  <p className="upload-text">
+                    {formData.resumeFileName ? (
+                      <><strong>Selected:</strong> {formData.resumeFileName}</>
+                    ) : (
+                      <>Click to upload or drag & drop your PDF resume</>
+                    )}
+                  </p>
+                  <p className="upload-hint">PDF only • Max 10MB</p>
+                </div>
+              </div>
             </div>
 
             <div className="form-group">
