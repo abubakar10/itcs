@@ -1,101 +1,46 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./CareerPositions.scss";
 
 const CareerPositions = () => {
   const navigate = useNavigate();
-  const [selectedDepartment, setSelectedDepartment] = useState("All");
   const [positions, setPositions] = useState([]);
+  const [selectedDepartment, setSelectedDepartment] = useState("All");
+  const [loading, setLoading] = useState(false);
 
-  // Default positions (fallback)
-  const defaultPositions = [
-    {
-      title: "Senior Full Stack Developer",
-      department: "Engineering",
-      location: "Karachi / Remote",
-      type: "Full-time",
-      experience: "5+ years",
-      description: "Build scalable web applications using modern technologies."
-    },
-    {
-      title: "Cloud Solutions Architect",
-      department: "Engineering",
-      location: "Lahore / Hybrid",
-      type: "Full-time",
-      experience: "7+ years",
-      description: "Design and implement cloud infrastructure solutions for enterprise clients."
-    },
-    {
-      title: "UI/UX Designer",
-      department: "Design",
-      location: "Islamabad / Remote",
-      type: "Full-time",
-      experience: "3+ years",
-      description: "Create beautiful and intuitive user experiences for our products."
-    },
-    {
-      title: "Cybersecurity Analyst",
-      department: "Security",
-      location: "Karachi / On-site",
-      type: "Full-time",
-      experience: "4+ years",
-      description: "Protect systems and networks from security threats and vulnerabilities."
-    },
-    {
-      title: "DevOps Engineer",
-      department: "Engineering",
-      location: "Remote",
-      type: "Full-time",
-      experience: "4+ years",
-      description: "Automate deployment pipelines and maintain cloud infrastructure."
-    },
-    {
-      title: "Product Manager",
-      department: "Product",
-      location: "Lahore / Hybrid",
-      type: "Full-time",
-      experience: "5+ years",
-      description: "Lead product strategy and work with cross-functional teams."
-    }
+  const departments = [
+    "All",
+    "Engineering",
+    "Design",
+    "Security",
+    "Product",
+    "Sales",
+    "Marketing",
+    "HR",
   ];
 
   useEffect(() => {
-    // Load jobs from localStorage (posted by admin)
-    const loadJobs = () => {
+    const loadJobs = async () => {
+      setLoading(true);
       try {
-        const storedJobs = JSON.parse(localStorage.getItem('jobs') || '[]');
-        // Combine default positions with posted jobs
-        // Posted jobs take priority (appear first)
-        setPositions([...storedJobs, ...defaultPositions]);
+        const res = await axios.get("http://localhost:5000/api/jobsAdd");
+        setPositions(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
-        console.error('Error loading jobs:', err);
-        setPositions(defaultPositions);
+        console.error("Error loading jobs:", err);
+        setPositions([]);
+      } finally {
+        setLoading(false);
       }
     };
 
     loadJobs();
-
-    // Listen for storage changes to update jobs in real-time
-    const handleStorageChange = () => {
-      loadJobs();
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    
-    // Also check for changes periodically (for same-tab updates)
-    const interval = setInterval(loadJobs, 1000);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      clearInterval(interval);
-    };
   }, []);
 
-  const departments = ["All", "Engineering", "Design", "Security", "Product", "Sales", "Marketing", "HR"];
-
-  const filteredPositions = selectedDepartment === "All" 
-    ? positions 
-    : positions.filter(pos => pos.department === selectedDepartment);
+  const filteredPositions =
+    selectedDepartment === "All"
+      ? positions
+      : positions.filter((pos) => pos.department === selectedDepartment);
 
   return (
     <section className="career-positions" id="positions">
@@ -110,7 +55,7 @@ const CareerPositions = () => {
           {departments.map((dept) => (
             <button
               key={dept}
-              className={`filter-btn ${selectedDepartment === dept ? 'active' : ''}`}
+              className={`filter-btn ${selectedDepartment === dept ? "active" : ""}`}
               onClick={() => setSelectedDepartment(dept)}
             >
               {dept}
@@ -118,40 +63,44 @@ const CareerPositions = () => {
           ))}
         </div>
 
-        <div className="positions-grid">
-          {filteredPositions.map((position, index) => (
-            <div key={index} className="position-card">
-              <div className="position-header">
-                <div className="position-meta">
-                  <span className="department-tag">{position.department}</span>
-                  <span className="type-tag">{position.type}</span>
-                </div>
-                <h3>{position.title}</h3>
-              </div>
-              <div className="position-details">
-                <div className="detail">
-                  <span className="icon">📍</span>
-                  <span>{position.location}</span>
-                </div>
-                <div className="detail">
-                  <span className="icon">⏱️</span>
-                  <span>{position.experience}</span>
-                </div>
-              </div>
-              <p className="position-description">{position.description}</p>
-              <button 
-                className="apply-btn"
-                onClick={() => navigate('/apply', { state: { job: position } })}
-              >
-                Apply Now →
-              </button>
-            </div>
-          ))}
-        </div>
-
-        {filteredPositions.length === 0 && (
+        {loading ? (
+          <div className="loading-state">
+            <p>Loading positions...</p>
+          </div>
+        ) : filteredPositions.length === 0 ? (
           <div className="no-positions">
             <p>No positions available in this department at the moment.</p>
+          </div>
+        ) : (
+          <div className="positions-grid">
+            {filteredPositions.map((position) => (
+              <div key={position._id} className="position-card">
+                <div className="position-header">
+                  <div className="position-meta">
+                    <span className="department-tag">{position.department}</span>
+                    <span className="type-tag">{position.type}</span>
+                  </div>
+                  <h3>{position.title}</h3>
+                </div>
+                <div className="position-details">
+                  <div className="detail">
+                    <span className="icon">📍</span>
+                    <span>{position.location}</span>
+                  </div>
+                  <div className="detail">
+                    <span className="icon">⏱️</span>
+                    <span>{position.experience}</span>
+                  </div>
+                </div>
+                <p className="position-description">{position.description}</p>
+                <button
+                  className="apply-btn"
+                  onClick={() => navigate("/apply", { state: { job: position } })}
+                >
+                  Apply Now →
+                </button>
+              </div>
+            ))}
           </div>
         )}
       </div>
@@ -160,4 +109,3 @@ const CareerPositions = () => {
 };
 
 export default CareerPositions;
-
