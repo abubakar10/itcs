@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import './JobList.scss'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './JobList.scss';
+
 
 const JobList = () => {
   const [jobs, setJobs] = useState([])
@@ -12,29 +14,34 @@ const JobList = () => {
     loadJobs()
   }, [])
 
-  const loadJobs = () => {
+  const loadJobs = async () => {
     setLoading(true)
     try {
-      const storedJobs = JSON.parse(localStorage.getItem('jobs') || '[]')
-      setJobs(storedJobs)
+      const res = await axios.get('http://localhost:5000/api/jobsAdd');
+      setJobs(Array.isArray(res.data) ? res.data : [])
     } catch (err) {
       console.error('Error loading jobs:', err)
+      setJobs([])
     } finally {
       setLoading(false)
     }
   }
 
-  const handleDelete = (jobId) => {
-    if (window.confirm('Are you sure you want to delete this job?')) {
-      const updatedJobs = jobs.filter(job => job.id !== jobId)
-      localStorage.setItem('jobs', JSON.stringify(updatedJobs))
-      setJobs(updatedJobs)
+  const handleDelete = async (jobId) => {
+    if (!window.confirm('Are you sure you want to delete this job?')) return
+    try {
+      await axios.delete(`http://localhost:5000/api/jobsAdd/${jobId}`);
+      setJobs(prev => prev.filter(job => job._id !== jobId))
+    } catch (err) {
+      console.error('Error deleting job:', err)
+      alert('Failed to delete job')
     }
   }
 
-  const filteredJobs = selectedDepartment === 'All' 
-    ? jobs 
+  const filteredJobs = selectedDepartment === 'All'
+    ? jobs
     : jobs.filter(job => job.department === selectedDepartment)
+
 
   return (
     <div className="job-list">
@@ -49,72 +56,47 @@ const JobList = () => {
       </div>
 
       <div className="department-filter">
-        {departments.map((dept) => (
-          <button
-            key={dept}
-            className={`filter-btn ${selectedDepartment === dept ? 'active' : ''}`}
-            onClick={() => setSelectedDepartment(dept)}
-          >
+        {departments.map(dept => (
+          <button key={dept} className={`filter-btn ${selectedDepartment === dept ? 'active' : ''}`} onClick={() => setSelectedDepartment(dept)}>
             {dept}
           </button>
         ))}
       </div>
 
       {loading ? (
-        <div className="loading-state">
-          <p>Loading jobs...</p>
-        </div>
+        <div className="loading-state"><p>Loading jobs...</p></div>
       ) : filteredJobs.length === 0 ? (
         <div className="empty-state">
           <div className="empty-icon">📋</div>
           <h3>No jobs found</h3>
-          <p>
-            {selectedDepartment === 'All' 
-              ? 'Get started by posting your first job!' 
-              : `No jobs found in ${selectedDepartment} department.`}
-          </p>
+          <p>{selectedDepartment === 'All' ? 'Get started by posting your first job!' : `No jobs found in ${selectedDepartment} department.`}</p>
         </div>
       ) : (
         <div className="jobs-grid">
-          {filteredJobs.map((job) => (
-            <div key={job.id} className="job-card">
+          {filteredJobs.map(job => (
+            <div key={job._id} className="job-card">
               <div className="job-card-header">
                 <div className="job-meta">
                   <span className="department-tag">{job.department}</span>
                   <span className="type-tag">{job.type}</span>
                 </div>
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(job.id)}
-                  title="Delete job"
-                >
-                  🗑️
-                </button>
+                <button className="delete-btn" onClick={() => handleDelete(job._id)} title="Delete job">🗑️</button>
               </div>
               <h3>{job.title}</h3>
               <div className="job-details">
-                <div className="detail">
-                  <span className="icon">📍</span>
-                  <span>{job.location}</span>
-                </div>
-                <div className="detail">
-                  <span className="icon">⏱️</span>
-                  <span>{job.experience}</span>
-                </div>
+                <div className="detail"><span className="icon">📍</span> {job.location}</div>
+                <div className="detail"><span className="icon">⏱️</span> {job.experience}</div>
               </div>
               <p className="job-description">{job.description}</p>
               <div className="job-footer">
-                <span className="job-date">
-                  Posted: {new Date(job.createdAt).toLocaleDateString()}
-                </span>
+                <span className="job-date">Posted: {new Date(job.createdAt).toLocaleDateString()}</span>
               </div>
             </div>
           ))}
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default JobList
-
+export default JobList;
