@@ -76,8 +76,8 @@
         gap: 12px;
         padding: 14px 20px;
         background: transparent;
-        border: 1px solid rgba(255, 77, 77, 0.3);
-        color: #ff4d4d;
+         border: none !important; 
+        color: #ffffff !important;
         font-size: 15px;
         font-weight: 500;
         cursor: pointer;
@@ -177,7 +177,7 @@
   margin: 0 auto;
 
   h3 {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 700;
     color: var(--text-primary, #ffffff);
     margin-bottom: 8px;
@@ -335,5 +335,12 @@
       margin-left: 0;
       padding: 20px;
     }
+
+    .add-admin-form {
+  max-width: 900px;
+  margin: 0 auto;
+
+  h3 {
+    font-size: 20px;
   }
-}
+}}}

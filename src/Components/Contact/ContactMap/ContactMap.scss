@@ -39,11 +39,16 @@
     }
 
     .offices-grid {
+
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 30px;
 
       .office-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; // pushes button to the bottom
+        height: 100%;
         background: var(--bg-card);
         border: 1px solid var(--border-color);
         border-radius: 16px;
@@ -146,4 +151,3 @@
     }
   }
 }
-

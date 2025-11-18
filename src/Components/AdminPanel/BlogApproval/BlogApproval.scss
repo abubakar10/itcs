@@ -1,19 +1,19 @@
 .blog-approval-container {
   min-height: 100vh;
-  padding: 160px 40px 80px;
+   padding: 100px 20px 50px;
   background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(36, 36, 36, 0.9) 100%);
   color: #fff;
   text-align: center;
 }
 
 .blog-approval-container h2 {
-  font-size: 44px;
+  font-size: 40px;
   font-weight: 800;
   margin-bottom: 60px;
-  background: linear-gradient(90deg, #4a9eff, #7bc9ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff;
+  background: none; 
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
 }
 
 
@@ -30,7 +30,7 @@
   background: linear-gradient(145deg, rgba(26, 26, 36, 0.85), rgba(36, 36, 46, 0.85));
   backdrop-filter: blur(12px);
   border-radius: 20px;
-  padding: 24px;
+  padding: 16px 12px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
   transition: all 0.4s ease;
   display: flex;
@@ -245,5 +245,8 @@
   }
   .approval-buttons {
     flex-direction: column;
+  }
+  .blog-approval-container h2 {
+    font-size: 28px; 
   }
 }
