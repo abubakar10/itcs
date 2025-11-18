@@ -75,6 +75,9 @@ const Header = () => {
 
       
       <div className="auth-buttons">
+        <button className="btn btn-login" onClick={() => navigate('/login')}>
+          Login
+        </button>
         <button
           className="custom-toggler"
           type="button"
@@ -90,9 +93,7 @@ const Header = () => {
           </span>
         </button>
 
-        <button className="btn btn-login" onClick={() => navigate('/login')}>
-          Login
-        </button>
+        
       </div>
     </div>
   )
