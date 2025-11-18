@@ -40,14 +40,14 @@ const Login = () => {
       const data = await response.json()
       if (!response.ok) throw new Error(data.message || 'Login failed.')
 
-     
+
       localStorage.setItem('token', data.token)
       localStorage.setItem('user', JSON.stringify(data.user))
       localStorage.setItem('email', data.user.email)
-      
 
-      
-        navigate('/admin')
+
+
+      navigate('/admin')
     } catch (err) {
       setError(err.message)
     } finally {
@@ -65,7 +65,7 @@ const Login = () => {
             <p className="card-subtitle">Log in to access your dashboard</p>
           </div>
 
-          {error && <div className="error-message">{error}</div>}
+          
 
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -77,6 +77,9 @@ const Login = () => {
                 onChange={handleChange}
                 required
               />
+              {error && error.includes('Email') && (
+                <span className="input-error-text">{error}</span>
+              )}
             </div>
 
             <div className="form-group">
@@ -88,21 +91,19 @@ const Login = () => {
                 onChange={handleChange}
                 required
               />
+              {error && error.includes('password') && (
+                <span className="input-error-text">{error}</span>
+              )}
               <div className="forgot-password">
                 <a href="/forgot-password">Forgot password?</a>
               </div>
             </div>
 
             <button type="submit" className="submit-btn" disabled={loading}>
-              {loading ? (
-                <span className="loading-spinner">Logging in...</span>
-              ) : (
-                'Login'
-              )}
+              {loading ? <span className="loading-spinner">Logging in...</span> : 'Login'}
             </button>
 
             <div className="form-footer">
-             
               <button
                 type="button"
                 className="back-home-btn"
@@ -112,6 +113,7 @@ const Login = () => {
               </button>
             </div>
           </form>
+
         </div>
       </div>
     </div>
