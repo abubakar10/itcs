@@ -585,4 +585,14 @@
   .header .auth-buttons {
     order: 3;
   }
+
+  @media (max-width: 480px) {
+  .header {
+    padding: 12px 22px !important; /* adds side space */
+  }
+
+  .auth-buttons {
+    margin-right: 5px !important;  /* prevents touching boundary */
+  }
+}
 }
