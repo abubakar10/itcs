@@ -2,18 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import "./ServicesSatisfaction.scss";
 import monumentImage from "./../../../assets/images/services-side.jpg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCloud, faLock, faBuilding, faCog, faNetworkWired, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 
 const ServicesSatisfaction = () => {
   const [progressValues, setProgressValues] = useState(Array(6).fill(0));
 
   const satisfactionData = [
-    { title: "Cloud Solutions", percentage: 97, icon: "☁️" },
-    { title: "Cybersecurity", percentage: 82, icon: "🔒" },
-    { title: "Enterprise Solutions", percentage: 87, icon: "🏢" },
-    { title: "IT Services", percentage: 89, icon: "⚙️" },
-    { title: "Network Solutions", percentage: 80, icon: "🌐" },
-    { title: "Consulting", percentage: 92, icon: "💼" },
+    { title: "Cloud Solutions", percentage: 97, icon: faCloud },
+    { title: "Cybersecurity", percentage: 82, icon: faLock },
+    { title: "Enterprise Solutions", percentage: 87, icon: faBuilding },
+    { title: "IT Services", percentage: 89, icon: faCog },
+    { title: "Network Solutions", percentage: 80, icon: faNetworkWired },
+    { title: "Consulting", percentage: 92, icon: faBriefcase },
   ];
+
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -50,8 +53,8 @@ const ServicesSatisfaction = () => {
           <span className="section-badge">CUSTOMER SATISFACTION</span>
           <h2 className="section-title">Delighted Customers</h2>
           <p className="section-description">
-            We are proud to have achieved the highest ranking in a survey of over 
-            100 C-level executives from top IT firms in Pakistan, as evidenced by 
+            We are proud to have achieved the highest ranking in a survey of over
+            100 C-level executives from top IT firms in Pakistan, as evidenced by
             our exceptional overall satisfaction scores.
           </p>
 
@@ -60,7 +63,9 @@ const ServicesSatisfaction = () => {
               <div key={index} className="satisfaction-item">
                 <div className="item-header">
                   <div className="item-info">
-                    <span className="item-icon">{item.icon}</span>
+                    <span className="item-icon">
+                      <FontAwesomeIcon icon={item.icon} color="#ffffff" />
+                    </span>
                     <span className="item-title">{item.title}</span>
                   </div>
                   <span className="item-percentage">
