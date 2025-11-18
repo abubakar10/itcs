@@ -9,6 +9,7 @@ const ApplyJob = () => {
     fullName: '',
     email: '',
     phone: '',
+    preferredLocation: '',   // ← NEW FIELD
     resume: '',
     coverLetter: '',
     experience: '',
@@ -20,12 +21,10 @@ const ApplyJob = () => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    // Get job details from location state or localStorage
     const job = location.state?.job
     if (job) {
       setJobDetails(job)
     } else {
-      // If no job in state, try to get from URL params or redirect back
       navigate('/careers')
     }
   }, [location, navigate])
@@ -41,13 +40,11 @@ const ApplyJob = () => {
     setError('')
     setSuccess('')
 
-    // Validation
     if (!formData.fullName || !formData.email || !formData.phone || !formData.resume) {
       setError('Please fill in all required fields.')
       return
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email)) {
       setError('Please enter a valid email address.')
@@ -78,18 +75,17 @@ const ApplyJob = () => {
 
       setSuccess('Application submitted successfully! We will contact you soon.')
       
-      // Reset form
       setFormData({
         fullName: '',
         email: '',
         phone: '',
+        preferredLocation: '',   // ← Reset new field
         resume: '',
         coverLetter: '',
         experience: '',
         linkedin: ''
       })
 
-      // Redirect after 3 seconds
       setTimeout(() => {
         navigate('/careers')
       }, 3000)
@@ -127,8 +123,8 @@ const ApplyJob = () => {
                 <span className="type-tag">{jobDetails.type}</span>
               </div>
               <div className="job-details">
-                <span>📍 {jobDetails.location}</span>
-                <span>⏱️ {jobDetails.experience}</span>
+                <span>Location: {jobDetails.location}</span>
+                <span>Experience: {jobDetails.experience}</span>
               </div>
             </div>
           </div>
@@ -180,6 +176,21 @@ const ApplyJob = () => {
               </div>
 
               <div className="form-group">
+                <label htmlFor="preferredLocation">Preferred Location *</label>
+                <input
+                  type="text"
+                  id="preferredLocation"
+                  name="preferredLocation"
+                  placeholder="e.g., Karachi, Lahore, Remote"
+                  value={formData.preferredLocation}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
                 <label htmlFor="linkedin">LinkedIn Profile (Optional)</label>
                 <input
                   type="url"
@@ -190,19 +201,19 @@ const ApplyJob = () => {
                   onChange={handleChange}
                 />
               </div>
-            </div>
 
-            <div className="form-group">
-              <label htmlFor="experience">Years of Experience *</label>
-              <input
-                type="text"
-                id="experience"
-                name="experience"
-                placeholder="e.g., 3+ years"
-                value={formData.experience}
-                onChange={handleChange}
-                required
-              />
+              <div className="form-group">
+                <label htmlFor="experience">Years of Experience *</label>
+                <input
+                  type="text"
+                  id="experience"
+                  name="experience"
+                  placeholder="e.g., 3+ years"
+                  value={formData.experience}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
 
             <div className="form-group">
@@ -210,7 +221,7 @@ const ApplyJob = () => {
               <textarea
                 id="resume"
                 name="resume"
-                placeholder="Paste your resume link (Google Drive, Dropbox, etc.) or provide a brief summary of your qualifications..."
+                placeholder="Paste your resume link (Google Drive, Dropbox, etc.) or provide a brief summary..."
                 value={formData.resume}
                 onChange={handleChange}
                 rows="4"
@@ -246,4 +257,3 @@ const ApplyJob = () => {
 }
 
 export default ApplyJob
-
