@@ -117,3 +117,12 @@ html {
   transform: translateY(-2px);
 }
 
+
+* {
+  caret-color: transparent !important;
+}
+
+
+input, textarea {
+  caret-color: auto !important;
+}
