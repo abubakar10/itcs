@@ -23,9 +23,17 @@
         font-size: 24px;
         font-weight: 700;
         color: var(--text-primary, #ffffff);
-        margin: 0;
+        margin: 0 0 8px 0;
+      }
+
+      .admin-username {
+        font-size: 16px;
+        font-weight: 500;
+        color: #ccc;
+        margin-top: 8px; 
       }
     }
+
 
     .sidebar-nav {
       flex: 1;
@@ -76,8 +84,8 @@
         gap: 12px;
         padding: 14px 20px;
         background: transparent;
-        border: 1px solid rgba(255, 77, 77, 0.3);
-        color: #ff4d4d;
+        border: none !important;
+        color: #ffffff !important;
         font-size: 15px;
         font-weight: 500;
         cursor: pointer;
@@ -131,7 +139,20 @@
       overflow-x: auto;
 
       .sidebar-header {
-        display: none;
+        padding: 20px;
+
+        h2 {
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: 10px;
+        }
+      }
+
+      .admin-username {
+        font-size: 14px;
+        font-weight: 500;
+        color: #ccc;
+        margin-top: 5px;
       }
 
       .sidebar-nav {
@@ -177,7 +198,7 @@
   margin: 0 auto;
 
   h3 {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 700;
     color: var(--text-primary, #ffffff);
     margin-bottom: 8px;
@@ -312,28 +333,37 @@
 
       .sidebar-nav .nav-item,
       .sidebar-footer .logout-btn {
-        flex-direction: column;    
-        align-items: center;      
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
         padding: 8px;
 
         .nav-text {
-          display: none !important; 
+          display: none !important;
         }
 
         .nav-icon {
-          font-size: 22px; 
+          font-size: 22px;
         }
       }
 
       .sidebar-footer .logout-btn {
-        padding: 8px; 
+        padding: 8px;
       }
     }
 
     .admin-content {
       margin-left: 0;
       padding: 20px;
+    }
+
+    .add-admin-form {
+      max-width: 900px;
+      margin: 0 auto;
+
+      h3 {
+        font-size: 20px;
+      }
     }
   }
 }

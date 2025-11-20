@@ -1,5 +1,7 @@
 import React from "react";
 import "./ContactMap.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapLocationDot, faLocationDot, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const ContactMap = () => {
   const offices = [
@@ -11,14 +13,14 @@ const ContactMap = () => {
     },
     {
       city: "Lahore",
-      address: "Office Address, Lahore, Pakistan",
-      phone: "042 XXX-XXXX",
+      address: "Office No. 32, 1st Floor, I.T Tower 73-E/1، Hali Rd, Block A Gulberg III Lahore, Pakistan",
+      phone: "042 378-74358   ",
       email: "lahore@itcs.com.pk"
     },
     {
       city: "Islamabad",
-      address: "Office Address, Islamabad, Pakistan",
-      phone: "051 XXX-XXXX",
+      address: "Office # 14, Ground Floor, Malik Plaza  F-8 Markaz, Islamabad",
+      phone: "+92 51 2744956",
       email: "islamabad@itcs.com.pk"
     }
   ];
@@ -35,19 +37,19 @@ const ContactMap = () => {
         <div className="offices-grid">
           {offices.map((office, index) => (
             <div key={index} className="office-card">
-              <div className="office-icon">🏢</div>
+              <div className="office-icon"><FontAwesomeIcon icon={faMapLocationDot} size="xs" /></div>
               <h3>{office.city}</h3>
               <div className="office-details">
                 <p className="office-address">
-                  <span className="detail-icon">📍</span>
+                  <FontAwesomeIcon icon={faLocationDot} className="detail-icon" />
                   {office.address}
                 </p>
                 <p className="office-phone">
-                  <span className="detail-icon">📞</span>
+                  <FontAwesomeIcon icon={faPhone} className="detail-icon" />
                   {office.phone}
                 </p>
                 <p className="office-email">
-                  <span className="detail-icon">📧</span>
+                 <FontAwesomeIcon icon={faEnvelope} className="detail-icon" />
                   {office.email}
                 </p>
               </div>

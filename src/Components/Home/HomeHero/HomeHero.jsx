@@ -1,5 +1,6 @@
 import React from 'react';
 import './HomeHero.scss';
+import { Link } from 'react-router-dom';
 
 const HomeHero = () => {
   return (
@@ -29,14 +30,14 @@ const HomeHero = () => {
         </p>
         
         <div className="hero-actions">
-          <button className="btn-primary">
+          <Link to="/services" className="btn-primary">
             Get Started
-            <span className="btn-arrow">→</span>
-          </button>
-          <button className="btn-secondary">
+            <span className="btn-arrow"> →</span>
+          </Link>
+          <Link to="/contact" className="btn-secondary">
             Learn More
-            <span className="btn-icon">▶</span>
-          </button>
+            <span className="btn-icon"> ▶</span>
+          </Link>
         </div>
         
         <div className="hero-stats">

@@ -1,126 +1,148 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import PostJob from './PostJob/PostJob'
-import JobList from './JobList/JobList'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PostJob from './PostJob/PostJob';
+import JobList from './JobList/JobList';
 import BlogApproval from './BlogApproval/BlogApproval';
-import './AdminPanel.scss'
-import Blog from '../Blog/Blog';
-import { Routes, Route } from 'react-router-dom'
-import AdminBlogDetail from './BlogApproval/AdminBlogDetail'
+import AdminBlogDetail from './BlogApproval/AdminBlogDetail';
+import './AdminPanel.scss';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faChartBar, faBullseye, faLightbulb, faUsers } from '@fortawesome/free-solid-svg-icons';
-
-
+import { 
+  faAddressCard, 
+  faList, 
+  faBlog, 
+  faArrowRightFromBracket, 
+  faUsers 
+} from '@fortawesome/free-solid-svg-icons';
 
 const AdminPanel = () => {
-  const [activeTab, setActiveTab] = useState('post-job')
-  const [message, setMessage] = useState('')
-  const [fullName, setFullName] = useState('')
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [activeTab, setActiveTab] = useState('post-job');
+  const [message, setMessage] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
+  
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setCurrentUser(user);
+    } else {
+      // Optional: redirect to login if no user
+      navigate('/login');
+    }
+  }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('email')
-    navigate('/')
-  }
-const handleAddAdmin = async (e) => {
-  e.preventDefault()
-  const token = localStorage.getItem('token')
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('email');
+    navigate('/login');
+  };
 
-  try {
-    const res = await axios.post(
-      'http://localhost:5000/api/admin/add-user',
-      {
-        fullName,
-        username,
-        email,
-        password,
-        role: 'admin', 
-        isAdmin: true, 
-      },
-      { headers: { Authorization: `Bearer ${token}` } }
-    )
+  const handleAddAdmin = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
 
-    setMessage(res.data.message)
-    setFullName('')
-    setUsername('')
-    setEmail('')
-    setPassword('')
-  } catch (err) {
-    setMessage(err.response?.data?.message || 'Error adding admin')
-  }
-}
-
+    try {
+      const res = await axios.post(
+        'http://localhost:5000/api/admin/add-user',
+        {
+          fullName,
+          username,
+          email,
+          password,
+          role: 'admin',
+          isAdmin: true,
+        },
+        {
+          headers: { 
+            Authorization: `Bearer ${token}`   // Fixed: proper backticks
+          }
+        }
+      );
+      
+      setMessage(res.data.message || 'Admin added successfully!');
+      setFullName('');
+      setUsername('');
+      setEmail('');
+      setPassword('');
+    } catch (err) {
+      setMessage(err.response?.data?.message || 'Error adding admin');
+    }
+  };
 
   return (
     <div className="admin-panel">
       <div className="admin-sidebar">
         <div className="sidebar-header">
           <h2>Admin Panel</h2>
+          {currentUser && (
+            <p className="admin-username">Welcome, {currentUser.username}</p>
+          )}
         </div>
+
         <nav className="sidebar-nav">
-          
-<button
-  className={`nav-item ${activeTab === 'post-job' ? 'active' : ''}`}
-  onClick={() => setActiveTab('post-job')}
->
-  <span className="nav-icon"><FontAwesomeIcon icon={faBriefcase} /></span>
-  <span className="nav-text">Post a Job</span>
-</button>
+          <button
+            className={`nav-item ${activeTab === 'post-job' ? 'active' : ''}`}
+            onClick={() => setActiveTab('post-job')}
+          >
+            <span className="nav-icon"><FontAwesomeIcon icon={faAddressCard} /></span>
+            <span className="nav-text">Post a Job</span>
+          </button>
 
-<button
-  className={`nav-item ${activeTab === 'job-list' ? 'active' : ''}`}
-  onClick={() => setActiveTab('job-list')}
->
-  <span className="nav-icon"><FontAwesomeIcon icon={faChartBar} /></span>
-  <span className="nav-text">Job List</span>
-</button>
+          <button
+            className={`nav-item ${activeTab === 'job-list' ? 'active' : ''}`}
+            onClick={() => setActiveTab('job-list')}
+          >
+            <span className="nav-icon"><FontAwesomeIcon icon={faList} /></span>
+            <span className="nav-text">Job List</span>
+          </button>
 
-<button
-  className={`nav-item ${activeTab === 'blog-approval' ? 'active' : ''}`}
-  onClick={() => setActiveTab('blog-approval')}
->
-  <span className="nav-icon"><FontAwesomeIcon icon={faBullseye} /></span>
-  <span className="nav-text">Blog Approval</span>
-</button>
+          <button
+            className={`nav-item ${activeTab === 'blog-approval' ? 'active' : ''}`}
+            utilisée
+            onClick={() => setActiveTab('blog-approval')}
+          >
+            <span className="nav-icon"><FontAwesomeIcon icon={faBlog} /></span>
+            <span className="nav-text">Blog Approval</span>
+          </button>
 
-<button
-  className={`nav-item ${activeTab === 'add-admin' ? 'active' : ''}`}
-  onClick={() => setActiveTab('add-admin')}
->
-  <span className="nav-icon"><FontAwesomeIcon icon={faUsers} /></span>
-  <span className="nav-text">Add Admin</span>
-</button>
-</nav>
-<div className="sidebar-footer">
-  <button className="logout-btn" onClick={handleLogout}>
-    <span className="nav-icon"><FontAwesomeIcon icon={faLightbulb} /></span>
-    <span className="nav-text">Logout</span>
-  </button>
-</div>
+          <button
+            className={`nav-item ${activeTab === 'add-admin' ? 'active' : ''}`}
+            onClick={() => setActiveTab('add-admin')}
+          >
+            <span className="nav-icon"><FontAwesomeIcon icon={faUsers} /></span>
+            <span className="nav-text">Add Admin</span>
+          </button>
+        </nav>
+
+        <div className="sidebar-footer">
+          <button className="logout-btn" onClick={handleLogout}>
+            <span className="nav-icon"><FontAwesomeIcon icon={faArrowRightFromBracket} /></span>
+            <span className="nav-text">Logout</span>
+          </button>
+        </div>
       </div>
 
       <div className="admin-content">
         {activeTab === 'post-job' && <PostJob />}
         {activeTab === 'job-list' && <JobList />}
         {activeTab === 'blog-approval' && <BlogApproval />}
+        
         {activeTab === 'add-admin' && (
           <div className="add-admin-form">
             <h3>Add New Admin</h3>
+            
             {message && (
-              <div
-                className={`alert ${
-                  message.toLowerCase().includes('error') ? 'alert-error' : 'alert-success'
-                }`}
-              >
+              <div className={`alert ${message.toLowerCase().includes('error') || message.toLowerCase().includes('fail') ? 'alert-error' : 'alert-success'}`}>
                 {message}
               </div>
             )}
+
             <div className="post-job-card">
               <form onSubmit={handleAddAdmin}>
                 <div className="form-row">
@@ -128,7 +150,7 @@ const handleAddAdmin = async (e) => {
                     <label>Full Name</label>
                     <input
                       type="text"
-                      placeholder="Full Name"
+                      placeholder="Enter full name"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       required
@@ -138,7 +160,7 @@ const handleAddAdmin = async (e) => {
                     <label>Username</label>
                     <input
                       type="text"
-                      placeholder="Username"
+                      placeholder="Enter username"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       required
@@ -151,7 +173,7 @@ const handleAddAdmin = async (e) => {
                     <label>Email</label>
                     <input
                       type="email"
-                      placeholder="Email"
+                      placeholder="Enter email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -161,7 +183,7 @@ const handleAddAdmin = async (e) => {
                     <label>Password</label>
                     <input
                       type="password"
-                      placeholder="Password"
+                      placeholder="Enter password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
@@ -178,7 +200,7 @@ const handleAddAdmin = async (e) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminPanel
+export default AdminPanel;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './JobList.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt, faClock, faTrash, faClipboardList, faCircleMinus } from '@fortawesome/free-solid-svg-icons';
 
 
 const JobList = () => {
@@ -67,7 +69,7 @@ const JobList = () => {
         <div className="loading-state"><p>Loading jobs...</p></div>
       ) : filteredJobs.length === 0 ? (
         <div className="empty-state">
-          <div className="empty-icon">📋</div>
+          <div className="empty-icon"><FontAwesomeIcon icon={faClipboardList} size="2x" /></div>
           <h3>No jobs found</h3>
           <p>{selectedDepartment === 'All' ? 'Get started by posting your first job!' : `No jobs found in ${selectedDepartment} department.`}</p>
         </div>
@@ -80,12 +82,12 @@ const JobList = () => {
                   <span className="department-tag">{job.department}</span>
                   <span className="type-tag">{job.type}</span>
                 </div>
-                <button className="delete-btn" onClick={() => handleDelete(job._id)} title="Delete job">🗑️</button>
+                <button className="delete-btn" onClick={() => handleDelete(job._id)} title="Delete job"><FontAwesomeIcon icon={faCircleMinus} color="#ffffff"/></button>
               </div>
               <h3>{job.title}</h3>
               <div className="job-details">
-                <div className="detail"><span className="icon">📍</span> {job.location}</div>
-                <div className="detail"><span className="icon">⏱️</span> {job.experience}</div>
+               <div className="detail"><FontAwesomeIcon className="icon" icon={faMapMarkerAlt} /> {job.location}</div>
+                <div className="detail"><FontAwesomeIcon className="icon" icon={faClock} /> {job.experience}</div>
               </div>
               <p className="job-description">{job.description}</p>
               <div className="job-footer">
