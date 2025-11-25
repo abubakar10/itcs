@@ -5,17 +5,19 @@ import './ApplyJob.scss'
 const ApplyJob = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     phone: '',
     preferredLocation: '',
-    resume: null,           // Now stores File object
-    resumeFileName: '',     // For display
+    resume: null,
+    resumeFileName: '',
     coverLetter: '',
     experience: '',
     linkedin: ''
   })
+  
   const [jobDetails, setJobDetails] = useState(null)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
@@ -32,32 +34,44 @@ const ApplyJob = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
-    if (error) setError('')
-    if (success) setSuccess('')
+    setFormData(prev => ({ ...prev, [name]: value }))
+    setError('')
+    setSuccess('')
   }
 
   const handleResumeChange = (e) => {
     const file = e.target.files[0]
-    if (file) {
-      if (file.type !== 'application/pdf') {
-        setError('Please upload a PDF file only.')
-        e.target.value = null
-        setFormData({ ...formData, resume: null, resumeFileName: '' })
-        return
-      }
-      if (file.size > 10 * 1024 * 1024) { // 10MB limit
-        setError('File size must be under 10MB.')
-        e.target.value = null
-        return
-      }
-      setFormData({ 
-        ...formData, 
-        resume: file, 
-        resumeFileName: file.name 
-      })
-      setError('')
+
+  
+    if (!file) {
+      setFormData(prev => ({ ...prev, resume: null, resumeFileName: '' }))
+      return
     }
+
+    setError('') 
+
+ 
+    if (file.type !== 'application/pdf') {
+      setError('Please upload a PDF file only.')
+      setFormData(prev => ({ ...prev, resume: null, resumeFileName: '' }))
+      e.target.value = '' 
+      return
+    }
+
+    
+    if (file.size > 10 * 1024 * 1024) {
+      setError('File size must be under 10MB.')
+      setFormData(prev => ({ ...prev, resume: null, resumeFileName: '' }))
+      e.target.value = ''
+      return
+    }
+
+   
+    setFormData(prev => ({
+      ...prev,
+      resume: file,
+      resumeFileName: file.name
+    }))
   }
 
   const handleSubmit = async (e) => {
@@ -65,15 +79,18 @@ const ApplyJob = () => {
     setError('')
     setSuccess('')
 
-    if (!formData.fullName || !formData.email || !formData.phone || !formData.resume) {
-      setError('Please fill in all required fields and upload your resume (PDF only).')
-      return
-    }
+  
+    if (!formData.fullName.trim()) return setError('Full Name is required.')
+    if (!formData.email.trim()) return setError('Email Address is required.')
+    if (!formData.phone.trim()) return setError('Phone Number is required.')
+    if (!formData.preferredLocation.trim()) return setError('Preferred Location is required.')
+    if (!formData.experience.trim()) return setError('Years of Experience is required.')
+    if (!formData.resume) return setError('Please upload your resume (PDF only).')
 
+   
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email)) {
-      setError('Please enter a valid email address.')
-      return
+      return setError('Please enter a valid email address.')
     }
 
     setLoading(true)
@@ -94,7 +111,7 @@ const ApplyJob = () => {
     try {
       const response = await fetch('http://localhost:5000/api/jobs/apply', {
         method: 'POST',
-        body: submitData, // FormData automatically sets correct headers
+        body: submitData,
       })
 
       const data = await response.json()
@@ -103,8 +120,9 @@ const ApplyJob = () => {
         throw new Error(data.message || 'Failed to submit application.')
       }
 
-      setSuccess('Application submitted successfully! We will contact you soon.')
-      
+      setSuccess('Application submitted successfully! Redirecting...')
+
+      // Reset form
       setFormData({
         fullName: '',
         email: '',
@@ -116,14 +134,11 @@ const ApplyJob = () => {
         experience: '',
         linkedin: ''
       })
-      // Reset file input
-      document.getElementById('resume').value = ''
 
-      setTimeout(() => {
-        navigate('/careers')
-      }, 3000)
+      setTimeout(() => navigate('/careers'), 3000)
+
     } catch (err) {
-      setError(err.message || 'Failed to submit application. Please try again.')
+      setError(err.message || 'Submission failed. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -165,7 +180,7 @@ const ApplyJob = () => {
           {error && <div className="alert alert-error">{error}</div>}
           {success && <div className="alert alert-success">{success}</div>}
 
-          <form className="apply-form" onSubmit={handleSubmit}>
+          <form className="apply-form" onSubmit={handleSubmit} noValidate>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="fullName">Full Name *</label>
@@ -176,7 +191,6 @@ const ApplyJob = () => {
                   placeholder="John Doe"
                   value={formData.fullName}
                   onChange={handleChange}
-                  required
                 />
               </div>
 
@@ -189,7 +203,6 @@ const ApplyJob = () => {
                   placeholder="john.doe@example.com"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                 />
               </div>
             </div>
@@ -204,7 +217,6 @@ const ApplyJob = () => {
                   placeholder="+92 300 1234567"
                   value={formData.phone}
                   onChange={handleChange}
-                  required
                 />
               </div>
 
@@ -217,7 +229,6 @@ const ApplyJob = () => {
                   placeholder="e.g., Karachi, Lahore, Remote"
                   value={formData.preferredLocation}
                   onChange={handleChange}
-                  required
                 />
               </div>
             </div>
@@ -244,12 +255,11 @@ const ApplyJob = () => {
                   placeholder="e.g., 3+ years"
                   value={formData.experience}
                   onChange={handleChange}
-                  required
                 />
               </div>
             </div>
 
-            {/* RESUME UPLOAD - PDF ONLY */}
+           
             <div className="form-group">
               <label htmlFor="resume">Resume/CV (PDF Only) *</label>
               <div className="file-upload-wrapper">
@@ -257,8 +267,8 @@ const ApplyJob = () => {
                   type="file"
                   id="resume"
                   accept=".pdf"
+                  key={formData.resumeFileName || 'no-file'}  
                   onChange={handleResumeChange}
-                  required
                 />
                 <div className="file-upload-area">
                   <p className="upload-text">
@@ -271,6 +281,11 @@ const ApplyJob = () => {
                   <p className="upload-hint">PDF only • Max 10MB</p>
                 </div>
               </div>
+              {error && error.toLowerCase().includes('resume') && (
+                <small style={{ color: '#e74c3c', marginTop: '8px', display: 'block' }}>
+                  {error}
+                </small>
+              )}
             </div>
 
             <div className="form-group">
@@ -278,7 +293,7 @@ const ApplyJob = () => {
               <textarea
                 id="coverLetter"
                 name="coverLetter"
-                placeholder="Tell us why you're interested in this position and what makes you a great fit..."
+                placeholder="Tell us why you're interested in this position..."
                 value={formData.coverLetter}
                 onChange={handleChange}
                 rows="6"
