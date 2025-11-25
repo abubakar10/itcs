@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useMsal } from '@azure/msal-react';
 import PostJob from './PostJob/PostJob';
 import JobList from './JobList/JobList';
 import BlogApproval from './BlogApproval/BlogApproval';
@@ -25,22 +26,27 @@ const AdminPanel = () => {
   const [currentUser, setCurrentUser] = useState(null);
   
   const navigate = useNavigate();
+  const { instance } = useMsal();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       setCurrentUser(user);
-    } else {
-      // Optional: redirect to login if no user
-      navigate('/login');
     }
-  }, [navigate]);
+    // Don't redirect here - AdminRoute handles authentication
+  }, []);
 
   const handleLogout = () => {
+    // Clear all localStorage immediately
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('email');
-    navigate('/login');
+    
+    // Clear MSAL cache silently (no popup for better UX)
+    instance.clearCache();
+    
+    // Navigate to login immediately with replace to prevent back navigation
+    navigate('/login', { replace: true });
   };
 
   const handleAddAdmin = async (e) => {
@@ -81,7 +87,7 @@ const AdminPanel = () => {
         <div className="sidebar-header">
           <h2>Admin Panel</h2>
           {currentUser && (
-            <p className="admin-username">Welcome, {currentUser.username}</p>
+            <p className="admin-username">Welcome, {currentUser.fullName || currentUser.username || 'Admin'}</p>
           )}
         </div>
 
