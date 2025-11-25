@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@azure/msal-browser": "^4.26.2",
+    "@azure/msal-react": "^3.0.22",
     "@formspree/react": "^2.5.1",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.0",
+    "axios": "^1.13.2",
     "dompurify": "^3.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

@@ -29,6 +29,7 @@ export default function Blog() {
         approvedData.forEach(item => {
           if (item.customAuthor) {
             authorMap[item.devId] = item.customAuthor;
+            
           }
         });
 
