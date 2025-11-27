@@ -10,6 +10,10 @@ export default function BlogApproval() {
   const [dates, setDates] = useState({});
   const [loading, setLoading] = useState(true);
 
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 9;
+
   const organization = "itcs11";
   const backendUrl = "http://localhost:5000";
 
@@ -81,6 +85,12 @@ export default function BlogApproval() {
     fetchBlogs();
   }, []);
 
+  // PAGINATION CALCULATION
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+  const totalPages = Math.ceil(blogs.length / blogsPerPage);
+
   return (
     <div className="blog-approval-container">
       <h2>Blogs for Approval</h2>
@@ -88,7 +98,7 @@ export default function BlogApproval() {
       {loading && <p className="loading-text">Loading blogs...</p>}
 
       <div className="blog-grid">
-        {blogs.map(blog => (
+        {currentBlogs.map(blog => (
           <article key={blog.id} className="blog-card">
             <div className="blog-card__content">
               {(blog.cover_image || blog.social_image) && (
@@ -104,10 +114,10 @@ export default function BlogApproval() {
                 Author: {authors[blog.id] || blog.user?.username || "Unknown"} •{" "}
                 {dates[blog.id]
                   ? new Date(dates[blog.id]).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
                   : blog.readable_publish_date}{" "}
                 • {blog.reading_time_minutes} min read
               </p>
@@ -172,7 +182,30 @@ export default function BlogApproval() {
         ))}
       </div>
 
-      {!loading && blogs.length === 0 && <p className="no-blogs">No blogs pending approval.</p>}
+      {/* PAGINATION BUTTONS */}
+      <div className="pagination">
+        <button
+          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Prev
+        </button>
+
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+
+        <button
+          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
+
+      {!loading && blogs.length === 0 && (
+        <p className="no-blogs">No blogs pending approval.</p>
+      )}
     </div>
   );
 }
