@@ -26,18 +26,19 @@ export default function Blog() {
 
         const approvedIds = approvedData.map(item => item.devId);
         const authorMap = {};
+        const dateMap = {};
+
         approvedData.forEach(item => {
-          if (item.customAuthor) {
-            authorMap[item.devId] = item.customAuthor;
-            
-          }
+          if (item.customAuthor) authorMap[item.devId] = item.customAuthor;
+          if (item.customDate) dateMap[item.devId] = item.customDate;
         });
 
         const approvedBlogs = devBlogs
           .filter(blog => approvedIds.includes(blog.id))
           .map(blog => ({
             ...blog,
-            displayAuthor: authorMap[blog.id] || blog.user?.username || "Unknown"
+            displayAuthor: authorMap[blog.id] || blog.user?.username || "Unknown",
+            displayDate: dateMap[blog.id] || blog.readable_publish_date
           }));
 
         approvedBlogs.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
@@ -60,6 +61,12 @@ export default function Blog() {
   const filteredPosts = activeTag === "all"
     ? posts
     : posts.filter(post => post.tag_list?.includes(activeTag));
+
+  // Function to format date like "September 23, 2025"
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  };
 
   return (
     <div className="blog-public-container">
@@ -96,7 +103,7 @@ export default function Blog() {
                 <h3>{post.title}</h3>
 
                 <p className="meta">
-                  {post.displayAuthor} • {post.readable_publish_date} • {post.reading_time_minutes} min read
+                  {post.displayAuthor} • {formatDate(post.displayDate)} • {post.reading_time_minutes} min read
                 </p>
 
                 <p className="description">{post.description}</p>

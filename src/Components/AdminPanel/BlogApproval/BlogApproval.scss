@@ -160,6 +160,46 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(74, 158, 255, 0.4);
 }
+.date-edit {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.date-edit input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(10, 14, 39, 0.9);
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+}
+
+.date-edit input:focus {
+  outline: none;
+  border-color: #4a9eff;
+  box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.3);
+}
+
+
+
+.date-edit button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #4a9eff 0%, #357abd 100%);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.date-edit button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(74, 158, 255, 0.4);
+}
 
 .approval-buttons {
   display: flex;

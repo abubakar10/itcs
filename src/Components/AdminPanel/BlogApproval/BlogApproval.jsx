@@ -7,6 +7,7 @@ export default function BlogApproval() {
   const [blogs, setBlogs] = useState([]);
   const [statuses, setStatuses] = useState({});
   const [authors, setAuthors] = useState({});
+  const [dates, setDates] = useState({});
   const [loading, setLoading] = useState(true);
 
   const organization = "itcs11";
@@ -19,20 +20,28 @@ export default function BlogApproval() {
         fetch(`https://dev.to/api/organizations/${organization}/articles?per_page=50`),
         axios.get(`${backendUrl}/api/blogs/statuses`)
       ]);
+
       const devBlogs = await devRes.json();
       const statusMap = {};
       const authorMap = {};
+      const dateMap = {};
+
       if (Array.isArray(statusRes.data)) {
         statusRes.data.forEach(b => {
           statusMap[b.devId] = b.status;
           authorMap[b.devId] = b.customAuthor || "";
+          dateMap[b.devId] = b.customDate || "";
         });
       }
+
       setStatuses(statusMap);
       setAuthors(authorMap);
+      setDates(dateMap);
+
       const visibleBlogs = devBlogs.filter(blog => statusMap[blog.id] !== "rejected");
       setBlogs(visibleBlogs);
-    } catch {
+    } catch (err) {
+      console.error(err);
       alert("Failed to fetch blogs or statuses.");
     } finally {
       setLoading(false);
@@ -55,6 +64,16 @@ export default function BlogApproval() {
       setAuthors(prev => ({ ...prev, [devId]: author }));
     } catch {
       alert("Failed to update author.");
+    }
+  };
+
+  const updateDate = async (devId, customDate) => {
+    if (!customDate) return alert("Date cannot be empty.");
+    try {
+      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { customDate });
+      setDates(prev => ({ ...prev, [devId]: customDate }));
+    } catch {
+      alert("Failed to update custom date.");
     }
   };
 
@@ -83,8 +102,16 @@ export default function BlogApproval() {
               <h3>{blog.title}</h3>
               <p className="meta">
                 Author: {authors[blog.id] || blog.user?.username || "Unknown"} •{" "}
-                {blog.readable_publish_date} • {blog.reading_time_minutes} min read
+                {dates[blog.id]
+                  ? new Date(dates[blog.id]).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })
+                  : blog.readable_publish_date}{" "}
+                • {blog.reading_time_minutes} min read
               </p>
+
               <p className="description">{blog.description}</p>
 
               <div className="tags-small">
@@ -110,6 +137,17 @@ export default function BlogApproval() {
                 />
                 <button onClick={() => updateAuthor(blog.id, authors[blog.id] || "")}>
                   Save Author
+                </button>
+              </div>
+
+              <div className="date-edit">
+                <input
+                  type="date"
+                  value={dates[blog.id] || ""}
+                  onChange={e => setDates(prev => ({ ...prev, [blog.id]: e.target.value }))}
+                />
+                <button onClick={() => updateDate(blog.id, dates[blog.id] || "")}>
+                  Save Date
                 </button>
               </div>
 
