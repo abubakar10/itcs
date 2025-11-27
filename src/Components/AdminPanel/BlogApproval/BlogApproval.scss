@@ -293,6 +293,13 @@
   background: rgba(74, 158, 255, 0.15);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(74, 158, 255, 0.2);
+  .active-page {
+  background: #7bc9ff !important;
+  color: #000 !important;
+  font-weight: 900;
+  transform: scale(1.05);
+}
+
 }
 
 /* Responsive */

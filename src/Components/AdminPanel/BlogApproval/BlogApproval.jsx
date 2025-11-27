@@ -10,7 +10,6 @@ export default function BlogApproval() {
   const [dates, setDates] = useState({});
   const [loading, setLoading] = useState(true);
 
-  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 9;
 
@@ -21,7 +20,9 @@ export default function BlogApproval() {
     setLoading(true);
     try {
       const [devRes, statusRes] = await Promise.all([
-        fetch(`https://dev.to/api/organizations/${organization}/articles?per_page=50`),
+        fetch(
+          `https://dev.to/api/organizations/${organization}/articles?per_page=50`
+        ),
         axios.get(`${backendUrl}/api/blogs/statuses`)
       ]);
 
@@ -42,7 +43,9 @@ export default function BlogApproval() {
       setAuthors(authorMap);
       setDates(dateMap);
 
-      const visibleBlogs = devBlogs.filter(blog => statusMap[blog.id] !== "rejected");
+      const visibleBlogs = devBlogs.filter(
+        blog => statusMap[blog.id] !== "rejected"
+      );
       setBlogs(visibleBlogs);
     } catch (err) {
       console.error(err);
@@ -56,7 +59,9 @@ export default function BlogApproval() {
     try {
       await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { status });
       setStatuses(prev => ({ ...prev, [devId]: status }));
-      if (status === "rejected") setBlogs(prev => prev.filter(blog => blog.id !== devId));
+      if (status === "rejected") {
+        setBlogs(prev => prev.filter(blog => blog.id !== devId));
+      }
     } catch {
       alert("Failed to update status.");
     }
@@ -64,7 +69,9 @@ export default function BlogApproval() {
 
   const updateAuthor = async (devId, author) => {
     try {
-      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { customAuthor: author });
+      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, {
+        customAuthor: author
+      });
       setAuthors(prev => ({ ...prev, [devId]: author }));
     } catch {
       alert("Failed to update author.");
@@ -74,10 +81,12 @@ export default function BlogApproval() {
   const updateDate = async (devId, customDate) => {
     if (!customDate) return alert("Date cannot be empty.");
     try {
-      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { customDate });
+      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, {
+        customDate
+      });
       setDates(prev => ({ ...prev, [devId]: customDate }));
     } catch {
-      alert("Failed to update custom date.");
+      alert("Failed to update date.");
     }
   };
 
@@ -85,7 +94,6 @@ export default function BlogApproval() {
     fetchBlogs();
   }, []);
 
-  // PAGINATION CALCULATION
   const indexOfLastBlog = currentPage * blogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
   const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
@@ -109,14 +117,16 @@ export default function BlogApproval() {
                   loading="lazy"
                 />
               )}
+
               <h3>{blog.title}</h3>
+
               <p className="meta">
                 Author: {authors[blog.id] || blog.user?.username || "Unknown"} •{" "}
                 {dates[blog.id]
                   ? new Date(dates[blog.id]).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
-                      day: "numeric",
+                      day: "numeric"
                     })
                   : blog.readable_publish_date}{" "}
                 • {blog.reading_time_minutes} min read
@@ -142,10 +152,17 @@ export default function BlogApproval() {
                   placeholder="Edit author name"
                   value={authors[blog.id] || ""}
                   onChange={e =>
-                    setAuthors(prev => ({ ...prev, [blog.id]: e.target.value }))
+                    setAuthors(prev => ({
+                      ...prev,
+                      [blog.id]: e.target.value
+                    }))
                   }
                 />
-                <button onClick={() => updateAuthor(blog.id, authors[blog.id] || "")}>
+                <button
+                  onClick={() =>
+                    updateAuthor(blog.id, authors[blog.id] || "")
+                  }
+                >
                   Save Author
                 </button>
               </div>
@@ -154,9 +171,18 @@ export default function BlogApproval() {
                 <input
                   type="date"
                   value={dates[blog.id] || ""}
-                  onChange={e => setDates(prev => ({ ...prev, [blog.id]: e.target.value }))}
+                  onChange={e =>
+                    setDates(prev => ({
+                      ...prev,
+                      [blog.id]: e.target.value
+                    }))
+                  }
                 />
-                <button onClick={() => updateDate(blog.id, dates[blog.id] || "")}>
+                <button
+                  onClick={() =>
+                    updateDate(blog.id, dates[blog.id] || "")
+                  }
+                >
                   Save Date
                 </button>
               </div>
@@ -182,7 +208,7 @@ export default function BlogApproval() {
         ))}
       </div>
 
-      {/* PAGINATION BUTTONS */}
+      {/* PAGINATION */}
       <div className="pagination">
         <button
           onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
@@ -191,12 +217,23 @@ export default function BlogApproval() {
           Prev
         </button>
 
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
+        {[...Array(totalPages)].map((_, i) => {
+          const pageNum = i + 1;
+          return (
+            <button
+              key={pageNum}
+              className={currentPage === pageNum ? "active-page" : ""}
+              onClick={() => setCurrentPage(pageNum)}
+            >
+              {pageNum}
+            </button>
+          );
+        })}
 
         <button
-          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+          onClick={() =>
+            setCurrentPage(prev => Math.min(prev + 1, totalPages))
+          }
           disabled={currentPage === totalPages}
         >
           Next
