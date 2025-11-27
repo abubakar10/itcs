@@ -7,7 +7,12 @@ export default function BlogApproval() {
   const [blogs, setBlogs] = useState([]);
   const [statuses, setStatuses] = useState({});
   const [authors, setAuthors] = useState({});
+  const [dates, setDates] = useState({});
   const [loading, setLoading] = useState(true);
+
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 9;
 
   const organization = "itcs11";
   const backendUrl = "http://localhost:5000";
@@ -19,20 +24,28 @@ export default function BlogApproval() {
         fetch(`https://dev.to/api/organizations/${organization}/articles?per_page=50`),
         axios.get(`${backendUrl}/api/blogs/statuses`)
       ]);
+
       const devBlogs = await devRes.json();
       const statusMap = {};
       const authorMap = {};
+      const dateMap = {};
+
       if (Array.isArray(statusRes.data)) {
         statusRes.data.forEach(b => {
           statusMap[b.devId] = b.status;
           authorMap[b.devId] = b.customAuthor || "";
+          dateMap[b.devId] = b.customDate || "";
         });
       }
+
       setStatuses(statusMap);
       setAuthors(authorMap);
+      setDates(dateMap);
+
       const visibleBlogs = devBlogs.filter(blog => statusMap[blog.id] !== "rejected");
       setBlogs(visibleBlogs);
-    } catch {
+    } catch (err) {
+      console.error(err);
       alert("Failed to fetch blogs or statuses.");
     } finally {
       setLoading(false);
@@ -58,9 +71,25 @@ export default function BlogApproval() {
     }
   };
 
+  const updateDate = async (devId, customDate) => {
+    if (!customDate) return alert("Date cannot be empty.");
+    try {
+      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { customDate });
+      setDates(prev => ({ ...prev, [devId]: customDate }));
+    } catch {
+      alert("Failed to update custom date.");
+    }
+  };
+
   useEffect(() => {
     fetchBlogs();
   }, []);
+
+  // PAGINATION CALCULATION
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+  const totalPages = Math.ceil(blogs.length / blogsPerPage);
 
   return (
     <div className="blog-approval-container">
@@ -69,7 +98,7 @@ export default function BlogApproval() {
       {loading && <p className="loading-text">Loading blogs...</p>}
 
       <div className="blog-grid">
-        {blogs.map(blog => (
+        {currentBlogs.map(blog => (
           <article key={blog.id} className="blog-card">
             <div className="blog-card__content">
               {(blog.cover_image || blog.social_image) && (
@@ -83,8 +112,16 @@ export default function BlogApproval() {
               <h3>{blog.title}</h3>
               <p className="meta">
                 Author: {authors[blog.id] || blog.user?.username || "Unknown"} •{" "}
-                {blog.readable_publish_date} • {blog.reading_time_minutes} min read
+                {dates[blog.id]
+                  ? new Date(dates[blog.id]).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  : blog.readable_publish_date}{" "}
+                • {blog.reading_time_minutes} min read
               </p>
+
               <p className="description">{blog.description}</p>
 
               <div className="tags-small">
@@ -113,6 +150,17 @@ export default function BlogApproval() {
                 </button>
               </div>
 
+              <div className="date-edit">
+                <input
+                  type="date"
+                  value={dates[blog.id] || ""}
+                  onChange={e => setDates(prev => ({ ...prev, [blog.id]: e.target.value }))}
+                />
+                <button onClick={() => updateDate(blog.id, dates[blog.id] || "")}>
+                  Save Date
+                </button>
+              </div>
+
               <div className="approval-buttons">
                 <button
                   className="approve-btn"
@@ -134,7 +182,30 @@ export default function BlogApproval() {
         ))}
       </div>
 
-      {!loading && blogs.length === 0 && <p className="no-blogs">No blogs pending approval.</p>}
+      {/* PAGINATION BUTTONS */}
+      <div className="pagination">
+        <button
+          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Prev
+        </button>
+
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+
+        <button
+          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
+
+      {!loading && blogs.length === 0 && (
+        <p className="no-blogs">No blogs pending approval.</p>
+      )}
     </div>
   );
 }
