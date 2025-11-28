@@ -16,29 +16,32 @@ export default function BlogApproval() {
   const organization = "itcs11";
   const backendUrl = "http://localhost:5000";
 
-
+  // Fetch all Dev.to blogs
   const fetchAllDevBlogs = async () => {
     let allBlogs = [];
     let page = 1;
-    let keepFetching = true;
-
-    while (keepFetching) {
+    while (true) {
       const res = await fetch(
         `https://dev.to/api/organizations/${organization}/articles?per_page=100&page=${page}`
       );
       const data = await res.json();
-
-      if (data.length === 0) keepFetching = false;
-      else {
-        allBlogs = [...allBlogs, ...data];
-        page++;
-      }
+      if (data.length === 0) break;
+      allBlogs = [...allBlogs, ...data];
+      page++;
     }
-
     return allBlogs;
   };
 
+  // Sort blogs by date (customDate if exists, else Dev.to date)
+  const sortBlogsByDate = (blogsList, dateMap) => {
+    return [...blogsList].sort((a, b) => {
+      const dateA = dateMap[a.id] ? new Date(dateMap[a.id]) : new Date(a.published_at || a.created_at);
+      const dateB = dateMap[b.id] ? new Date(dateMap[b.id]) : new Date(b.published_at || b.created_at);
+      return dateB - dateA; // newest first
+    });
+  };
 
+  // Fetch blogs and statuses
   const fetchBlogs = async () => {
     setLoading(true);
     try {
@@ -63,21 +66,8 @@ export default function BlogApproval() {
       setAuthors(authorMap);
       setDates(dateMap);
 
-      // Filter out rejected
-      let visibleBlogs = devBlogs.filter(
-        blog => statusMap[blog.id] !== "rejected"
-      );
-
-      // Sort by custom date OR dev.to date
-      visibleBlogs = [...visibleBlogs].sort((a, b) => {
-        const dateA = dateMap[a.id]
-          ? new Date(dateMap[a.id])
-          : new Date(a.published_at || a.created_at);
-        const dateB = dateMap[b.id]
-          ? new Date(dateMap[b.id])
-          : new Date(b.published_at || b.created_at);
-        return dateB - dateA; // newest first
-      });
+      let visibleBlogs = devBlogs.filter(blog => statusMap[blog.id] !== "rejected");
+      visibleBlogs = sortBlogsByDate(visibleBlogs, dateMap);
 
       setBlogs(visibleBlogs);
     } catch (err) {
@@ -88,39 +78,37 @@ export default function BlogApproval() {
     }
   };
 
-
+  // Update blog status
   const updateStatus = async (devId, status) => {
     try {
       await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { status });
-
       setStatuses(prev => ({ ...prev, [devId]: status }));
-
-      if (status === "rejected") {
-        setBlogs(prev => prev.filter(blog => blog.id !== devId));
-      }
+      if (status === "rejected") setBlogs(prev => prev.filter(blog => blog.id !== devId));
     } catch {
       alert("Failed to update status.");
     }
   };
 
+  // Update author
   const updateAuthor = async (devId, author) => {
     try {
-      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, {
-        customAuthor: author
-      });
+      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { customAuthor: author });
       setAuthors(prev => ({ ...prev, [devId]: author }));
     } catch {
       alert("Failed to update author.");
     }
   };
 
+  // Update custom date and re-sort blogs
   const updateDate = async (devId, customDate) => {
     if (!customDate) return alert("Date cannot be empty.");
     try {
-      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, {
-        customDate
+      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { customDate });
+      setDates(prev => {
+        const newDates = { ...prev, [devId]: customDate };
+        setBlogs(prevBlogs => sortBlogsByDate(prevBlogs, newDates));
+        return newDates;
       });
-      setDates(prev => ({ ...prev, [devId]: customDate }));
     } catch {
       alert("Failed to update date.");
     }
@@ -130,7 +118,7 @@ export default function BlogApproval() {
     fetchBlogs();
   }, []);
 
-
+  // Pagination
   const indexOfLastBlog = currentPage * blogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
   const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
@@ -154,34 +142,25 @@ export default function BlogApproval() {
                   loading="lazy"
                 />
               )}
-
               <h3>{blog.title}</h3>
-
               <p className="meta">
                 Author: {authors[blog.id] || blog.user?.username || "Unknown"} •{" "}
                 {dates[blog.id]
-                  ? new Date(dates[blog.id]).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric"
-                  })
-                  : blog.readable_publish_date}{" "}
-                • {blog.reading_time_minutes} min read
+                  ? new Date(dates[blog.id]).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
+                  : blog.readable_publish_date} • {blog.reading_time_minutes} min read
               </p>
-
               <p className="description">{blog.description}</p>
-
               <div className="tags-small">
-                {blog.tag_list?.slice(0, 3).map(tag => (
-                  <span key={tag}>#{tag}</span>
-                ))}
+                {blog.tag_list?.slice(0, 3).map(tag => <span key={tag}>#{tag}</span>)}
               </div>
-
-              <Link to={`/admin/blog/${blog.id}`} className="read-more">
+              <Link
+                to={`/admin/blog/${blog.id}`}
+                state={{ customAuthor: authors[blog.id] || "" }}
+                className="read-more"
+              >
                 Read More
               </Link>
             </div>
-
 
             <div className="blog-card__footer">
               <div className="author-edit">
@@ -189,40 +168,18 @@ export default function BlogApproval() {
                   type="text"
                   placeholder="Edit author name"
                   value={authors[blog.id] || ""}
-                  onChange={e =>
-                    setAuthors(prev => ({
-                      ...prev,
-                      [blog.id]: e.target.value
-                    }))
-                  }
+                  onChange={e => setAuthors(prev => ({ ...prev, [blog.id]: e.target.value }))}
                 />
-                <button
-                  onClick={() =>
-                    updateAuthor(blog.id, authors[blog.id] || "")
-                  }
-                >
-                  Save Author
-                </button>
+                <button onClick={() => updateAuthor(blog.id, authors[blog.id] || "")}>Save Author</button>
               </div>
 
               <div className="date-edit">
                 <input
                   type="date"
                   value={dates[blog.id] || ""}
-                  onChange={e =>
-                    setDates(prev => ({
-                      ...prev,
-                      [blog.id]: e.target.value
-                    }))
-                  }
+                  onChange={e => setDates(prev => ({ ...prev, [blog.id]: e.target.value }))}
                 />
-                <button
-                  onClick={() =>
-                    updateDate(blog.id, dates[blog.id] || "")
-                  }
-                >
-                  Save Date
-                </button>
+                <button onClick={() => updateDate(blog.id, dates[blog.id] || "")}>Save Date</button>
               </div>
 
               <div className="approval-buttons">
@@ -233,7 +190,6 @@ export default function BlogApproval() {
                 >
                   Approve
                 </button>
-
                 <button
                   className="reject-btn"
                   disabled={statuses[blog.id] === "rejected"}
@@ -247,56 +203,25 @@ export default function BlogApproval() {
         ))}
       </div>
 
-
+      {/* Pagination */}
       <div className="pagination">
+        <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} disabled={currentPage === 1}>Prev</button>
 
-
-        <button
-          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-        >
-          Prev
-        </button>
-
-
-        {currentPage !== 1 && (
-          <button onClick={() => setCurrentPage(1)}>
-            1
-          </button>
-        )}
-
-
+        {currentPage !== 1 && <button onClick={() => setCurrentPage(1)}>1</button>}
         {currentPage > 3 && <span className="dots">...</span>}
-
 
         {Array.from({ length: 5 }, (_, i) => currentPage - 2 + i)
           .filter(page => page >= 1 && page <= totalPages)
           .map(page => (
-            <button
-              key={page}
-              className={page === currentPage ? "active-page" : ""}
-              onClick={() => setCurrentPage(page)}
-            >
+            <button key={page} className={page === currentPage ? "active-page" : ""} onClick={() => setCurrentPage(page)}>
               {page}
             </button>
           ))}
 
-
         {currentPage < totalPages - 2 && <span className="dots">...</span>}
+        {currentPage !== totalPages && <button onClick={() => setCurrentPage(totalPages)}>{totalPages}</button>}
 
-        {currentPage !== totalPages && (
-          <button onClick={() => setCurrentPage(totalPages)}>
-            {totalPages}
-          </button>
-        )}
-
-
-        <button
-          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
+        <button onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages}>Next</button>
 
         <div className="jump-to-page">
           <input
@@ -307,20 +232,14 @@ export default function BlogApproval() {
             onKeyDown={e => {
               if (e.key === "Enter") {
                 const page = Number(e.target.value);
-                if (page >= 1 && page <= totalPages) {
-                  setCurrentPage(page);
-                }
+                if (page >= 1 && page <= totalPages) setCurrentPage(page);
               }
             }}
           />
         </div>
-
       </div>
 
-
-      {!loading && blogs.length === 0 && (
-        <p className="no-blogs">No blogs pending approval.</p>
-      )}
+      {!loading && blogs.length === 0 && <p className="no-blogs">No blogs pending approval.</p>}
     </div>
   );
 }
