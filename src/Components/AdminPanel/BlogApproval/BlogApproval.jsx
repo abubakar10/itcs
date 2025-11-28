@@ -16,17 +16,37 @@ export default function BlogApproval() {
   const organization = "itcs11";
   const backendUrl = "http://localhost:5000";
 
+
+  const fetchAllDevBlogs = async () => {
+    let allBlogs = [];
+    let page = 1;
+    let keepFetching = true;
+
+    while (keepFetching) {
+      const res = await fetch(
+        `https://dev.to/api/organizations/${organization}/articles?per_page=100&page=${page}`
+      );
+      const data = await res.json();
+
+      if (data.length === 0) keepFetching = false;
+      else {
+        allBlogs = [...allBlogs, ...data];
+        page++;
+      }
+    }
+
+    return allBlogs;
+  };
+
+
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const [devRes, statusRes] = await Promise.all([
-        fetch(
-          `https://dev.to/api/organizations/${organization}/articles?per_page=50`
-        ),
+      const [devBlogs, statusRes] = await Promise.all([
+        fetchAllDevBlogs(),
         axios.get(`${backendUrl}/api/blogs/statuses`)
       ]);
 
-      const devBlogs = await devRes.json();
       const statusMap = {};
       const authorMap = {};
       const dateMap = {};
@@ -43,9 +63,22 @@ export default function BlogApproval() {
       setAuthors(authorMap);
       setDates(dateMap);
 
-      const visibleBlogs = devBlogs.filter(
+      // Filter out rejected
+      let visibleBlogs = devBlogs.filter(
         blog => statusMap[blog.id] !== "rejected"
       );
+
+      // Sort by custom date OR dev.to date
+      visibleBlogs = [...visibleBlogs].sort((a, b) => {
+        const dateA = dateMap[a.id]
+          ? new Date(dateMap[a.id])
+          : new Date(a.published_at || a.created_at);
+        const dateB = dateMap[b.id]
+          ? new Date(dateMap[b.id])
+          : new Date(b.published_at || b.created_at);
+        return dateB - dateA; // newest first
+      });
+
       setBlogs(visibleBlogs);
     } catch (err) {
       console.error(err);
@@ -55,10 +88,13 @@ export default function BlogApproval() {
     }
   };
 
+
   const updateStatus = async (devId, status) => {
     try {
       await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { status });
+
       setStatuses(prev => ({ ...prev, [devId]: status }));
+
       if (status === "rejected") {
         setBlogs(prev => prev.filter(blog => blog.id !== devId));
       }
@@ -94,6 +130,7 @@ export default function BlogApproval() {
     fetchBlogs();
   }, []);
 
+
   const indexOfLastBlog = currentPage * blogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
   const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
@@ -124,10 +161,10 @@ export default function BlogApproval() {
                 Author: {authors[blog.id] || blog.user?.username || "Unknown"} •{" "}
                 {dates[blog.id]
                   ? new Date(dates[blog.id]).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric"
-                    })
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                  })
                   : blog.readable_publish_date}{" "}
                 • {blog.reading_time_minutes} min read
               </p>
@@ -144,6 +181,7 @@ export default function BlogApproval() {
                 Read More
               </Link>
             </div>
+
 
             <div className="blog-card__footer">
               <div className="author-edit">
@@ -195,6 +233,7 @@ export default function BlogApproval() {
                 >
                   Approve
                 </button>
+
                 <button
                   className="reject-btn"
                   disabled={statuses[blog.id] === "rejected"}
@@ -208,8 +247,10 @@ export default function BlogApproval() {
         ))}
       </div>
 
-      {/* PAGINATION */}
+
       <div className="pagination">
+
+
         <button
           onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
@@ -217,28 +258,65 @@ export default function BlogApproval() {
           Prev
         </button>
 
-        {[...Array(totalPages)].map((_, i) => {
-          const pageNum = i + 1;
-          return (
+
+        {currentPage !== 1 && (
+          <button onClick={() => setCurrentPage(1)}>
+            1
+          </button>
+        )}
+
+
+        {currentPage > 3 && <span className="dots">...</span>}
+
+
+        {Array.from({ length: 5 }, (_, i) => currentPage - 2 + i)
+          .filter(page => page >= 1 && page <= totalPages)
+          .map(page => (
             <button
-              key={pageNum}
-              className={currentPage === pageNum ? "active-page" : ""}
-              onClick={() => setCurrentPage(pageNum)}
+              key={page}
+              className={page === currentPage ? "active-page" : ""}
+              onClick={() => setCurrentPage(page)}
             >
-              {pageNum}
+              {page}
             </button>
-          );
-        })}
+          ))}
+
+
+        {currentPage < totalPages - 2 && <span className="dots">...</span>}
+
+        {currentPage !== totalPages && (
+          <button onClick={() => setCurrentPage(totalPages)}>
+            {totalPages}
+          </button>
+        )}
+
 
         <button
-          onClick={() =>
-            setCurrentPage(prev => Math.min(prev + 1, totalPages))
-          }
+          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
         >
           Next
         </button>
+
+        <div className="jump-to-page">
+          <input
+            type="number"
+            min="1"
+            max={totalPages}
+            placeholder="Go to..."
+            onKeyDown={e => {
+              if (e.key === "Enter") {
+                const page = Number(e.target.value);
+                if (page >= 1 && page <= totalPages) {
+                  setCurrentPage(page);
+                }
+              }
+            }}
+          />
+        </div>
+
       </div>
+
 
       {!loading && blogs.length === 0 && (
         <p className="no-blogs">No blogs pending approval.</p>
