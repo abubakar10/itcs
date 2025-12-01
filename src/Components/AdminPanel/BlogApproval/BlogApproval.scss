@@ -196,6 +196,11 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
+.date-edit input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) hue-rotate(200deg) brightness(2);
+  opacity: 0.85;
+  cursor: pointer;
+}
 
 .date-edit button:hover {
   transform: translateY(-2px);
