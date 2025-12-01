@@ -202,42 +202,59 @@ export default function BlogApproval() {
           </article>
         ))}
       </div>
+  {/* Pagination*/}
+  <div className="pagination">
+   <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
+    Prev
+   </button>
 
-      {/* Pagination */}
-      <div className="pagination">
-        <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} disabled={currentPage === 1}>Prev</button>
+   <button onClick={() => setCurrentPage(1)}>1</button>
+  {currentPage > 4 && <span className="dots">...</span>}
 
-        {currentPage !== 1 && <button onClick={() => setCurrentPage(1)}>1</button>}
-        {currentPage > 3 && <span className="dots">...</span>}
 
-        {Array.from({ length: 5 }, (_, i) => currentPage - 2 + i)
-          .filter(page => page >= 1 && page <= totalPages)
-          .map(page => (
-            <button key={page} className={page === currentPage ? "active-page" : ""} onClick={() => setCurrentPage(page)}>
-              {page}
-            </button>
-          ))}
+  {Array.from({ length: 5 }, (_, i) => {
+    const page = currentPage - 2 + i;
+    if (page > 1 && page < totalPages) {
+      return (
+        <button
+          key={page}
+          className={page === currentPage ? "active-page" : ""}
+          onClick={() => setCurrentPage(page)}
+        >
+          {page}
+        </button>
+      );
+    }
+    return null;
+  })}
 
-        {currentPage < totalPages - 2 && <span className="dots">...</span>}
-        {currentPage !== totalPages && <button onClick={() => setCurrentPage(totalPages)}>{totalPages}</button>}
+  {currentPage < totalPages - 3 && <span className="dots">...</span>}
+  {totalPages > 1 && (
+    <button onClick={() => setCurrentPage(totalPages)}>{totalPages}</button>
+  )}
 
-        <button onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages}>Next</button>
+  <button onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages}>
+    Next
+  </button>
 
-        <div className="jump-to-page">
-          <input
-            type="number"
-            min="1"
-            max={totalPages}
-            placeholder="Go to..."
-            onKeyDown={e => {
-              if (e.key === "Enter") {
-                const page = Number(e.target.value);
-                if (page >= 1 && page <= totalPages) setCurrentPage(page);
-              }
-            }}
-          />
-        </div>
-      </div>
+  <div className="jump-to-page">
+    <input
+      type="number"
+      min="1"
+      max={totalPages}
+      placeholder="Go to..."
+      onKeyDown={e => {
+        if (e.key === "Enter") {
+          const page = Number(e.target.value);
+          if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+            e.target.value = "";
+            }
+          }
+        }}
+       />
+     </div>
+    </div>
 
       {!loading && blogs.length === 0 && <p className="no-blogs">No blogs pending approval.</p>}
     </div>
