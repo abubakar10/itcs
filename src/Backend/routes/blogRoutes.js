@@ -3,7 +3,7 @@ import BlogStatus from "../models/blog.js";
 
 const router = express.Router();
 
-
+// Get all blog statuses
 router.get("/statuses", async (req, res) => {
   try {
     const statuses = await BlogStatus.find({});
@@ -14,25 +14,21 @@ router.get("/statuses", async (req, res) => {
   }
 });
 
-
+// Update status, author, or custom date
 router.patch("/:devId/status", async (req, res) => {
   try {
-    console.log("PATCH request received:", req.params.devId, req.body);
-
     const devIdNum = Number(req.params.devId);
-    const { status, customAuthor } = req.body;
+    const { status, customAuthor, customDate } = req.body;
 
-    
     const updateFields = {};
-    if (status) {
+    if (status !== undefined) {
       if (!["approved", "rejected"].includes(status)) {
         return res.status(400).json({ error: "Invalid status" });
       }
       updateFields.status = status;
     }
-    if (customAuthor) {
-      updateFields.customAuthor = customAuthor;
-    }
+    if (customAuthor !== undefined) updateFields.customAuthor = customAuthor;
+    if (customDate !== undefined) updateFields.customDate = customDate;
 
     if (Object.keys(updateFields).length === 0) {
       return res.status(400).json({ error: "No valid fields to update" });
@@ -44,6 +40,10 @@ router.patch("/:devId/status", async (req, res) => {
       { upsert: true, new: true }
     );
 
+    if (!updated) {
+      return res.status(404).json({ error: "devId not found" });
+    }
+
     res.json(updated);
   } catch (err) {
     console.error("Update error:", err);
@@ -51,9 +51,12 @@ router.patch("/:devId/status", async (req, res) => {
   }
 });
 
+// Get approved blog IDs
 router.get("/approved-ids", async (req, res) => {
   try {
-    const approvedBlogs = await BlogStatus.find({ status: "approved" }).select("devId customAuthor");
+    const approvedBlogs = await BlogStatus.find({ status: "approved" }).select(
+      "devId customAuthor customDate"
+    );
     res.json(approvedBlogs);
   } catch (err) {
     console.error(err);
