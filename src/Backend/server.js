@@ -8,6 +8,7 @@ import blogRoutes from './routes/blogRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
 import jobsRoutes from './routes/jobs.js';
 
+import contactRoutes from './routes/contactRoutes.js';
 
 dotenv.config()
 const app = express()
@@ -23,6 +24,7 @@ app.use('/api/jobs', jobRoutes)
 app.use('/api/blogs', blogRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/jobsAdd', jobsRoutes);
+app.use('/api/contact', contactRoutes);
 
 // MongoDB connection
 mongoose

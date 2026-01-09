@@ -19,12 +19,26 @@ export default function Blog() {
     const fetchBlogs = async () => {
       setLoading(true);
       try {
-        const [devRes, approvedRes] = await Promise.all([
-          fetch(`https://dev.to/api/organizations/${organization}/articles?per_page=50&_=${Date.now()}`),
+        const fetchAllDevBlogs = async () => {
+          let allBlogs = [];
+          let page = 1;
+          while (true) {
+            const res = await fetch(
+              `https://dev.to/api/organizations/${organization}/articles?per_page=100&page=${page}&_=${Date.now()}`
+            );
+            if (!res.ok) throw new Error("Failed to fetch from Dev.to");
+            const data = await res.json();
+            if (!Array.isArray(data) || data.length === 0) break;
+            allBlogs = [...allBlogs, ...data];
+            page++;
+          }
+          return allBlogs;
+        };
+
+        const [devBlogs, approvedRes] = await Promise.all([
+          fetchAllDevBlogs(),
           axios.get(`${backendUrl}/api/blogs/approved-ids`)
         ]);
-
-        const devBlogs = await devRes.json();
         const approvedData = approvedRes.data;
 
         const approvedIds = approvedData.map(item => item.devId);

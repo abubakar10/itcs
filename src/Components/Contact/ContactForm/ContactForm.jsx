@@ -19,10 +19,33 @@ const ContactForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const [status, setStatus] = useState({ type: '', message: '' });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add your form submission logic here
+    setStatus({ type: 'loading', message: 'Sending message...' });
+
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({ type: 'success', message: 'Message sent successfully! We will get back to you soon.' });
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "" }); // Reset form
+      } else {
+        setStatus({ type: 'error', message: data.error || 'Failed to send message.' });
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      setStatus({ type: 'error', message: 'Network error. Please try again later.' });
+    }
   };
 
   const contactInfo = [
@@ -118,8 +141,20 @@ const ContactForm = () => {
               ></textarea>
             </div>
 
-            <button type="submit" className="submit-btn">
-              Send Message
+            {status.message && (
+              <div className={`status-message ${status.type}`} style={{
+                padding: '10px',
+                marginBottom: '20px',
+                borderRadius: '5px',
+                backgroundColor: status.type === 'success' ? 'rgba(76, 175, 80, 0.1)' : 'rgba(244, 67, 54, 0.1)',
+                color: status.type === 'success' ? '#4caf50' : '#f44336',
+                border: `1px solid ${status.type === 'success' ? '#4caf50' : '#f44336'}`
+              }}>
+                {status.message}
+              </div>
+            )}
+            <button type="submit" className="submit-btn" disabled={status.type === 'loading'}>
+              {status.type === 'loading' ? 'Sending...' : 'Send Message'}
               <span className="btn-icon">→</span>
             </button>
           </form>
