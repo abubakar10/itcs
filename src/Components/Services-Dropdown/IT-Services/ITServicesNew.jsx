@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import '../_shared/service-common.scss';
 import './ITServicesNew.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faClock, faWrench, faCheck, faDesktop, faBroadcastTower, faSync, faSave, faEye, faPhone} from '@fortawesome/free-solid-svg-icons';
+import { faCog, faClock, faWrench, faCheck, faDesktop, faBroadcastTower, faSync, faSave, faEye, faPhone } from '@fortawesome/free-solid-svg-icons';
 const ITHero = () => (
   <section className="service-hero it-hero">
     <div className="hero-background">
@@ -18,17 +19,17 @@ const ITHero = () => (
         <span className="gradient-text"> Your IT</span>
       </h1>
       <p className="hero-description">
-        Comprehensive managed IT services that keep your technology running smoothly. From 24/7 
+        Comprehensive managed IT services that keep your technology running smoothly. From 24/7
         support to infrastructure management, we've got you covered.
       </p>
       <div className="hero-actions">
-        <button className="btn-primary">
+        <Link to="/contact" className="btn-primary">
           Get Support Now
           <span>→</span>
-        </button>
-        <button className="btn-secondary">
+        </Link>
+        <a href="#it-services" className="btn-secondary">
           View Services
-        </button>
+        </a>
       </div>
       <div className="hero-badges-row">
         <div className="badge-item">
@@ -59,7 +60,7 @@ const ITFeatures = () => {
   ];
 
   return (
-    <section className="service-features">
+    <section className="service-features" id="it-services">
       <div className="features-container">
         <div className="features-header">
           <span className="section-badge">COMPREHENSIVE COVERAGE</span>
@@ -74,8 +75,8 @@ const ITFeatures = () => {
               <div className="feature-icon">
                 <FontAwesomeIcon icon={feature.icon} size="2x" />
               </div>
-              <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px'}}>{feature.title}</h3>
-              <p style={{fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6}}>{feature.description}</p>
+              <h3 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px' }}>{feature.title}</h3>
+              <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>{feature.description}</p>
             </div>
           ))}
         </div>
@@ -84,42 +85,45 @@ const ITFeatures = () => {
   );
 };
 
-const ITCTA = () => (
-  <section className="service-cta">
-    <div className="cta-container">
-      <h2 style={{fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '20px'}}>
-        Let Us <span className="gradient-text">Manage</span> Your IT
-      </h2>
-      <p style={{fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 40px'}}>
-        Experience worry-free IT with our managed services. Get started today.
-      </p>
-      <div style={{display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '50px'}}>
-        <button className="btn-primary" style={{padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: 'none', cursor: 'pointer', background: 'var(--accent-gradient)', color: 'white'}}>
-          Start Free Trial
-        </button>
-        <button className="btn-secondary" style={{padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: '1px solid var(--border-color)', cursor: 'pointer', background: 'var(--bg-card)', color: 'var(--text-primary)'}}>
-          Talk to Expert
-        </button>
+const ITCTA = () => {
+  const navigate = useNavigate();
+  return (
+    <section className="service-cta">
+      <div className="cta-container">
+        <h2 style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '20px' }}>
+          Let Us <span className="gradient-text">Manage</span> Your IT
+        </h2>
+        <p style={{ fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 40px' }}>
+          Experience worry-free IT with our managed services. Get started today.
+        </p>
+        <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '50px' }}>
+          <button className="btn-primary" onClick={() => navigate('/contact')} style={{ padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: 'none', cursor: 'pointer', background: 'var(--accent-gradient)', color: 'white' }}>
+            Start Free Trial
+          </button>
+          <button className="btn-secondary" onClick={() => navigate('/contact')} style={{ padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: '1px solid var(--border-color)', cursor: 'pointer', background: 'var(--bg-card)', color: 'var(--text-primary)' }}>
+            Talk to Expert
+          </button>
+        </div>
+        <div className="cta-stats">
+          <div className="stat-item">
+            <div className="stat-number">400+</div>
+            <div className="stat-label">Managed Systems</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-number">&lt;5min</div>
+            <div className="stat-label">Avg Response Time</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-number">99.9%</div>
+            <div className="stat-label">System Uptime</div>
+          </div>
+        </div>
       </div>
-      <div className="cta-stats">
-        <div className="stat-item">
-          <div className="stat-number">400+</div>
-          <div className="stat-label">Managed Systems</div>
-        </div>
-        <div className="stat-divider"></div>
-        <div className="stat-item">
-          <div className="stat-number">&lt;5min</div>
-          <div className="stat-label">Avg Response Time</div>
-        </div>
-        <div className="stat-divider"></div>
-        <div className="stat-item">
-          <div className="stat-number">99.9%</div>
-          <div className="stat-label">System Uptime</div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const ITServicesNew = () => {
   useEffect(() => {

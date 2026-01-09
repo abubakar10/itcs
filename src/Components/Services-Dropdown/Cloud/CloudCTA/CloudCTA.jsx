@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CloudCTA.scss';
 
 const CloudCTA = () => {
+  const navigate = useNavigate();
   return (
     <section className="cloud-cta">
       <div className="cta-container">
@@ -14,13 +16,13 @@ const CloudCTA = () => {
             and drive business growth.
           </p>
           <div className="cta-actions">
-            <button className="btn-primary">
+            <button className="btn-primary" onClick={() => navigate('/contact')}>
               Schedule a Consultation
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-            <button className="btn-secondary">
+            <button className="btn-secondary" onClick={() => navigate('/contact')}>
               Contact Sales
             </button>
           </div>

@@ -22,11 +22,28 @@
 /* Tag Pills */
 .tag-pills {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   gap: 14px;
   margin-bottom: 50px;
-  padding: 0 20px;
+  padding: 10px 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Smooth scrolling on iOS */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  width: 100%;
+  max-width: 1000px;
+  /* Constrain width to align with grid mostly */
+  margin-left: auto;
+  margin-right: auto;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .tag-pill {
@@ -62,7 +79,7 @@
   gap: 30px !important;
   max-width: 1200px !important;
   padding: 0 40px !important;
-  justify-items: center !important;        
+  justify-items: center !important;
 }
 
 /* Card */
@@ -80,7 +97,7 @@
   text-align: left;
   transform: scale(0.95);
   max-width: 400px;
-  
+
 }
 
 .blog-card:hover {
@@ -134,12 +151,14 @@
 }
 
 .tags-small span {
-  background: rgba(74, 158, 255, 0.2);
-  color: #7bc9ff;
-  padding: 5px 12px;
+  background: #4a9eff;
+  color: #ffffff;
+  padding: 6px 14px;
   border-radius: 20px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(74, 158, 255, 0.3);
 }
 
 .read-more {
@@ -180,16 +199,20 @@
   .blog-public-container {
     padding: 120px 20px 80px;
   }
+
   .blog-public-title {
     font-size: 36px;
   }
+
   .blog-grid {
     grid-template-columns: 1fr !important;
     max-width: 420px !important;
   }
+
   .tag-pills {
     gap: 10px;
   }
+
   .tag-pill {
     padding: 8px 16px;
     font-size: 14px;
@@ -200,25 +223,30 @@
   .blog-public-container {
     padding: 100px 15px 60px;
   }
+
   .blog-public-title {
     font-size: 30px;
   }
+
   .blog-grid {
     grid-template-columns: 1fr !important;
     max-width: 100% !important;
     padding: 0 15px !important;
   }
+
   .blog-card {
     padding: 18px;
   }
+
   .blog-cover {
     height: 160px;
   }
+
   .tag-pill {
     padding: 8px 16px;
     font-size: 14px;
-    flex: 0 0 48%; 
-    text-align:center;
+    flex: 0 0 48%;
+    text-align: center;
   }
 }
 

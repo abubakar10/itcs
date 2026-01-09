@@ -72,8 +72,8 @@ router.post('/microsoft', async (req, res) => {
           username: userEmail.split('@')[0],
           email: userEmail,
           password: '', // No password needed for OAuth users
-          role: 'admin',
-          isAdmin: true,
+          role: 'user',
+          isAdmin: false,
         })
         await user.save()
       } else {

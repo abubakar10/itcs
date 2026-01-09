@@ -29,7 +29,14 @@ router.post('/add-user', isAdmin, async (req, res) => {
     const { fullName, username, email, password } = req.body
 
     const existingUser = await User.findOne({ email })
-    if (existingUser) return res.status(400).json({ message: 'Email already exists' })
+
+    if (existingUser) {
+      // Promote existing user to admin
+      existingUser.role = 'admin'
+      existingUser.isAdmin = true
+      await existingUser.save()
+      return res.status(200).json({ message: 'User promoted to Admin successfully', user: existingUser })
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10)
 
@@ -38,6 +45,8 @@ router.post('/add-user', isAdmin, async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      role: 'admin',
+      isAdmin: true,
     })
 
     await newUser.save()

@@ -75,7 +75,7 @@ const CloudFeatures = () => {
   ];
 
   return (
-    <section className="cloud-features">
+    <section className="cloud-features" id="cloud-solutions">
       <div className="features-container">
         <div className="features-header">
           <span className="section-badge">FEATURES & BENEFITS</span>

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import '../_shared/service-common.scss';
 import './EnterpriseNew.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faChartBar, faSync, faMobileAlt, faLink, faUsers} from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faChartBar, faSync, faMobileAlt, faLink, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 const EnterpriseHero = () => (
   <section className="service-hero enterprise-hero">
@@ -19,17 +20,17 @@ const EnterpriseHero = () => (
         <span className="gradient-text"> Intelligent Solutions</span>
       </h1>
       <p className="hero-description">
-        Transform your business operations with comprehensive enterprise solutions. From ERP to CRM, 
+        Transform your business operations with comprehensive enterprise solutions. From ERP to CRM,
         we provide integrated systems that drive efficiency and growth.
       </p>
       <div className="hero-actions">
-        <button className="btn-primary">
+        <a href="#enterprise-solutions" className="btn-primary">
           Explore Solutions
           <span>→</span>
-        </button>
-        <button className="btn-secondary">
+        </a>
+        <Link to="/contact" className="btn-secondary">
           Request Demo
-        </button>
+        </Link>
       </div>
       <div className="hero-badges-row">
         <div className="badge-item">
@@ -60,7 +61,7 @@ const EnterpriseFeatures = () => {
   ];
 
   return (
-    <section className="service-features">
+    <section className="service-features" id="enterprise-solutions">
       <div className="features-container">
         <div className="features-header">
           <span className="section-badge">COMPLETE SOLUTIONS</span>
@@ -75,8 +76,8 @@ const EnterpriseFeatures = () => {
               <div className="feature-icon">
                 <FontAwesomeIcon icon={feature.icon} size="2x" />
               </div>
-              <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px'}}>{feature.title}</h3>
-              <p style={{fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6}}>{feature.description}</p>
+              <h3 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px' }}>{feature.title}</h3>
+              <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>{feature.description}</p>
             </div>
           ))}
         </div>
@@ -85,42 +86,45 @@ const EnterpriseFeatures = () => {
   );
 };
 
-const EnterpriseCTA = () => (
-  <section className="service-cta">
-    <div className="cta-container">
-      <h2 style={{fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '20px'}}>
-        Ready to <span className="gradient-text">Scale</span> Your Business?
-      </h2>
-      <p style={{fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 40px'}}>
-        Let's discuss how our enterprise solutions can transform your operations.
-      </p>
-      <div style={{display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '50px'}}>
-        <button className="btn-primary" style={{padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: 'none', cursor: 'pointer', background: 'var(--accent-gradient)', color: 'white'}}>
-          Get Started
-        </button>
-        <button className="btn-secondary" style={{padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: '1px solid var(--border-color)', cursor: 'pointer', background: 'var(--bg-card)', color: 'var(--text-primary)'}}>
-          Contact Sales
-        </button>
+const EnterpriseCTA = () => {
+  const navigate = useNavigate();
+  return (
+    <section className="service-cta">
+      <div className="cta-container">
+        <h2 style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '20px' }}>
+          Ready to <span className="gradient-text">Scale</span> Your Business?
+        </h2>
+        <p style={{ fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 40px' }}>
+          Let's discuss how our enterprise solutions can transform your operations.
+        </p>
+        <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '50px' }}>
+          <button className="btn-primary" onClick={() => navigate('/contact')} style={{ padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: 'none', cursor: 'pointer', background: 'var(--accent-gradient)', color: 'white' }}>
+            Get Started
+          </button>
+          <button className="btn-secondary" onClick={() => navigate('/contact')} style={{ padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: '1px solid var(--border-color)', cursor: 'pointer', background: 'var(--bg-card)', color: 'var(--text-primary)' }}>
+            Contact Sales
+          </button>
+        </div>
+        <div className="cta-stats">
+          <div className="stat-item">
+            <div className="stat-number">150+</div>
+            <div className="stat-label">Enterprise Clients</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-number">99.5%</div>
+            <div className="stat-label">System Uptime</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-number">50M+</div>
+            <div className="stat-label">Transactions Processed</div>
+          </div>
+        </div>
       </div>
-      <div className="cta-stats">
-        <div className="stat-item">
-          <div className="stat-number">150+</div>
-          <div className="stat-label">Enterprise Clients</div>
-        </div>
-        <div className="stat-divider"></div>
-        <div className="stat-item">
-          <div className="stat-number">99.5%</div>
-          <div className="stat-label">System Uptime</div>
-        </div>
-        <div className="stat-divider"></div>
-        <div className="stat-item">
-          <div className="stat-number">50M+</div>
-          <div className="stat-label">Transactions Processed</div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const EnterpriseNew = () => {
   useEffect(() => {

@@ -39,7 +39,7 @@ const CyberFeatures = () => {
   ];
 
   return (
-    <section className="cyber-features">
+    <section className="cyber-features" id="security-assessment">
       <div className="features-container">
         <div className="features-header">
           <span className="section-badge">COMPREHENSIVE PROTECTION</span>

@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CyberCTA.scss';
 
 const CyberCTA = () => {
+  const navigate = useNavigate();
   return (
     <section className="cyber-cta">
       <div className="cta-container">
@@ -10,17 +12,17 @@ const CyberCTA = () => {
             Don't Wait for a <span className="gradient-text">Breach</span>
           </h2>
           <p className="cta-description">
-            Protect your business now with our comprehensive cybersecurity solutions. 
+            Protect your business now with our comprehensive cybersecurity solutions.
             Get a free security assessment today.
           </p>
           <div className="cta-actions">
-            <button className="btn-primary">
+            <button className="btn-primary" onClick={() => navigate('/contact')}>
               Get Free Assessment
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
-            <button className="btn-secondary">
+            <button className="btn-secondary" onClick={() => navigate('/contact')}>
               Contact Security Team
             </button>
           </div>

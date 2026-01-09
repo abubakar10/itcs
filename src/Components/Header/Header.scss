@@ -58,7 +58,7 @@
 
   .header-img {
     img {
-      width: 150px;
+      width: 135px;
       filter: brightness(1.1);
     }
   }
@@ -216,7 +216,7 @@
 
     .header-img {
       img {
-        width: 120px;
+        width: 108px;
       }
     }
 
@@ -473,7 +473,7 @@
 
     .header-img {
       img {
-        width: 65px;
+        width: 58px;
       }
     }
 
@@ -531,21 +531,21 @@
     .auth-buttons {
       margin-right: 6px;
       gap: 6px;
-     
+
     }
 
     .btn-login,
     .btn-signup {
       padding: 5px 10px;
       font-size: 11px;
-     
+
     }
   }
 
   @media (max-width: 360px) {
     .header-img {
       img {
-        width: 75px;
+        width: 67px;
       }
     }
 
