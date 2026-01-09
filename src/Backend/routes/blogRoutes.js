@@ -1,5 +1,6 @@
 import express from "express";
 import BlogStatus from "../models/blog.js";
+import { protect, admin } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -14,8 +15,8 @@ router.get("/statuses", async (req, res) => {
   }
 });
 
-// Update status, author, or custom date
-router.patch("/:devId/status", async (req, res) => {
+// Update status, author, or custom date (Protected: Admin Only)
+router.patch("/:devId/status", protect, admin, async (req, res) => {
   try {
     const devIdNum = Number(req.params.devId);
     const { status, customAuthor, customDate } = req.body;

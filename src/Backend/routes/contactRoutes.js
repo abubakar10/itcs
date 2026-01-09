@@ -1,6 +1,7 @@
 import express from 'express';
 import Contact from '../models/Contact.js';
 import nodemailer from 'nodemailer';
+import { protect, admin } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -69,8 +70,8 @@ router.post('/', async (req, res) => {
     }
 });
 
-// GET: Retrieve all messages (for admin use)
-router.get('/', async (req, res) => {
+// GET: Retrieve all messages (for admin use - Protected)
+router.get('/', protect, admin, async (req, res) => {
     try {
         const messages = await Contact.find().sort({ createdAt: -1 });
         res.status(200).json(messages);
