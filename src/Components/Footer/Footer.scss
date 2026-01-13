@@ -151,6 +151,16 @@
     }
   }
 
+  .footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    
+    p {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+  }
+
   // Tablet landscape
   @media (max-width: 1024px) {
     padding: 50px 20px 25px;

@@ -35,7 +35,7 @@ const Login = () => {
   const handleMicrosoftLogin = async () => {
     setLoading(true)
     setError('')
-    
+
     try {
       const response = await instance.loginPopup(loginRequest)
       await handleMicrosoftLoginSuccess(response.account)
@@ -55,7 +55,7 @@ const Login = () => {
       })
 
       // Send token to backend for verification
-      const response = await fetch('http://localhost:5000/api/auth/microsoft', {
+      const response = await fetch('http://192.168.0.223:5000/api/auth/microsoft', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -96,9 +96,9 @@ const Login = () => {
 
           <div className="login-form">
             {error && (
-              <div className="error-message" style={{ 
-                color: '#ff4444', 
-                marginBottom: '1rem', 
+              <div className="error-message" style={{
+                color: '#ff4444',
+                marginBottom: '1rem',
                 textAlign: 'center',
                 padding: '0.5rem',
                 backgroundColor: '#ffe6e6',
@@ -108,9 +108,9 @@ const Login = () => {
               </div>
             )}
 
-            <button 
-              type="button" 
-              className="submit-btn microsoft-btn" 
+            <button
+              type="button"
+              className="submit-btn microsoft-btn"
               onClick={handleMicrosoftLogin}
               disabled={loading}
               style={{
@@ -135,10 +135,10 @@ const Login = () => {
               ) : (
                 <>
                   <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0.5" y="0.5" width="9" height="9" fill="#F25022"/>
-                    <rect x="10.5" y="0.5" width="9" height="9" fill="#7FBA00"/>
-                    <rect x="0.5" y="10.5" width="9" height="9" fill="#00A4EF"/>
-                    <rect x="10.5" y="10.5" width="9" height="9" fill="#FFB900"/>
+                    <rect x="0.5" y="0.5" width="9" height="9" fill="#F25022" />
+                    <rect x="10.5" y="0.5" width="9" height="9" fill="#7FBA00" />
+                    <rect x="0.5" y="10.5" width="9" height="9" fill="#00A4EF" />
+                    <rect x="10.5" y="10.5" width="9" height="9" fill="#FFB900" />
                   </svg>
                   Sign in with Microsoft 365
                 </>

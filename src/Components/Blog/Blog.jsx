@@ -13,7 +13,7 @@ export default function Blog() {
   const postsPerPage = 9;
 
   const organization = "itcs11";
-  const backendUrl = "http://localhost:5000";
+  const backendUrl = "http://192.168.0.223:5000";
 
   useEffect(() => {
     const fetchBlogs = async () => {
