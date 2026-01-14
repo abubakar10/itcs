@@ -4,16 +4,17 @@ import { useMsal } from '@azure/msal-react';
 import PostJob from './PostJob/PostJob';
 import JobList from './JobList/JobList';
 import BlogApproval from './BlogApproval/BlogApproval';
-import AdminBlogDetail from './BlogApproval/AdminBlogDetail';
+import JobApplications from './JobApplications/JobApplications';
 import './AdminPanel.scss';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faAddressCard, 
-  faList, 
-  faBlog, 
-  faArrowRightFromBracket, 
-  faUsers 
+import {
+  faAddressCard,
+  faList,
+  faBlog,
+  faArrowRightFromBracket,
+  faUsers,
+  faClipboardList
 } from '@fortawesome/free-solid-svg-icons';
 
 const AdminPanel = () => {
@@ -24,7 +25,7 @@ const AdminPanel = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
-  
+
   const navigate = useNavigate();
   const { instance } = useMsal();
 
@@ -41,10 +42,10 @@ const AdminPanel = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('email');
-    
+
     // Clear MSAL cache silently (no popup for better UX)
     instance.clearCache();
-    
+
     // Navigate to login immediately with replace to prevent back navigation
     navigate('/login', { replace: true });
   };
@@ -65,12 +66,12 @@ const AdminPanel = () => {
           isAdmin: true,
         },
         {
-          headers: { 
-            Authorization: `Bearer ${token}`   // Fixed: proper backticks
+          headers: {
+            Authorization: `Bearer ${token}`
           }
         }
       );
-      
+
       setMessage(res.data.message || 'Admin added successfully!');
       setFullName('');
       setUsername('');
@@ -101,6 +102,15 @@ const AdminPanel = () => {
           </button>
 
           <button
+            className={`nav-item ${activeTab === 'applications' ? 'active' : ''}`}
+            onClick={() => setActiveTab('applications')}
+          >
+            <span className="nav-icon"><FontAwesomeIcon icon={faClipboardList} /></span>
+            <span className="nav-text">Applications</span>
+          </button>
+
+
+          <button
             className={`nav-item ${activeTab === 'job-list' ? 'active' : ''}`}
             onClick={() => setActiveTab('job-list')}
           >
@@ -110,7 +120,6 @@ const AdminPanel = () => {
 
           <button
             className={`nav-item ${activeTab === 'blog-approval' ? 'active' : ''}`}
-            utilisée
             onClick={() => setActiveTab('blog-approval')}
           >
             <span className="nav-icon"><FontAwesomeIcon icon={faBlog} /></span>
@@ -136,13 +145,14 @@ const AdminPanel = () => {
 
       <div className="admin-content">
         {activeTab === 'post-job' && <PostJob />}
+        {activeTab === 'applications' && <JobApplications />}
         {activeTab === 'job-list' && <JobList />}
         {activeTab === 'blog-approval' && <BlogApproval />}
-        
+
         {activeTab === 'add-admin' && (
           <div className="add-admin-form">
             <h3>Add New Admin</h3>
-            
+
             {message && (
               <div className={`alert ${message.toLowerCase().includes('error') || message.toLowerCase().includes('fail') ? 'alert-error' : 'alert-success'}`}>
                 {message}

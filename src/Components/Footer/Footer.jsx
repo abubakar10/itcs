@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        
+
         {/* Logo & Intro Section */}
         <div className="logo-section">
           <a href="/" className="logo-link">
@@ -79,6 +79,24 @@ const Footer = () => {
             <li><Link to="/services/network-solutions">Network Solutions</Link></li>
             <li><Link to="/services/cyber-security">Cybersecurity</Link></li>
           </ul>
+        </div>
+
+        {/* Google Map Section */}
+        <div className="map-section">
+          <h3>Our Location</h3>
+          <div className="map-container">
+            <iframe
+              title="ITCS Location"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              src="https://maps.google.com/maps?q=6/K%20Block%202,%20P.E.C.H.S,%20Karachi,%20Pakistan&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            >
+            </iframe>
+          </div>
         </div>
       </div>
 

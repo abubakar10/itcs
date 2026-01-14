@@ -26,7 +26,8 @@
 
     .logo-section,
     .info-section,
-    .services-section {
+    .services-section,
+    .map-section {
       flex: 1;
       min-width: 250px;
 
@@ -149,12 +150,29 @@
         margin-bottom: 24px;
       }
     }
+
+    .map-section {
+      .map-container {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        height: 250px;
+
+        iframe {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
   }
 
   .footer-bottom {
     text-align: center;
     margin-top: 40px;
-    
+
     p {
       color: var(--text-secondary);
       font-size: 14px;
@@ -171,7 +189,8 @@
 
       .logo-section,
       .info-section,
-      .services-section {
+      .services-section,
+      .map-section {
         min-width: 220px;
 
         h3 {
@@ -217,7 +236,8 @@
 
       .logo-section,
       .info-section,
-      .services-section {
+      .services-section,
+      .map-section {
         margin: 0;
         min-width: 100%;
 
@@ -265,7 +285,8 @@
 
       .logo-section,
       .info-section,
-      .services-section {
+      .services-section,
+      .map-section {
         h3 {
           font-size: 17px;
           margin-bottom: 14px;
@@ -316,7 +337,8 @@
 
       .logo-section,
       .info-section,
-      .services-section {
+      .services-section,
+      .map-section {
         h3 {
           font-size: 16px;
           margin-bottom: 12px;
@@ -372,7 +394,8 @@
 
       .logo-section,
       .info-section,
-      .services-section {
+      .services-section,
+      .map-section {
         h3 {
           font-size: 15px;
           margin-bottom: 10px;

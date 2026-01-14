@@ -7,10 +7,34 @@ dotenv.config()
 const router = express.Router()
 
 
+import JobApplication from '../models/JobApplication.js'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+// Ensure uploads directory exists
+const uploadDir = path.join(__dirname, '../../../public/uploads/resumes')
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadDir)
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, uniqueSuffix + '-' + file.originalname)
+  }
+})
+
 const upload = multer({
-  storage: multer.memoryStorage(), 
+  storage: storage,
   limits: {
-    fileSize: 10 * 1024 * 1024, 
+    fileSize: 10 * 1024 * 1024,
   },
   fileFilter: (req, file, cb) => {
     if (file.mimetype === 'application/pdf') {
@@ -25,7 +49,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS, 
+    pass: process.env.EMAIL_PASS,
   },
 })
 
@@ -45,16 +69,33 @@ router.post('/apply', upload.single('resume'), async (req, res) => {
       jobLocation = '',
     } = req.body
 
-    
     if (!fullName || !email || !phone || !preferredLocation || !experience) {
       return res.status(400).json({ message: 'All required fields must be filled.' })
     }
-
 
     if (!req.file) {
       return res.status(400).json({ message: 'Resume (PDF) is required.' })
     }
 
+    // Save to Database
+    const newApplication = new JobApplication({
+      fullName,
+      email,
+      phone,
+      preferredLocation,
+      experience,
+      linkedin,
+      coverLetter,
+      jobTitle,
+      jobDepartment,
+      jobLocation,
+      resumePath: `/uploads/resumes/${req.file.filename}`,
+      resumeOriginalName: req.file.originalname
+    })
+
+    await newApplication.save()
+
+    // Send Email Notification
     const mailOptions = {
       from: `"Careers Portal" <${process.env.EMAIL_USER}>`,
       to: 'abubakarr1011@gmail.com',
@@ -99,7 +140,7 @@ router.post('/apply', upload.single('resume'), async (req, res) => {
               </div>` : ''}
 
               <div style="margin-top: 30px; padding: 15px; background: #fff; border-left: 4px solid #4a9eff; font-style: italic;">
-                A resume has been attached below as a PDF.
+                The resume has been saved to the database. You can view it in the Admin Portal.
               </div>
 
             </div>
@@ -110,15 +151,13 @@ router.post('/apply', upload.single('resume'), async (req, res) => {
       attachments: [
         {
           filename: req.file.originalname,
-          content: req.file.buffer,
-          contentType: 'application/pdf',
-        },
-      ],
+          path: req.file.path
+        }
+      ]
     }
 
     await transporter.sendMail(mailOptions)
 
-    // Success!
     res.json({
       message: 'Application submitted successfully! We\'ll contact you soon.',
     })
@@ -127,6 +166,31 @@ router.post('/apply', upload.single('resume'), async (req, res) => {
     res.status(500).json({
       message: 'Failed to submit application. Please try again later.',
     })
+  }
+})
+
+// GET all applications (Admin only usually, but open for now as requested or protect later)
+router.get('/applications', async (req, res) => {
+  try {
+    const applications = await JobApplication.find().sort({ createdAt: -1 })
+    res.json(applications)
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching applications' })
+  }
+})
+
+// Update status
+router.patch('/applications/:id/status', async (req, res) => {
+  try {
+    const { status } = req.body
+    const application = await JobApplication.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    )
+    res.json(application)
+  } catch (err) {
+    res.status(500).json({ message: 'Error updating status' })
   }
 })
 

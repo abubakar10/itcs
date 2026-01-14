@@ -134,7 +134,7 @@ export default function Blog() {
         ))}
       </div>
 
-      {loading && <p className="loading-text">Loading approved blogs...</p>}
+      {loading && <p className="loading-text">Loading blogs...</p>}
 
       <div className="blog-grid">
         {posts.length > 0 ? (
