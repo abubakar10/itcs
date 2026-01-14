@@ -22,7 +22,10 @@ const Footer = () => {
             solutions using the latest available technology.
           </p>
           <div className="social-icons">
-            <a href="#" className="icon twitter" aria-label="Twitter">
+            <a href="https://x.com/itcspakistan"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="icon twitter" aria-label="Twitter">
               <img src={Twitter} alt="Twitter" />
             </a>
             <a
