@@ -11,6 +11,9 @@ import jobsRoutes from './routes/jobs.js';
 import contactRoutes from './routes/contactRoutes.js';
 
 dotenv.config()
+if (!process.env.JWT_SECRET) {
+  console.warn('⚠️ WARNING: JWT_SECRET is not defined in .env file!');
+}
 const app = express()
 
 // Middleware
