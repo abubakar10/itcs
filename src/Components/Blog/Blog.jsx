@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Blog.scss";
 
 export default function Blog() {
+  const navigate = useNavigate();
   const [allPosts, setAllPosts] = useState([]); // Store all approved blogs
   const [filteredPosts, setFilteredPosts] = useState([]); // Posts after tag filtering
   const [posts, setPosts] = useState([]); // Displayed posts for current page
@@ -117,9 +118,13 @@ export default function Blog() {
     return date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   };
 
+  const handleCardClick = (id) => {
+    navigate(`/blog/${id}`);
+  };
+
   return (
     <div className="blog-public-container">
-      <h2 className="blog-public-title">Our Blogs</h2>
+      <h2 className="blog-public-title">Our Insights & Blogs</h2>
 
       {/* Tag Filters */}
       <div className="tag-pills">
@@ -129,52 +134,73 @@ export default function Blog() {
             className={`tag-pill ${selectedTag === tag ? "active" : ""}`}
             onClick={() => setSelectedTag(tag)}
           >
-            {tag === "All" ? "All" : `#${tag}`}
+            {tag === "All" ? "All Posts" : `#${tag}`}
           </button>
         ))}
       </div>
 
-      {loading && <p className="loading-text">Loading blogs...</p>}
+      {loading && (
+        <div className="loading-container">
+          <div className="loader"></div>
+          <p className="loading-text">Fetching latest insights...</p>
+        </div>
+      )}
 
       <div className="blog-grid">
         {posts.length > 0 ? (
           posts.map(post => (
-            <article key={post.id} className="blog-card">
-              <div className="blog-card__content">
-                {(post.cover_image || post.social_image) && (
+            <article
+              key={post.id}
+              className="blog-card"
+              onClick={() => handleCardClick(post.id)}
+            >
+              <div className="blog-card__image-container">
+                {(post.cover_image || post.social_image) ? (
                   <img
                     src={post.cover_image || post.social_image}
                     alt={post.title}
                     className="blog-cover"
                     loading="lazy"
                   />
+                ) : (
+                  <div className="blog-cover-placeholder">
+                    <span>ITCS</span>
+                  </div>
                 )}
+                <div className="blog-card__overlay">
+                  <span>Read Article</span>
+                </div>
+              </div>
 
-                <h3>{post.title}</h3>
-
-                <p className="meta">
-                  {post.displayAuthor} • {formatDate(post.displayDate)} • {post.reading_time_minutes} min read
-                </p>
-
-                <p className="description">{post.description}</p>
-
+              <div className="blog-card__content">
                 <div className="tags-small">
-                  {post.tag_list?.slice(0, 3).map(tag => (
+                  {post.tag_list?.slice(0, 2).map(tag => (
                     <span key={tag}>#{tag}</span>
                   ))}
                 </div>
 
-                <Link to={`/blog/${post.id}`} className="read-more">
-                  Read more
-                </Link>
+                <h3>{post.title}</h3>
+
+                <p className="description">{post.description}</p>
+
+                <div className="blog-card__footer">
+                  <p className="meta">
+                    {post.displayAuthor} • {formatDate(post.displayDate)}
+                  </p>
+                  <div className="read-time">
+                    {post.reading_time_minutes} min read
+                  </div>
+                </div>
               </div>
             </article>
           ))
         ) : (
           !loading && (
-            <p className="no-posts">
-              No blogs found for this category.
-            </p>
+            <div className="no-posts-container">
+              <p className="no-posts">
+                No blogs found for this category.
+              </p>
+            </div>
           )
         )}
       </div>

@@ -19,14 +19,14 @@ const HomeHero = () => {
         </div>
 
         <h1 className="hero-title">
-          Innovate Faster with
-          <span className="gradient-text"> Microsoft Cloud</span>
+          Scale Your Future with
+          <span className="gradient-text"> Multi-Vendor Cloud & Security</span>
         </h1>
 
         <p className="hero-description">
-          Transform your business with cutting-edge cloud solutions.
-          We help organizations accelerate digital transformation with Microsoft's
-          powerful cloud platform and our expert guidance.
+          Empowering organizations with world-class solutions from Microsoft, AWS, Cisco, and Kaspersky.
+          As a Tier-1 Direct Partner, we deliver expert-led digital transformation,
+          infrastructure, and enterprise cybersecurity tailored to your growth.
         </p>
 
         <div className="hero-actions">

@@ -16,12 +16,11 @@ const NetworkHero = () => (
         <span>NETWORK SOLUTIONS</span>
       </div>
       <h1 className="hero-title">
-        Build Reliable and Secure
-        <span className="gradient-text"> Network Infrastructure</span>
+        Enterprise-Grade
+        <span className="gradient-text"> Cisco & Ruijie Networking</span>
       </h1>
       <p className="hero-description">
-        Design, implement, and manage robust network solutions that ensure seamless connectivity,
-        optimal performance, and enterprise-grade security.
+        We specialize in Cisco routing, Ruijie wireless solutions, and SolarWinds performance monitoring to ensure your business stays connected and secure.
       </p>
       <div className="hero-actions">
         <Link to="/contact" className="btn-primary">
@@ -35,15 +34,15 @@ const NetworkHero = () => (
       <div className="hero-badges-row">
         <div className="badge-item">
           <FontAwesomeIcon icon={faLock} />
-          <span>Secure Networks</span>
+          <span>Cisco Security</span>
         </div>
         <div className="badge-item">
           <FontAwesomeIcon icon={faBolt} />
-          <span>High Performance</span>
+          <span>Ruijie WIFI 6</span>
         </div>
         <div className="badge-item">
           <FontAwesomeIcon icon={faChartLine} />
-          <span>Real-time Monitoring</span>
+          <span>SolarWinds Monitoring</span>
         </div>
       </div>
     </div>
@@ -52,12 +51,12 @@ const NetworkHero = () => (
 
 const NetworkFeatures = () => {
   const features = [
-    { icon: faProjectDiagram, title: 'Network Design', description: 'Custom network architecture tailored to your business requirements.' },
-    { icon: faShieldAlt, title: 'Security Implementation', description: 'Advanced firewalls, VPNs, and security protocols to protect your network.' },
-    { icon: faWifi, title: 'Wireless Solutions', description: 'Enterprise-grade WiFi solutions for seamless connectivity.' },
-    { icon: faChartLine, title: 'Performance Optimization', description: 'Network optimization for maximum speed and reliability.' },
-    { icon: faSearch, title: 'Network Monitoring', description: 'Proactive monitoring and management for peak performance.' },
-    { icon: faTools, title: 'Maintenance & Support', description: '24/7 network support and maintenance services.' }
+    { icon: faProjectDiagram, title: 'Cisco Core Networking', description: 'Advanced routing and switching architecture using industry-standard Cisco hardware.' },
+    { icon: faShieldAlt, title: 'Security Implementation', description: 'Enterprise firewalls and VPNs from Cisco and Fortinet to protect your data.' },
+    { icon: faWifi, title: 'Ruijie Wireless', description: 'High-density WIFI 6 solutions from Ruijie for seamless indoor and outdoor coverage.' },
+    { icon: faChartLine, title: 'Performance Optimization', description: 'Network tuning for maximum speed using SolarWinds monitoring insights.' },
+    { icon: faSearch, title: 'SolarWinds Monitoring', description: 'Proactive 24/7 network performance monitoring with automated alerts.' },
+    { icon: faTools, title: 'Maintenance & Support', description: 'Expert technical support for your entire Cisco and Ruijie infrastructure.' }
   ];
 
   return (

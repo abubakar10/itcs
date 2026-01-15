@@ -15,12 +15,11 @@ const ITHero = () => (
         <span>MANAGED IT SERVICES</span>
       </div>
       <h1 className="hero-title">
-        Focus on Your Business, We Handle
-        <span className="gradient-text"> Your IT</span>
+        Enterprise-Grade IT Powered by
+        <span className="gradient-text"> Dell, HP & VMware</span>
       </h1>
       <p className="hero-description">
-        Comprehensive managed IT services that keep your technology running smoothly. From 24/7
-        support to infrastructure management, we've got you covered.
+        We provide professional managed services leveraging Dell and HP hardware expertise, combined with VMware virtualization and Veeam availability solutions to keep your business running 24/7.
       </p>
       <div className="hero-actions">
         <Link to="/contact" className="btn-primary">
@@ -34,15 +33,15 @@ const ITHero = () => (
       <div className="hero-badges-row">
         <div className="badge-item">
           <FontAwesomeIcon icon={faClock} />
-          <span>24/7 Support</span>
+          <span>VMware Ops</span>
         </div>
         <div className="badge-item">
           <FontAwesomeIcon icon={faWrench} />
-          <span>Proactive Monitoring</span>
+          <span>Dell/HP Support</span>
         </div>
         <div className="badge-item">
           <FontAwesomeIcon icon={faCheck} />
-          <span>99.9% Uptime</span>
+          <span>Veeam Backups</span>
         </div>
       </div>
     </div>
@@ -51,12 +50,12 @@ const ITHero = () => (
 
 const ITFeatures = () => {
   const features = [
-    { icon: faDesktop, title: 'Help Desk Support', description: '24/7 technical support for all your IT needs with fast response times.' },
-    { icon: faBroadcastTower, title: 'Infrastructure Management', description: 'Complete management of your IT infrastructure for optimal performance.' },
-    { icon: faSync, title: 'System Maintenance', description: 'Regular updates, patches, and maintenance to keep systems running smoothly.' },
-    { icon: faSave, title: 'Backup & Recovery', description: 'Automated backup solutions with rapid disaster recovery capabilities.' },
-    { icon: faEye, title: 'Network Monitoring', description: 'Proactive monitoring to identify and resolve issues before they impact your business.' },
-    { icon: faPhone, title: 'Remote Support', description: 'Quick resolution of IT issues with secure remote assistance.' }
+    { icon: faDesktop, title: 'Hardware Management', description: 'Certified support and procurement for Dell and HP workstations, servers, and desktops.' },
+    { icon: faBroadcastTower, title: 'VMware Virtualization', description: 'Expert implementation and management of VMware vSphere and ESXi virtualization platforms.' },
+    { icon: faSync, title: 'Availability Solutions', description: 'Ensuring 99.9% uptime with Veeam Backup & Replication for data protection.' },
+    { icon: faSave, title: 'Disaster Recovery', description: 'Cloud-integrated disaster recovery planning using Veeam and Azure technologies.' },
+    { icon: faEye, title: 'Proactive Monitoring', description: 'Advanced system health monitoring for your entire Dell and HP infrastructure.' },
+    { icon: faPhone, title: '24/7 Expert Support', description: 'Unlimited remote and on-site support for your physical and virtual environments.' }
   ];
 
   return (

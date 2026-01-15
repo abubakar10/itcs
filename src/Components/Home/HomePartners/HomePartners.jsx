@@ -24,12 +24,13 @@ import Symantec from "./../../../assets/images/Symantec.png";
 import Veeam from "./../../../assets/images/Veeam.png";
 import Vmware from "./../../../assets/images/Vmware.png";
 import Zoom from "./../../../assets/images/Zoom.png";
+import AWS from "./../../../assets/images/CloudSection3-AWS.png";
 
 const logos = [
   Acunetix, Adobe, AutoDesk, Barracuda, CorelDraw, CPanel, Digicert,
   Dynamics365, Fortinet, Kaspersky, ManageEngine, Microsoft, Nvidia,
   Office365, Plesk, PortSwigger, Rapid, Ruigie, SolarWinds, Sophos,
-  Symantec, Veeam, Vmware, Zoom,
+  Symantec, Veeam, Vmware, Zoom, AWS,
 ];
 
 const HomePartners = () => {
@@ -54,7 +55,7 @@ const HomePartners = () => {
           <span className="section-badge">TRUSTED BY INDUSTRY LEADERS</span>
           <h2 className="section-title">Our Technology Partners</h2>
           <p className="section-description">
-            We collaborate with the world's leading technology providers to deliver 
+            We collaborate with the world's leading technology providers to deliver
             exceptional solutions
           </p>
         </div>

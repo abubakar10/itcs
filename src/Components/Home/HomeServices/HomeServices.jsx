@@ -10,21 +10,21 @@ const HomeServices = () => {
     {
       icon: MordernWorkplace,
       title: "MODERN WORKPLACE",
-      description: "Unleash the potential of modern work with an array of transformative solutions.",
+      description: "Empower your team with Microsoft 365, Adobe Creative Cloud, and Zoom for seamless collaboration and productivity.",
       color: "#667eea",
       link: "/services/it-services",
     },
     {
       icon: CloudLogo,
       title: "CLOUD COMPUTING",
-      description: "We are equipped to guide you through the transformative potential of Azure.",
+      description: "Scale your business with expert-led migrations to Amazon Web Services (AWS) and Microsoft Azure for maximum agility.",
       color: "#4a9eff",
       link: "/services/cloud",
     },
     {
       icon: SoftwareLicensing,
       title: "SOFTWARE LICENSING",
-      description: "Choose the licensing option that aligns seamlessly with your business rhythm.",
+      description: "Secure genuine licensing for enterprise tools including Autodesk, CorelDraw, and Adobe with our certified partnership.",
       color: "#3d8eef",
       link: "/services/enterprise-solutions",
     }
@@ -43,10 +43,10 @@ const HomeServices = () => {
 
         <div className="services-grid">
           {services.map((service, index) => (
-            <div 
-              className="service-card" 
+            <div
+              className="service-card"
               key={index}
-              style={{'--card-color': service.color}}
+              style={{ '--card-color': service.color }}
             >
               <div className="card-glow"></div>
               <div className="card-icon">
@@ -54,7 +54,7 @@ const HomeServices = () => {
               </div>
               <h3 className="card-title">{service.title}</h3>
               <p className="card-description">{service.description}</p>
-             <Link to={service.link} className="card-link">
+              <Link to={service.link} className="card-link">
                 Learn More <span className="link-arrow">→</span>
               </Link>
             </div>

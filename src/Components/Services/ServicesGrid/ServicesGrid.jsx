@@ -15,44 +15,44 @@ const ServicesGrid = () => {
     {
       logo: cloud,
       title: "Cloud Solutions",
-      description: "Unlock Business 4.0 with our Microsoft Cloud partnership for a smooth edge-to-cloud transformation",
+      description: "Scale efficiently with our AWS and Microsoft Azure cloud partnerships for a secure edge-to-cloud transformation.",
       path: "/services/cloud",
-      features: ["Azure Migration", "Cloud Security", "Cost Optimization"]
+      features: ["Azure & AWS Migration", "Cloud Security", "Hybrid Cloud Support"]
     },
     {
       logo: cybersecurity,
       title: "Cybersecurity",
-      description: "Cybersecurity: a growth imperative in today's expanding digital threat landscape.",
+      description: "Protect your digital assets with industry-leading security from Kaspersky, Sophos, and Fortinet.",
       path: "/services/cyber-security",
-      features: ["Threat Detection", "Security Audits", "Incident Response"]
+      features: ["Threat Detection (Kaspersky)", "Sophos Firewall", "Fortinet Security"]
     },
     {
       logo: consulting,
       title: "IT Consulting",
-      description: "Thrive amidst change with a transformative strategy centered on purpose.",
+      description: "Strategize for the future with data-driven insights and digital transformation roadmaps.",
       path: "/services/consulting",
       features: ["Strategy Planning", "Digital Transformation", "Tech Advisory"]
     },
     {
       logo: enterpriseSol,
       title: "Enterprise Solutions",
-      description: "Transform your business with intelligent solutions and a holistic approach to enterprise applications.",
+      description: "Automate and optimize with Microsoft Dynamics 365, SAP, and custom ERP/CRM integrations.",
       path: "/services/enterprise-solutions",
-      features: ["ERP Systems", "CRM Solutions", "Business Intelligence"]
+      features: ["Dynamics 365 ERP", "CRM Solutions", "CPanel/Plesk Hosting"]
     },
     {
       logo: itServices,
       title: "IT Services",
-      description: "Expert managed IT services for smooth and efficient technology operations.",
+      description: "Ensure business continuity with Dell and HP hardware support, plus Veeam and VMware virtualization.",
       path: "/services/it-services",
-      features: ["24/7 Support", "Infrastructure Management", "Help Desk"]
+      features: ["VMware Operations", "Veeam Data Backup", "Dell/HP Hardware"]
     },
     {
       logo: networkSolutions,
       title: "Network Solutions",
-      description: "Optimize network performance and security with our comprehensive network solutions.",
+      description: "Connect your global workspace with enterprise routing from Cisco, Ruijie, and SolarWinds monitoring.",
       path: "/services/network-solutions",
-      features: ["Network Design", "Performance Monitoring", "Security Implementation"]
+      features: ["Cisco Routing/Switching", "Ruijie Wireless", "SolarWinds Monitoring"]
     },
   ];
 
@@ -63,7 +63,7 @@ const ServicesGrid = () => {
           <span className="section-badge">OUR SERVICES</span>
           <h2 className="section-title">What We Do</h2>
           <p className="section-description">
-            Transforming businesses through technology with comprehensive solutions 
+            Transforming businesses through technology with comprehensive solutions
             tailored to your unique needs
           </p>
         </div>
@@ -81,7 +81,7 @@ const ServicesGrid = () => {
                   <div className="card-hover-indicator">
                     <span>Hover for details</span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ const ServicesGrid = () => {
                     {service.features.map((feature, idx) => (
                       <li key={idx}>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         {feature}
                       </li>
@@ -103,7 +103,7 @@ const ServicesGrid = () => {
                   >
                     Explore Service
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </button>
                 </div>

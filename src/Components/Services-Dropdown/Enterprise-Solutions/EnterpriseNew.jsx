@@ -16,12 +16,11 @@ const EnterpriseHero = () => (
         <span>ENTERPRISE SOLUTIONS</span>
       </div>
       <h1 className="hero-title">
-        Empower Your Enterprise with
-        <span className="gradient-text"> Intelligent Solutions</span>
+        Enterprise-Ready
+        <span className="gradient-text"> Microsoft & SAP Solutions</span>
       </h1>
       <p className="hero-description">
-        Transform your business operations with comprehensive enterprise solutions. From ERP to CRM,
-        we provide integrated systems that drive efficiency and growth.
+        Unlock your business potential with world-class ERP and CRM systems from Microsoft Dynamics 365 and SAP, integrated seamlessly for maximum performance.
       </p>
       <div className="hero-actions">
         <a href="#enterprise-solutions" className="btn-primary">
@@ -35,11 +34,11 @@ const EnterpriseHero = () => (
       <div className="hero-badges-row">
         <div className="badge-item">
           <FontAwesomeIcon icon={faChartBar} />
-          <span>Integrated Systems</span>
+          <span>Dynamics 365</span>
         </div>
         <div className="badge-item">
           <FontAwesomeIcon icon={faSync} />
-          <span>Process Automation</span>
+          <span>SAP Integration</span>
         </div>
         <div className="badge-item">
           <FontAwesomeIcon icon={faChartBar} />
@@ -52,12 +51,12 @@ const EnterpriseHero = () => (
 
 const EnterpriseFeatures = () => {
   const features = [
-    { icon: faBuilding, title: 'ERP Systems', description: 'Comprehensive enterprise resource planning solutions for streamlined operations.' },
-    { icon: faUsers, title: 'CRM Solutions', description: 'Customer relationship management platforms to enhance customer engagement.' },
-    { icon: faChartBar, title: 'Business Intelligence', description: 'Data analytics and reporting tools for informed decision-making.' },
-    { icon: faSync, title: 'Workflow Automation', description: 'Automate business processes for increased efficiency and reduced errors.' },
-    { icon: faMobileAlt, title: 'Mobile Solutions', description: 'Enterprise mobile applications for on-the-go business management.' },
-    { icon: faLink, title: 'System Integration', description: 'Seamlessly integrate existing systems for unified business operations.' }
+    { icon: faBuilding, title: 'ERP Systems', description: 'Comprehensive ERP implementations focusing on Microsoft Dynamics 365 and SAP architectures.' },
+    { icon: faUsers, title: 'CRM Solutions', description: 'Customer relationship management platforms to enhance engagement using Dynamics 365 CRM.' },
+    { icon: faChartBar, title: 'Web Hosting Controls', description: 'Enterprise-grade hosting management with licensed CPanel and Plesk solutions.' },
+    { icon: faSync, title: 'Workflow Automation', description: 'Streamline your enterprise processes with automated data flows and system integrations.' },
+    { icon: faMobileAlt, title: 'Mobile Business Apps', description: 'Custom mobile extensions for your enterprise systems to manage business on-the-go.' },
+    { icon: faLink, title: 'API & Legacy Integration', description: 'Connecting your modern enterprise apps with legacy databases and third-party APIs.' }
   ];
 
   return (

@@ -15,37 +15,37 @@ const HomeSolutions = () => {
     {
       logo: cloud,
       title: "Cloud",
-      description: "Unlock Business 4.0 with our Microsoft Cloud partnership for a smooth edge-to-cloud transformation",
+      description: "Scalable cloud infrastructures powered by Microsoft Azure and Amazon Web Services (AWS) for edge-to-cloud agility.",
       path: "/services/cloud",
     },
     {
       logo: cybersecurity,
       title: "Cyber-security",
-      description: "Cybersecurity: a growth imperative in today's expanding digital threat landscape.",
+      description: "Unrivaled protection for your digital assets with Kaspersky, Sophos, and Fortinet enterprise security.",
       path: "/services/cyber-security",
     },
     {
       logo: consulting,
       title: "Consulting",
-      description: "Thrive amidst change with a transformative strategy centered on purpose.",
+      description: "Strategic digital transformation consulting centered on purpose-driven methodology and growth.",
       path: "/services/consulting",
     },
     {
       logo: enterpriseSol,
       title: "Enterprise Solutions",
-      description: "Transform your business with intelligent solutions and a holistic approach to enterprise applications.",
+      description: "Intelligent business applications using Microsoft Dynamics 365, SAP, and specialized hosting tools.",
       path: "/services/enterprise-solutions",
     },
     {
       logo: itServices,
       title: "IT Services",
-      description: "Expert managed IT services for smooth and efficient technology operations.",
+      description: "Managed services for Dell and HP hardware environments, plus VMware and Veeam virtualization.",
       path: "/services/it-services",
     },
     {
       logo: networkSolutions,
       title: "Network Solutions",
-      description: "Optimize network performance and security with our comprehensive network solutions.",
+      description: "Optimize performance and security with Cisco routing, Ruijie wireless, and SolarWinds monitoring.",
       path: "/services/network-solutions",
     },
   ];
@@ -57,10 +57,10 @@ const HomeSolutions = () => {
           <span className="section-badge">WHY CHOOSE US</span>
           <h2 className="section-title">13+ Years of Industry Experience</h2>
           <p className="section-description">
-            We uphold the virtues of superior functional resources and excellent 
-            customer services with the prime objective of fostering value enablement 
-            systems, since 2011. By deploying problem-focused and solution-centered 
-            approaches with functional expertise and strategic partnerships with Tier 1 
+            We uphold the virtues of superior functional resources and excellent
+            customer services with the prime objective of fostering value enablement
+            systems, since 2011. By deploying problem-focused and solution-centered
+            approaches with functional expertise and strategic partnerships with Tier 1
             firms, we ensure customer success.
           </p>
         </div>
@@ -77,7 +77,7 @@ const HomeSolutions = () => {
                   <p className="card-description">{solution.description}</p>
                 </div>
                 <div className="card-back">
-                  <button 
+                  <button
                     className="explore-btn"
                     onClick={() => navigate(solution.path)}
                   >
