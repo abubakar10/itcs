@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../../../config/apiConfig";
 import "./BlogApproval.scss";
 
 export default function BlogApproval() {
@@ -9,12 +10,12 @@ export default function BlogApproval() {
   const [authors, setAuthors] = useState({});
   const [dates, setDates] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 9;
 
   const organization = "itcs11";
-  const backendUrl = "http://localhost:5000";
 
   // Fetch all Dev.to blogs
   const fetchAllDevBlogs = async () => {
@@ -24,8 +25,9 @@ export default function BlogApproval() {
       const res = await fetch(
         `https://dev.to/api/organizations/${organization}/articles?per_page=100&page=${page}`
       );
+      if (!res.ok) throw new Error("Failed to fetch from Dev.to");
       const data = await res.json();
-      if (data.length === 0) break;
+      if (!Array.isArray(data) || data.length === 0) break;
       allBlogs = [...allBlogs, ...data];
       page++;
     }
@@ -44,10 +46,11 @@ export default function BlogApproval() {
   // Fetch blogs and statuses
   const fetchBlogs = async () => {
     setLoading(true);
+    setError(null);
     try {
       const [devBlogs, statusRes] = await Promise.all([
         fetchAllDevBlogs(),
-        axios.get(`${backendUrl}/api/blogs/statuses`)
+        axios.get(`${API_BASE_URL}/api/blogs/statuses`)
       ]);
 
       const statusMap = {};
@@ -71,8 +74,8 @@ export default function BlogApproval() {
 
       setBlogs(visibleBlogs);
     } catch (err) {
-      console.error(err);
-      alert("Failed to fetch blogs or statuses.");
+      console.error("Fetch error:", err);
+      setError("Unable to sync blogs at the moment. Please check your connection.");
     } finally {
       setLoading(false);
     }
@@ -81,36 +84,36 @@ export default function BlogApproval() {
   // Update blog status
   const updateStatus = async (devId, status) => {
     try {
-      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { status });
+      await axios.patch(`${API_BASE_URL}/api/blogs/${devId}/status`, { status });
       setStatuses(prev => ({ ...prev, [devId]: status }));
       if (status === "rejected") setBlogs(prev => prev.filter(blog => blog.id !== devId));
-    } catch {
-      alert("Failed to update status.");
+    } catch (err) {
+      console.error("Update status error:", err);
     }
   };
 
   // Update author
   const updateAuthor = async (devId, author) => {
     try {
-      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { customAuthor: author });
+      await axios.patch(`${API_BASE_URL}/api/blogs/${devId}/status`, { customAuthor: author });
       setAuthors(prev => ({ ...prev, [devId]: author }));
-    } catch {
-      alert("Failed to update author.");
+    } catch (err) {
+      console.error("Update author error:", err);
     }
   };
 
   // Update custom date and re-sort blogs
   const updateDate = async (devId, customDate) => {
-    if (!customDate) return alert("Date cannot be empty.");
+    if (!customDate) return;
     try {
-      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { customDate });
+      await axios.patch(`${API_BASE_URL}/api/blogs/${devId}/status`, { customDate });
       setDates(prev => {
         const newDates = { ...prev, [devId]: customDate };
         setBlogs(prevBlogs => sortBlogsByDate(prevBlogs, newDates));
         return newDates;
       });
-    } catch {
-      alert("Failed to update date.");
+    } catch (err) {
+      console.error("Update date error:", err);
     }
   };
 
@@ -129,6 +132,24 @@ export default function BlogApproval() {
       <h2>Blogs for Approval</h2>
 
       {loading && <p className="loading-text">Loading blogs...</p>}
+      {error && !loading && (
+        <div className="error-container" style={{ margin: '20px 0' }}>
+          <p className="error-text" style={{ color: '#ff4a5a', marginBottom: '15px' }}>{error}</p>
+          <button
+            onClick={fetchBlogs}
+            style={{
+              padding: '8px 20px',
+              borderRadius: '20px',
+              background: '#4a9eff',
+              color: '#fff',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            Retry Sync
+          </button>
+        </div>
+      )}
 
       <div className="blog-grid">
         {currentBlogs.map(blog => (
